@@ -1,0 +1,422 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		299117561A608BBE00972E46 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299117551A608BBE00972E46 /* AppDelegate.swift */; };
+		299117581A608BBE00972E46 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299117571A608BBE00972E46 /* ViewController.swift */; };
+		2991175B1A608BBE00972E46 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 299117591A608BBE00972E46 /* Main.storyboard */; };
+		2991175D1A608BBE00972E46 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2991175C1A608BBE00972E46 /* Images.xcassets */; };
+		299117601A608BBE00972E46 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2991175E1A608BBE00972E46 /* LaunchScreen.xib */; };
+		2991176C1A608BBE00972E46 /* WearableDTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2991176B1A608BBE00972E46 /* WearableDTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		299117661A608BBE00972E46 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 299117481A608BBE00972E46 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2991174F1A608BBE00972E46;
+			remoteInfo = WearableD;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		299117501A608BBE00972E46 /* WearableD.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WearableD.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		299117541A608BBE00972E46 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		299117551A608BBE00972E46 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		299117571A608BBE00972E46 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		2991175A1A608BBE00972E46 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		2991175C1A608BBE00972E46 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		2991175F1A608BBE00972E46 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		299117651A608BBE00972E46 /* WearableDTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WearableDTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		2991176A1A608BBE00972E46 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2991176B1A608BBE00972E46 /* WearableDTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WearableDTests.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		2991174D1A608BBE00972E46 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		299117621A608BBE00972E46 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		299117471A608BBE00972E46 = {
+			isa = PBXGroup;
+			children = (
+				299117521A608BBE00972E46 /* WearableD */,
+				299117681A608BBE00972E46 /* WearableDTests */,
+				299117511A608BBE00972E46 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		299117511A608BBE00972E46 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				299117501A608BBE00972E46 /* WearableD.app */,
+				299117651A608BBE00972E46 /* WearableDTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		299117521A608BBE00972E46 /* WearableD */ = {
+			isa = PBXGroup;
+			children = (
+				299117551A608BBE00972E46 /* AppDelegate.swift */,
+				299117571A608BBE00972E46 /* ViewController.swift */,
+				299117591A608BBE00972E46 /* Main.storyboard */,
+				2991175C1A608BBE00972E46 /* Images.xcassets */,
+				2991175E1A608BBE00972E46 /* LaunchScreen.xib */,
+				299117531A608BBE00972E46 /* Supporting Files */,
+			);
+			path = WearableD;
+			sourceTree = "<group>";
+		};
+		299117531A608BBE00972E46 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				299117541A608BBE00972E46 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		299117681A608BBE00972E46 /* WearableDTests */ = {
+			isa = PBXGroup;
+			children = (
+				2991176B1A608BBE00972E46 /* WearableDTests.swift */,
+				299117691A608BBE00972E46 /* Supporting Files */,
+			);
+			path = WearableDTests;
+			sourceTree = "<group>";
+		};
+		299117691A608BBE00972E46 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				2991176A1A608BBE00972E46 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		2991174F1A608BBE00972E46 /* WearableD */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2991176F1A608BBE00972E46 /* Build configuration list for PBXNativeTarget "WearableD" */;
+			buildPhases = (
+				2991174C1A608BBE00972E46 /* Sources */,
+				2991174D1A608BBE00972E46 /* Frameworks */,
+				2991174E1A608BBE00972E46 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = WearableD;
+			productName = WearableD;
+			productReference = 299117501A608BBE00972E46 /* WearableD.app */;
+			productType = "com.apple.product-type.application";
+		};
+		299117641A608BBE00972E46 /* WearableDTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 299117721A608BBE00972E46 /* Build configuration list for PBXNativeTarget "WearableDTests" */;
+			buildPhases = (
+				299117611A608BBE00972E46 /* Sources */,
+				299117621A608BBE00972E46 /* Frameworks */,
+				299117631A608BBE00972E46 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				299117671A608BBE00972E46 /* PBXTargetDependency */,
+			);
+			name = WearableDTests;
+			productName = WearableDTests;
+			productReference = 299117651A608BBE00972E46 /* WearableDTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		299117481A608BBE00972E46 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0610;
+				ORGANIZATIONNAME = Intuit;
+				TargetAttributes = {
+					2991174F1A608BBE00972E46 = {
+						CreatedOnToolsVersion = 6.1.1;
+					};
+					299117641A608BBE00972E46 = {
+						CreatedOnToolsVersion = 6.1.1;
+						TestTargetID = 2991174F1A608BBE00972E46;
+					};
+				};
+			};
+			buildConfigurationList = 2991174B1A608BBE00972E46 /* Build configuration list for PBXProject "WearableD" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 299117471A608BBE00972E46;
+			productRefGroup = 299117511A608BBE00972E46 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				2991174F1A608BBE00972E46 /* WearableD */,
+				299117641A608BBE00972E46 /* WearableDTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		2991174E1A608BBE00972E46 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2991175B1A608BBE00972E46 /* Main.storyboard in Resources */,
+				299117601A608BBE00972E46 /* LaunchScreen.xib in Resources */,
+				2991175D1A608BBE00972E46 /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		299117631A608BBE00972E46 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		2991174C1A608BBE00972E46 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				299117581A608BBE00972E46 /* ViewController.swift in Sources */,
+				299117561A608BBE00972E46 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		299117611A608BBE00972E46 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2991176C1A608BBE00972E46 /* WearableDTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		299117671A608BBE00972E46 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2991174F1A608BBE00972E46 /* WearableD */;
+			targetProxy = 299117661A608BBE00972E46 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		299117591A608BBE00972E46 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2991175A1A608BBE00972E46 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		2991175E1A608BBE00972E46 /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2991175F1A608BBE00972E46 /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		2991176D1A608BBE00972E46 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		2991176E1A608BBE00972E46 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		299117701A608BBE00972E46 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = WearableD/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		299117711A608BBE00972E46 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = WearableD/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		299117731A608BBE00972E46 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = WearableDTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WearableD.app/WearableD";
+			};
+			name = Debug;
+		};
+		299117741A608BBE00972E46 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = WearableDTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WearableD.app/WearableD";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		2991174B1A608BBE00972E46 /* Build configuration list for PBXProject "WearableD" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2991176D1A608BBE00972E46 /* Debug */,
+				2991176E1A608BBE00972E46 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2991176F1A608BBE00972E46 /* Build configuration list for PBXNativeTarget "WearableD" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				299117701A608BBE00972E46 /* Debug */,
+				299117711A608BBE00972E46 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		299117721A608BBE00972E46 /* Build configuration list for PBXNativeTarget "WearableDTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				299117731A608BBE00972E46 /* Debug */,
+				299117741A608BBE00972E46 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 299117481A608BBE00972E46 /* Project object */;
+}
