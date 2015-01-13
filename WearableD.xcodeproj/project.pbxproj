@@ -8,11 +8,16 @@
 
 /* Begin PBXBuildFile section */
 		299117561A608BBE00972E46 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299117551A608BBE00972E46 /* AppDelegate.swift */; };
-		299117581A608BBE00972E46 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299117571A608BBE00972E46 /* ViewController.swift */; };
+		299117581A608BBE00972E46 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299117571A608BBE00972E46 /* HomeViewController.swift */; };
 		2991175B1A608BBE00972E46 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 299117591A608BBE00972E46 /* Main.storyboard */; };
 		2991175D1A608BBE00972E46 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2991175C1A608BBE00972E46 /* Images.xcassets */; };
 		299117601A608BBE00972E46 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2991175E1A608BBE00972E46 /* LaunchScreen.xib */; };
 		2991176C1A608BBE00972E46 /* WearableDTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2991176B1A608BBE00972E46 /* WearableDTests.swift */; };
+		299117761A608C9600972E46 /* CentralViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299117751A608C9600972E46 /* CentralViewController.swift */; };
+		299117781A608CCE00972E46 /* PeripheralViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299117771A608CCE00972E46 /* PeripheralViewController.swift */; };
+		2991177A1A60965B00972E46 /* BLEPeripheral.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299117791A60965B00972E46 /* BLEPeripheral.swift */; };
+		2991177C1A60990400972E46 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2991177B1A60990400972E46 /* CoreBluetooth.framework */; };
+		2991177E1A60AEC600972E46 /* BLEIDs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2991177D1A60AEC600972E46 /* BLEIDs.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,13 +34,18 @@
 		299117501A608BBE00972E46 /* WearableD.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WearableD.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		299117541A608BBE00972E46 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		299117551A608BBE00972E46 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		299117571A608BBE00972E46 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		299117571A608BBE00972E46 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		2991175A1A608BBE00972E46 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		2991175C1A608BBE00972E46 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		2991175F1A608BBE00972E46 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		299117651A608BBE00972E46 /* WearableDTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WearableDTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2991176A1A608BBE00972E46 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2991176B1A608BBE00972E46 /* WearableDTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WearableDTests.swift; sourceTree = "<group>"; };
+		299117751A608C9600972E46 /* CentralViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CentralViewController.swift; sourceTree = "<group>"; };
+		299117771A608CCE00972E46 /* PeripheralViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeripheralViewController.swift; sourceTree = "<group>"; };
+		299117791A60965B00972E46 /* BLEPeripheral.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BLEPeripheral.swift; sourceTree = "<group>"; };
+		2991177B1A60990400972E46 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
+		2991177D1A60AEC600972E46 /* BLEIDs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BLEIDs.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -43,6 +53,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2991177C1A60990400972E46 /* CoreBluetooth.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -62,6 +73,7 @@
 				299117521A608BBE00972E46 /* WearableD */,
 				299117681A608BBE00972E46 /* WearableDTests */,
 				299117511A608BBE00972E46 /* Products */,
+				2991177B1A60990400972E46 /* CoreBluetooth.framework */,
 			);
 			sourceTree = "<group>";
 		};
@@ -77,8 +89,12 @@
 		299117521A608BBE00972E46 /* WearableD */ = {
 			isa = PBXGroup;
 			children = (
+				2991177D1A60AEC600972E46 /* BLEIDs.swift */,
 				299117551A608BBE00972E46 /* AppDelegate.swift */,
-				299117571A608BBE00972E46 /* ViewController.swift */,
+				299117571A608BBE00972E46 /* HomeViewController.swift */,
+				299117751A608C9600972E46 /* CentralViewController.swift */,
+				299117771A608CCE00972E46 /* PeripheralViewController.swift */,
+				299117791A60965B00972E46 /* BLEPeripheral.swift */,
 				299117591A608BBE00972E46 /* Main.storyboard */,
 				2991175C1A608BBE00972E46 /* Images.xcassets */,
 				2991175E1A608BBE00972E46 /* LaunchScreen.xib */,
@@ -212,8 +228,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				299117581A608BBE00972E46 /* ViewController.swift in Sources */,
+				2991177E1A60AEC600972E46 /* BLEIDs.swift in Sources */,
+				299117781A608CCE00972E46 /* PeripheralViewController.swift in Sources */,
+				299117581A608BBE00972E46 /* HomeViewController.swift in Sources */,
+				299117761A608C9600972E46 /* CentralViewController.swift in Sources */,
 				299117561A608BBE00972E46 /* AppDelegate.swift in Sources */,
+				2991177A1A60965B00972E46 /* BLEPeripheral.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -407,6 +427,7 @@
 				299117711A608BBE00972E46 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		299117721A608BBE00972E46 /* Build configuration list for PBXNativeTarget "WearableDTests" */ = {
 			isa = XCConfigurationList;
@@ -415,6 +436,7 @@
 				299117741A608BBE00972E46 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

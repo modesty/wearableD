@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6211" systemVersion="14A298i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="haa-ba-RRG">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6204"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Wearable Transcripts-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Wearable Transcripts" id="BYZ-38-t0r" customClass="HomeViewController" customModule="WearableD" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -15,11 +16,139 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="429-Nr-zfG">
+                                <rect key="frame" x="185" y="285" width="231" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="Jb0-yh-seO"/>
+                                    <constraint firstAttribute="width" constant="231" id="X5G-IE-825"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                <state key="normal" title="Request Tax Returns">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="wzG-I1-ITq" kind="show" id="Itt-m6-I3L"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dym-CI-LlI">
+                                <rect key="frame" x="185" y="374" width="231" height="39"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                <state key="normal" title="Share My Tax Returns">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="6RN-an-d6v" kind="show" id="cas-IH-xXX"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Wnz-VO-iQB">
+                                <rect key="frame" x="0.0" y="125" width="600" height="103"/>
+                                <string key="text">Request and send tax returns
+safely and conveniently</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EVj-7a-0a9">
+                                <rect key="frame" x="277" y="385" width="46" height="30"/>
+                                <state key="normal" title="Button">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Dym-CI-LlI" firstAttribute="top" secondItem="429-Nr-zfG" secondAttribute="bottom" constant="59" id="FWj-d3-Hk9"/>
+                            <constraint firstItem="Dym-CI-LlI" firstAttribute="leading" secondItem="429-Nr-zfG" secondAttribute="leading" id="MGs-Bj-k5z"/>
+                            <constraint firstItem="429-Nr-zfG" firstAttribute="trailing" secondItem="Dym-CI-LlI" secondAttribute="trailing" id="W86-58-ukk"/>
+                            <constraint firstItem="Wnz-VO-iQB" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="39" id="gQP-Jh-tdG"/>
+                            <constraint firstItem="Dym-CI-LlI" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="gyt-0C-Nao"/>
+                            <constraint firstItem="429-Nr-zfG" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="oCk-wt-t98"/>
+                            <constraint firstItem="Wnz-VO-iQB" firstAttribute="centerX" secondItem="429-Nr-zfG" secondAttribute="centerX" id="sDL-zs-SP0"/>
+                            <constraint firstItem="Wnz-VO-iQB" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="tP3-rp-Sln"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="EVj-7a-0a9"/>
+                            </mask>
+                        </variation>
                     </view>
+                    <navigationItem key="navigationItem" id="Bho-ws-eDJ"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="1044" y="547"/>
+        </scene>
+        <!--Request Data-->
+        <scene sceneID="PsH-ZX-E6z">
+            <objects>
+                <viewController title="Request Data" id="wzG-I1-ITq" customClass="CentralViewController" customModule="WearableD" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="z9t-Qc-45F"/>
+                        <viewControllerLayoutGuide type="bottom" id="wdN-sY-zJR"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="aRf-xu-Rqo">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0hd-Pj-lih" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1762" y="342"/>
+        </scene>
+        <!--Share Data-->
+        <scene sceneID="7GR-z5-e8A">
+            <objects>
+                <viewController title="Share Data" id="6RN-an-d6v" customClass="PeripheralViewController" customModule="WearableD" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Pbi-az-U04"/>
+                        <viewControllerLayoutGuide type="bottom" id="5zu-7B-jP7"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="56K-Y0-OC5">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Initializing..." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yqy-Ez-JYu">
+                                <rect key="frame" x="48" y="180" width="504" height="98"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="5zu-7B-jP7" firstAttribute="top" secondItem="Yqy-Ez-JYu" secondAttribute="bottom" constant="322" id="Lia-vD-Dbs"/>
+                            <constraint firstItem="Yqy-Ez-JYu" firstAttribute="leading" secondItem="56K-Y0-OC5" secondAttribute="leadingMargin" constant="32" id="U9E-FS-eEb"/>
+                            <constraint firstItem="Yqy-Ez-JYu" firstAttribute="top" secondItem="Pbi-az-U04" secondAttribute="bottom" constant="116" id="Yex-bx-ws3"/>
+                            <constraint firstItem="Yqy-Ez-JYu" firstAttribute="centerX" secondItem="56K-Y0-OC5" secondAttribute="centerX" id="zW5-f7-U7g"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="bleStatusMsg" destination="Yqy-Ez-JYu" id="eef-Xv-wjM"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5Ep-fq-wGs" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1761" y="987"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="7YE-pB-I2a">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="haa-ba-RRG" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="eD4-V5-Q0R">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="deD-F9-rw9"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="L8k-iT-dFo" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="232" y="547"/>
         </scene>
     </scenes>
 </document>
