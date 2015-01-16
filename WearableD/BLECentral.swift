@@ -21,7 +21,7 @@ class BLECentral : NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
     var devices = [CBPeripheral]()
     var myCentralManager : CBCentralManager?
     var delegate : BLECentralProtocal?
-    let wctService = CBUUID(string: "46ADCE30-8807-46C6-B91B-EDDFE6F4A1B0")
+    let wctService = BLEIDs.wctService
     
     init (delegate : BLECentralProtocal) {
         self.delegate = delegate
@@ -39,8 +39,8 @@ class BLECentral : NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
         //make sure the device has bluetooth turned on
         if central.state == .PoweredOn {
             //once it is on scan for peripherals - nil will find everything. typically should pass a UUID as frist arg
-            //myCentralManager?.scanForPeripheralsWithServices([wctService], options: nil)
-            myCentralManager?.scanForPeripheralsWithServices(nil, options: nil)
+            myCentralManager?.scanForPeripheralsWithServices([wctService], options: nil)
+            //myCentralManager?.scanForPeripheralsWithServices(nil, options: nil)
             self.delegate?.bleCentralStatusUpdate("Scaning")
             
         }
@@ -60,8 +60,8 @@ class BLECentral : NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
         self.delegate?.bleCentralStatusUpdate("Peripheral Connected!")
         peripheral.delegate = self
         //pass service uuid here
-        peripheral.discoverServices(nil)
-        //peripheral.discoverServices([wctService])
+        //peripheral.discoverServices(nil)
+        peripheral.discoverServices([wctService])
         
         //stop scaning after per conection
         myCentralManager?.stopScan();
@@ -93,11 +93,11 @@ class BLECentral : NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
         else {
             for characteristic in service.characteristics {
                 self.delegate?.bleCentralStatusUpdate("Characteristic Found: \(characteristic.UUIDString)")
-                peripheral.readValueForCharacteristic(characteristic as CBCharacteristic)
+                //peripheral.readValueForCharacteristic(characteristic as CBCharacteristic)
                 
                 
                 //subscibe to value updates
-                //peripheral.setNotifyValue(true, forCharacteristic : characteristic as CBCharacteristic)
+                peripheral.setNotifyValue(true, forCharacteristic : characteristic as CBCharacteristic)
             }
         }
         
@@ -131,22 +131,24 @@ class BLECentral : NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
     
     //delegate called when attempting to subsribe to a char
     func peripheral(peripheral: CBPeripheral!, didUpdateNotificationStateForCharacteristic characteristic: CBCharacteristic!, error: NSError!) {
+        var rawValue : NSString?
+        
         if error != nil {
             self.delegate?.bleDidEncouneterError(error)
             println("error subscribing to char")
         }
         else {
             self.delegate?.bleCentralStatusUpdate("Subscribing to characteristic Value")
-            var value = NSString(data: characteristic.value, encoding: NSUTF8StringEncoding)
-            var rawValue = NSString(data: characteristic.value, encoding: NSUTF8StringEncoding)
-            
-            if let value = rawValue {
-                self.delegate?.bleCentralCharactoristicValueUpdate(value)
-                println("VALUE")
-                println(value)
-            }
-            else {
-                self.delegate?.bleCentralCharactoristicValueUpdate("No Value Found")
+            if characteristic.value != nil {
+                rawValue = NSString(data: characteristic.value, encoding: NSUTF8StringEncoding)
+                if let value = rawValue {
+                    self.delegate?.bleCentralCharactoristicValueUpdate(value)
+                    println("VALUE")
+                    println(value)
+                }
+                else {
+                    self.delegate?.bleCentralCharactoristicValueUpdate("No Value Found")
+                }
             }
         }
         
