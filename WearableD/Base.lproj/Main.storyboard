@@ -14,7 +14,7 @@
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="64" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="429-Nr-zfG">
@@ -61,7 +61,7 @@ safely and conveniently</string>
                             <constraint firstItem="Dym-CI-LlI" firstAttribute="top" secondItem="429-Nr-zfG" secondAttribute="bottom" constant="59" id="FWj-d3-Hk9"/>
                             <constraint firstItem="Dym-CI-LlI" firstAttribute="leading" secondItem="429-Nr-zfG" secondAttribute="leading" id="MGs-Bj-k5z"/>
                             <constraint firstItem="429-Nr-zfG" firstAttribute="trailing" secondItem="Dym-CI-LlI" secondAttribute="trailing" id="W86-58-ukk"/>
-                            <constraint firstItem="Wnz-VO-iQB" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="39" id="gQP-Jh-tdG"/>
+                            <constraint firstItem="Wnz-VO-iQB" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="75" id="gQP-Jh-tdG"/>
                             <constraint firstItem="Dym-CI-LlI" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="gyt-0C-Nao"/>
                             <constraint firstItem="429-Nr-zfG" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="oCk-wt-t98"/>
                             <constraint firstItem="Wnz-VO-iQB" firstAttribute="centerX" secondItem="429-Nr-zfG" secondAttribute="centerX" id="sDL-zs-SP0"/>
@@ -73,6 +73,7 @@ safely and conveniently</string>
                             </mask>
                         </variation>
                     </view>
+                    <extendedEdge key="edgesForExtendedLayout" top="YES"/>
                     <navigationItem key="navigationItem" id="Bho-ws-eDJ"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -109,7 +110,7 @@ safely and conveniently</string>
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Initializing..." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yqy-Ez-JYu">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Initializing..." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yqy-Ez-JYu">
                                 <rect key="frame" x="48" y="180" width="504" height="98"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -118,11 +119,19 @@ safely and conveniently</string>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="Yqy-Ez-JYu" secondAttribute="trailing" constant="25" id="GNP-GS-g97"/>
                             <constraint firstItem="5zu-7B-jP7" firstAttribute="top" secondItem="Yqy-Ez-JYu" secondAttribute="bottom" constant="322" id="Lia-vD-Dbs"/>
                             <constraint firstItem="Yqy-Ez-JYu" firstAttribute="leading" secondItem="56K-Y0-OC5" secondAttribute="leadingMargin" constant="32" id="U9E-FS-eEb"/>
                             <constraint firstItem="Yqy-Ez-JYu" firstAttribute="top" secondItem="Pbi-az-U04" secondAttribute="bottom" constant="116" id="Yex-bx-ws3"/>
+                            <constraint firstItem="Yqy-Ez-JYu" firstAttribute="leading" secondItem="56K-Y0-OC5" secondAttribute="leadingMargin" constant="25" id="agS-Ao-260"/>
                             <constraint firstItem="Yqy-Ez-JYu" firstAttribute="centerX" secondItem="56K-Y0-OC5" secondAttribute="centerX" id="zW5-f7-U7g"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="U9E-FS-eEb"/>
+                                <exclude reference="Lia-vD-Dbs"/>
+                            </mask>
+                        </variation>
                     </view>
                     <connections>
                         <outlet property="bleStatusMsg" destination="Yqy-Ez-JYu" id="eef-Xv-wjM"/>
@@ -136,6 +145,7 @@ safely and conveniently</string>
         <scene sceneID="7YE-pB-I2a">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="haa-ba-RRG" sceneMemberID="viewController">
+                    <extendedEdge key="edgesForExtendedLayout"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="eD4-V5-Q0R">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>

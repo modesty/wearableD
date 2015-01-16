@@ -54,10 +54,24 @@ class PeripheralViewController: UIViewController, BLEPeripheralDelegate {
         wctPeripheral.startPeripheral()
     }
     
-    func blePeripheralDidSendData() {
+    func blePeripheralDidSendData(dataSequence: BLESequence) {
         println("\(_stdlib_getTypeName(self)) - blePeripheralIsworking")
         
-        self.wctPeripheral.sendDataSequence()
+        switch dataSequence {
+        case .Init: self.wctPeripheral.wctSequence = .Working
+        case .Working: self.wctPeripheral.wctSequence = .Ready
+        case .Ready: self.wctPeripheral.wctSequence = .Token
+        case .Token: self.wctPeripheral.wctSequence = .End
+        case .Error: self.wctPeripheral.wctSequence = .End
+        case .End: self.wctPeripheral.closePeripheral()
+            
+        default:
+            self.wctPeripheral.wctSequence = .None
+        }
+
+        if (self.wctPeripheral.wctSequence != .End) {
+            self.wctPeripheral.sendDataSequence()
+        }
     }
     
     func blePeripheralDidStop() {

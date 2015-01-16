@@ -12,7 +12,7 @@ import CoreBluetooth
 protocol BLEPeripheralDelegate {
     func blePeripheralMsgUpdate(textMsg:String!)
     func blePeripheralIsReady()
-    func blePeripheralDidSendData()
+    func blePeripheralDidSendData(dataSequence: BLESequence)
     func blePeripheralDidStop()
 }
 
@@ -106,20 +106,7 @@ class BLEPeripheral: NSObject, CBPeripheralManagerDelegate {
         
         if didSend! {
             println("sent Data ok: \(rawValue)" )
-            
-            switch self.wctSequence {
-            case .Init: self.wctSequence = .Working
-            case .Working: self.wctSequence = .Ready
-            case .Ready: self.wctSequence = .Token
-            case .Token: self.wctSequence = .End
-            case .Error: self.wctSequence = .End
-
-            default:
-                self.wctSequence = .None
-                self.closePeripheral()
-            }
-            
-            self.delegate!.blePeripheralDidSendData()
+            self.delegate!.blePeripheralDidSendData(self.wctSequence)
         }
         else {
             println("sent data failed: \(rawValue). will send again")
@@ -194,9 +181,7 @@ class BLEPeripheral: NSObject, CBPeripheralManagerDelegate {
     func peripheralManager(peripheral: CBPeripheralManager!, didReceiveReadRequest request: CBATTRequest!) {
         println("Central read request")
         
-//        self.sendDataSequence(self.wctSequence)
-//        self.delegate!.blePeripheralMsgUpdate("Sending updating data...")
-//        self.delegate!.blePeripheralIsUpdating()
+        self.sendDataSequence()
     }
     
     func peripheralManager(peripheral: CBPeripheralManager!, willRestoreState dict: [NSObject : AnyObject]!) {
