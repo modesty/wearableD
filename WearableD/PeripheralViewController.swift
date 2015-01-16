@@ -54,21 +54,14 @@ class PeripheralViewController: UIViewController, BLEPeripheralDelegate {
         wctPeripheral.startPeripheral()
     }
     
-    func blePeripheralIsworking() {
+    func blePeripheralDidSendData() {
         println("\(_stdlib_getTypeName(self)) - blePeripheralIsworking")
         
+        self.wctPeripheral.sendDataSequence()
     }
     
-    func blePeripheralIsUpdating() {
-        println("\(_stdlib_getTypeName(self)) - blePeripheralIsUpdating")
-        
-    }
-    
-    func blePerpheralDidStop() {
+    func blePeripheralDidStop() {
         println("\(_stdlib_getTypeName(self)) - blePerpheralDidStop")
-        
     }
-
-    
 
 }

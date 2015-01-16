@@ -10,7 +10,7 @@ import Foundation
 import CoreBluetooth
 
 enum BLESequence : String {
-    case Init = "Init", Working="Working", Error="Error", Ready="Ready", End="End"
+    case None="None", Init = "Init", Working="Working", Ready="Ready", Token="Token", Error="Error", End="End"
 }
 
 struct BLEIDs {

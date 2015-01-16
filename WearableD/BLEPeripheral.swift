@@ -12,9 +12,8 @@ import CoreBluetooth
 protocol BLEPeripheralDelegate {
     func blePeripheralMsgUpdate(textMsg:String!)
     func blePeripheralIsReady()
-    func blePeripheralIsworking()
-    func blePeripheralIsUpdating()
-    func blePerpheralDidStop()
+    func blePeripheralDidSendData()
+    func blePeripheralDidStop()
 }
 
 
@@ -22,23 +21,27 @@ class BLEPeripheral: NSObject, CBPeripheralManagerDelegate {
     var wctPeripheral: CBPeripheralManager?
     var wctService: CBMutableService?
     var wctCharacteristic: CBMutableCharacteristic?
+    
     var wctSequence: BLESequence
+    var wctConnectedCentral: CBCentral?
     
     var delegate: BLEPeripheralDelegate!
     
     // oAuth error or cancel
     var data_error: String
     // oAuth access token
-    var data_ready: String
+    var data_token: String
     
     override init() {
         self.wctPeripheral = nil
         self.wctService = nil
         self.wctCharacteristic = nil
-        self.wctSequence = .Init
+        
+        self.wctSequence = .None
+        self.wctConnectedCentral = nil
         
         self.data_error = "OAuth error or cancel"
-        self.data_ready = "OAuth access token"
+        self.data_token = "OAuth access token"
         self.delegate = nil
         
         super.init()
@@ -56,8 +59,9 @@ class BLEPeripheral: NSObject, CBPeripheralManagerDelegate {
     }
     
     func closePeripheral() {
+        self.wctConnectedCentral = nil
         self.wctPeripheral!.stopAdvertising()
-        self.delegate!.blePerpheralDidStop()
+        self.delegate!.blePeripheralDidStop()
         self.delegate = nil
     }
     
@@ -84,34 +88,41 @@ class BLEPeripheral: NSObject, CBPeripheralManagerDelegate {
     }
     
     
-    func sendDataSequence(idx: BLESequence) -> Bool {
-        if self.wctSequence == .Init {
+    func sendDataSequence() -> Bool {
+        if self.wctSequence == .None {
             println("sent data: none")
             return false
         }
         
-        if self.wctSequence != idx {
-            println("sent data: quit. wctSequence=\(self.wctSequence) and idx=\(idx.rawValue)")
-            return false
+        var rawValue = self.wctSequence.rawValue
+        if self.wctSequence == .Token {
+            rawValue += ":\(self.data_token)"
+        }
+        else if self.wctSequence == .Error {
+            rawValue += ":\(self.data_error)"
         }
         
-        var didSend = self.wctPeripheral?.updateValue(BLEIDs.getSequenceData(idx.rawValue), forCharacteristic: self.wctCharacteristic, onSubscribedCentrals: nil)
+        var didSend = self.wctPeripheral?.updateValue(BLEIDs.getSequenceData(rawValue), forCharacteristic: self.wctCharacteristic, onSubscribedCentrals: [self.wctConnectedCentral!])
         
         if didSend! {
-            println("sent Data ok: \(idx.rawValue)" )
+            println("sent Data ok: \(rawValue)" )
             
-            switch idx {
-            case .Working: self.wctSequence = .Working
+            switch self.wctSequence {
+            case .Init: self.wctSequence = .Working
+            case .Working: self.wctSequence = .Ready
+            case .Ready: self.wctSequence = .Token
+            case .Token: self.wctSequence = .End
             case .Error: self.wctSequence = .End
-            case .Ready: self.wctSequence = .End
 
             default:
-                self.wctSequence = .Init
+                self.wctSequence = .None
                 self.closePeripheral()
             }
+            
+            self.delegate!.blePeripheralDidSendData()
         }
         else {
-            println("sent data failed: \(idx.rawValue). will send again")
+            println("sent data failed: \(rawValue). will send again")
         }
         
         return didSend!
@@ -163,29 +174,29 @@ class BLEPeripheral: NSObject, CBPeripheralManagerDelegate {
     func peripheralManager(peripheral: CBPeripheralManager!, central: CBCentral!, didSubscribeToCharacteristic characteristic: CBCharacteristic!) {
         println("Central subscribed to characteristic")
         
-        self.wctSequence = .Working
-        self.sendDataSequence(self.wctSequence)
+        self.wctConnectedCentral = central
+        self.wctSequence = .Init
+        self.sendDataSequence()
         self.delegate!.blePeripheralMsgUpdate("Data requester is connected...")
-        self.delegate!.blePeripheralIsworking()
     }
     
     func peripheralManager(peripheral: CBPeripheralManager!, central: CBCentral!, didUnsubscribeFromCharacteristic characteristic: CBCharacteristic!) {
+        self.wctConnectedCentral = nil
         println("Central unsubscribed from characteristic")
     }
     
     func peripheralManagerIsReadyToUpdateSubscribers(peripheral: CBPeripheralManager!) {
-        println("Central ready to update")
-        
-        self.sendDataSequence(self.wctSequence)
-        self.delegate!.blePeripheralIsUpdating()
+        println("Underlining transmit queue is ready, ready to update central again")
+
+        self.sendDataSequence()
     }
     
     func peripheralManager(peripheral: CBPeripheralManager!, didReceiveReadRequest request: CBATTRequest!) {
         println("Central read request")
         
-        self.sendDataSequence(self.wctSequence)
-        self.delegate!.blePeripheralMsgUpdate("Sending updating data...")
-        self.delegate!.blePeripheralIsUpdating()
+//        self.sendDataSequence(self.wctSequence)
+//        self.delegate!.blePeripheralMsgUpdate("Sending updating data...")
+//        self.delegate!.blePeripheralIsUpdating()
     }
     
     func peripheralManager(peripheral: CBPeripheralManager!, willRestoreState dict: [NSObject : AnyObject]!) {
