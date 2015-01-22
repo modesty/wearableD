@@ -40,8 +40,8 @@ class BLEPeripheral: NSObject, CBPeripheralManagerDelegate {
         self.wctSequence = .None
         self.wctConnectedCentral = nil
         
-        self.data_error = "OAuth error or cancel"
-        self.data_token = "OAuth access token"
+        self.data_error = "data error or cancel"
+        self.data_token = "data access token"
         self.delegate = nil
         
         super.init()
@@ -132,7 +132,7 @@ class BLEPeripheral: NSObject, CBPeripheralManagerDelegate {
     
     func peripheralManagerDidUpdateState(peripheral: CBPeripheralManager!) {
         // opt out from any other state
-        var statusMsg = "BLuetooth error..."
+        var statusMsg = "Bluetooth BLE error..."
         switch peripheral.state {
         case .Unknown: statusMsg = "BLE Bluetoothe state is unknown"
         case .Unsupported: statusMsg = "BLE Bluetooth is not supported on this device"

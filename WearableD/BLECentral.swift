@@ -9,63 +9,91 @@
 import Foundation
 import CoreBluetooth
 
-protocol BLECentralProtocal {
+protocol BLECentralDelegate {
     func bleCentralStatusUpdate (update : String)
+    func bleCentralIsReady()
     func bleCentralCharactoristicValueUpdate (update: String)
-    func bleDidEncouneterError (error : NSError)
+    func bleDidEncouneterError(error : NSError)
+    func bleCentralDidStop()
 }
 
 class BLECentral : NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
-    
-
-    var devices = [CBPeripheral]()
-    var myCentralManager : CBCentralManager?
-    var delegate : BLECentralProtocal?
+    var devices: CBPeripheral? = nil
+    var myCentralManager : CBCentralManager? = nil
+    var delegate : BLECentralDelegate? = nil
     let wctService = BLEIDs.wctService
     
-    init (delegate : BLECentralProtocal) {
+    init (delegate : BLECentralDelegate) {
         self.delegate = delegate
         super.init()
     }
     
-    func scanForPeripherals () {
+    func openBLECentral() {
+        closeBLECentral()
         myCentralManager = CBCentralManager(delegate: self, queue : nil)
+    }
+    
+    func closeBLECentral() {
+        if self.myCentralManager != nil  {
+            myCentralManager?.stopScan()
+            
+            if self.devices != nil {
+                myCentralManager?.cancelPeripheralConnection(self.devices)
+            }
+            
+            self.delegate?.bleCentralDidStop()
+        }
+        self.devices = nil
+        self.myCentralManager = nil
     }
     
     
     //delegate method called after CBCentralManager constructor
     func centralManagerDidUpdateState(central: CBCentralManager!)  {
         
+        var statusMsg = "Bluetooth BLE error..."
+        
+        switch central.state {
+        case .Unknown: statusMsg = "BLE Bluetoothe state is unknown"
+        case .Unsupported: statusMsg = "BLE Bluetooth is not supported on this device"
+        case .Unauthorized: statusMsg = "Needs your approval to use BLE Bluetooth on this device"
+        case .Resetting: statusMsg = "BLE Bluetooth is resetting, please wait..."
+        case .PoweredOff: statusMsg = "Please turn on Bluetooth from settings and come back"
+        default:
+            statusMsg = "Bluetooth BLE is ready..."
+        }
+        
         //make sure the device has bluetooth turned on
         if central.state == .PoweredOn {
             //once it is on scan for peripherals - nil will find everything. typically should pass a UUID as frist arg
             myCentralManager?.scanForPeripheralsWithServices([wctService], options: nil)
             //myCentralManager?.scanForPeripheralsWithServices(nil, options: nil)
-            self.delegate?.bleCentralStatusUpdate("Scaning")
-            
+            statusMsg = "Searching for device ..."
+            self.delegate?.bleCentralIsReady()
         }
+        
+        self.delegate?.bleCentralStatusUpdate(statusMsg)
     }
     
     //delegate called when a peripheral is found
     func centralManager(central: CBCentralManager!, didDiscoverPeripheral peripheral: CBPeripheral!, advertisementData: [NSObject : AnyObject]!, RSSI: NSNumber!) {
         var name = peripheral!.name == nil ? "" : peripheral!.name
-        self.delegate?.bleCentralStatusUpdate("Found Peripheral:  \(name)")
-        devices.append(peripheral)
+        self.delegate?.bleCentralStatusUpdate("Found Peripheral:  \(name). Connecting...")
+        devices = peripheral
         myCentralManager?.connectPeripheral(peripheral, options: nil)
-        
     }
     
     //delegate called when a peripheral connects
     func centralManager(central: CBCentralManager!, didConnectPeripheral peripheral: CBPeripheral!) {
-        self.delegate?.bleCentralStatusUpdate("Peripheral Connected!")
+        self.delegate?.bleCentralStatusUpdate("Peripheral Connected. Scanning will stop and start to look for services...")
+
+        //stop scaning after per conection
+        myCentralManager?.stopScan();
+
         peripheral.delegate = self
         //pass service uuid here
         //peripheral.discoverServices(nil)
         peripheral.discoverServices([wctService])
-        
-        //stop scaning after per conection
-        myCentralManager?.stopScan();
-        
     }
     
     //delegate called when a service is called
@@ -76,7 +104,7 @@ class BLECentral : NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
         }
         else {
             for service in peripheral.services {
-                self.delegate?.bleCentralStatusUpdate("Service Found: \(service.UUIDString)")
+                self.delegate?.bleCentralStatusUpdate("Service Found: \(service.UUIDString). Start to look for characteristics...")
                 peripheral.discoverCharacteristics(nil, forService : service as CBService)
                 
             }
@@ -92,7 +120,7 @@ class BLECentral : NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
         }
         else {
             for characteristic in service.characteristics {
-                self.delegate?.bleCentralStatusUpdate("Characteristic Found: \(characteristic.UUIDString)")
+                self.delegate?.bleCentralStatusUpdate("Characteristic Found: \(characteristic.UUIDString). Start to subscribe value updates...")
                 //peripheral.readValueForCharacteristic(characteristic as CBCharacteristic)
                 
                 

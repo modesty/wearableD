@@ -13,12 +13,14 @@ class PeripheralViewController: UIViewController, BLEPeripheralDelegate {
     
     var wctPeripheral: BLEPeripheral! = nil
     
+    @IBOutlet weak var bleSpinner: UIActivityIndicatorView!
     @IBOutlet weak var bleStatusMsg: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        self.bleSpinner.stopAnimating()
         wctPeripheral = BLEPeripheral()
         wctPeripheral.openPeripheral(self)
     }
@@ -51,6 +53,7 @@ class PeripheralViewController: UIViewController, BLEPeripheralDelegate {
 
     func blePeripheralIsReady() {
         println("\(_stdlib_getTypeName(self)) - blePeripheralIsReady")
+        self.bleSpinner.startAnimating()
         wctPeripheral.startPeripheral()
     }
     
@@ -76,6 +79,7 @@ class PeripheralViewController: UIViewController, BLEPeripheralDelegate {
     
     func blePeripheralDidStop() {
         println("\(_stdlib_getTypeName(self)) - blePerpheralDidStop")
+        self.bleSpinner.stopAnimating()
     }
 
 }

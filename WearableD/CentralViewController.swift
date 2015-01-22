@@ -9,20 +9,29 @@
 import UIKit
 import QuartzCore
 
-class CentralViewController: UIViewController, BLECentralProtocal {
+class CentralViewController: UIViewController, BLECentralDelegate {
     var centralManager : BLECentral?
 
     @IBOutlet weak var statusLabel: UILabel!
-    @IBOutlet weak var valueLabel: UILabel!
+    @IBOutlet weak var bleSpinner: UIActivityIndicatorView!
+    
+    var access_token: String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        centralManager = BLECentral(delegate: self)
-        centralManager?.scanForPeripherals()
         
-
         // Do any additional setup after loading the view.
+        self.bleSpinner.stopAnimating()
+        centralManager = BLECentral(delegate: self)
+        centralManager?.openBLECentral()
     }
+    
+    override func viewDidDisappear(animated: Bool) {
+        self.bleSpinner.stopAnimating()
+        self.centralManager?.closeBLECentral()
+        super.viewDidDisappear(animated)
+    }
+    
     func bleCentralStatusUpdate (update : String) {
         self.statusLabel.text = update
         
@@ -40,13 +49,23 @@ class CentralViewController: UIViewController, BLECentralProtocal {
     }
     
     func bleCentralCharactoristicValueUpdate (update : String) {
-        println("Update from Central Char Value")
-        println(update)
-        self.valueLabel.text = update
+        println("Update from Central Char: \(update)")
+
+        self.statusLabel.text = "Received data: \(update)"
+        
+        parsePeripheralData(update)
     }
     
     func bleDidEncouneterError (error : NSError) {
         println(error)
+    }
+    
+    func bleCentralIsReady() {
+        self.bleSpinner.startAnimating()
+    }
+    
+    func bleCentralDidStop() {
+        self.bleSpinner.stopAnimating()
     }
     
     override func didReceiveMemoryWarning() {
@@ -64,5 +83,29 @@ class CentralViewController: UIViewController, BLECentralProtocal {
         // Pass the selected object to the new view controller.
     }
     */
+    
+    func parsePeripheralData(update: String) {
+        
+        let values = update.componentsSeparatedByString(":")
+        if values.count != 2 {
+            return
+        }
+        
+        if values[0] == BLESequence.Token.rawValue {
+            self.access_token = values[1]
+            println("Got access_token: \(self.access_token)")
+        }
+        else if values[0] == BLESequence.End.rawValue {
+            self.centralManager?.closeBLECentral()
+        }
+    }
+    
+    func retrieveDataByToken() {
+        if self.access_token.isEmpty {
+            return
+        }
+        
+
+    }
 
 }

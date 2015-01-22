@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="haa-ba-RRG">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="haa-ba-RRG">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -92,36 +92,42 @@ safely and conveniently</string>
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Status Msg" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dI0-7p-zzL">
-                                <rect key="frame" x="16" y="183" width="568" height="57"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Initializing Bluetooth LE..." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dI0-7p-zzL">
+                                <rect key="frame" x="16" y="189" width="568" height="57"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Value" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tym-zr-0vX">
-                                <rect key="frame" x="16" y="289" width="568" height="30"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Value Msg" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tUt-EY-tIM">
-                                <rect key="frame" x="16" y="346" width="568" height="54"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Status" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UkK-ZV-dxY">
-                                <rect key="frame" x="16" y="122" width="568" height="38"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="exC-ub-ST8">
+                                <rect key="frame" x="282" y="112" width="37" height="37"/>
+                                <color key="color" cocoaTouchSystemColor="darkTextColor"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="dI0-7p-zzL" firstAttribute="top" secondItem="z9t-Qc-45F" secondAttribute="bottom" constant="125" id="83m-aV-Ban"/>
+                            <constraint firstItem="dI0-7p-zzL" firstAttribute="top" secondItem="exC-ub-ST8" secondAttribute="bottom" constant="40" id="H1h-0v-8sJ"/>
+                            <constraint firstItem="dI0-7p-zzL" firstAttribute="trailing" secondItem="aRf-xu-Rqo" secondAttribute="trailingMargin" constant="20" id="QPU-Qx-doY"/>
+                            <constraint firstAttribute="centerX" secondItem="dI0-7p-zzL" secondAttribute="centerX" id="Vs0-Wp-sb8"/>
+                            <constraint firstItem="exC-ub-ST8" firstAttribute="centerX" secondItem="dI0-7p-zzL" secondAttribute="centerX" constant="0.5" id="obI-VO-sKv"/>
+                            <constraint firstItem="dI0-7p-zzL" firstAttribute="leading" secondItem="aRf-xu-Rqo" secondAttribute="leadingMargin" constant="25" id="qAJ-kD-hsD"/>
+                            <constraint firstItem="dI0-7p-zzL" firstAttribute="trailing" secondItem="aRf-xu-Rqo" secondAttribute="trailingMargin" constant="25" id="rf7-G9-Fai"/>
+                            <constraint firstAttribute="centerX" secondItem="exC-ub-ST8" secondAttribute="centerX" constant="-0.5" id="z1u-I8-OiU"/>
+                            <constraint firstItem="dI0-7p-zzL" firstAttribute="leading" secondItem="aRf-xu-Rqo" secondAttribute="leadingMargin" constant="20" id="zYZ-ab-BD7"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="QPU-Qx-doY"/>
+                                <exclude reference="qAJ-kD-hsD"/>
+                                <exclude reference="rf7-G9-Fai"/>
+                                <exclude reference="zYZ-ab-BD7"/>
+                                <exclude reference="obI-VO-sKv"/>
+                            </mask>
+                        </variation>
                     </view>
                     <connections>
+                        <outlet property="bleSpinner" destination="exC-ub-ST8" id="PsJ-uA-X6p"/>
                         <outlet property="statusLabel" destination="dI0-7p-zzL" id="oWQ-SP-ZnL"/>
-                        <outlet property="valueLabel" destination="tUt-EY-tIM" id="FYG-xT-JcK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0hd-Pj-lih" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -140,8 +146,12 @@ safely and conveniently</string>
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="TFP-Ca-3Eb">
+                                <rect key="frame" x="277" y="150" width="37" height="37"/>
+                                <color key="color" cocoaTouchSystemColor="darkTextColor"/>
+                            </activityIndicatorView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Initializing..." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yqy-Ez-JYu">
-                                <rect key="frame" x="48" y="180" width="504" height="98"/>
+                                <rect key="frame" x="48" y="225" width="504" height="98"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
@@ -152,7 +162,9 @@ safely and conveniently</string>
                             <constraint firstAttribute="trailingMargin" secondItem="Yqy-Ez-JYu" secondAttribute="trailing" constant="25" id="GNP-GS-g97"/>
                             <constraint firstItem="5zu-7B-jP7" firstAttribute="top" secondItem="Yqy-Ez-JYu" secondAttribute="bottom" constant="322" id="Lia-vD-Dbs"/>
                             <constraint firstItem="Yqy-Ez-JYu" firstAttribute="leading" secondItem="56K-Y0-OC5" secondAttribute="leadingMargin" constant="32" id="U9E-FS-eEb"/>
+                            <constraint firstItem="Yqy-Ez-JYu" firstAttribute="centerX" secondItem="TFP-Ca-3Eb" secondAttribute="centerX" constant="4.5" id="VvK-bJ-Faz"/>
                             <constraint firstItem="Yqy-Ez-JYu" firstAttribute="top" secondItem="Pbi-az-U04" secondAttribute="bottom" constant="116" id="Yex-bx-ws3"/>
+                            <constraint firstItem="Yqy-Ez-JYu" firstAttribute="top" secondItem="TFP-Ca-3Eb" secondAttribute="bottom" constant="26" id="YvP-zt-ax8"/>
                             <constraint firstItem="Yqy-Ez-JYu" firstAttribute="leading" secondItem="56K-Y0-OC5" secondAttribute="leadingMargin" constant="25" id="agS-Ao-260"/>
                             <constraint firstItem="Yqy-Ez-JYu" firstAttribute="centerX" secondItem="56K-Y0-OC5" secondAttribute="centerX" id="zW5-f7-U7g"/>
                         </constraints>
@@ -164,6 +176,7 @@ safely and conveniently</string>
                         </variation>
                     </view>
                     <connections>
+                        <outlet property="bleSpinner" destination="TFP-Ca-3Eb" id="Roo-Ld-M2b"/>
                         <outlet property="bleStatusMsg" destination="Yqy-Ez-JYu" id="eef-Xv-wjM"/>
                     </connections>
                 </viewController>
