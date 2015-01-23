@@ -25,7 +25,7 @@ class BLEPeripheral: NSObject, CBPeripheralManagerDelegate {
     var wctSequence: BLESequence
     var wctConnectedCentral: CBCentral?
     
-    var delegate: BLEPeripheralDelegate!
+    var delegate: BLEPeripheralDelegate?
     
     // oAuth error or cancel
     var data_error: String
@@ -55,13 +55,13 @@ class BLEPeripheral: NSObject, CBPeripheralManagerDelegate {
     
     func startPeripheral() {
         // start advertising with specific service uuid
-        self.wctPeripheral!.startAdvertising([CBAdvertisementDataServiceUUIDsKey: [BLEIDs.wctService] ])
+        self.wctPeripheral?.startAdvertising([CBAdvertisementDataServiceUUIDsKey: [BLEIDs.wctService] ])
     }
     
     func closePeripheral() {
         self.wctConnectedCentral = nil
-        self.wctPeripheral!.stopAdvertising()
-        self.delegate!.blePeripheralDidStop()
+        self.wctPeripheral?.stopAdvertising()
+        self.delegate?.blePeripheralDidStop()
         self.delegate = nil
     }
     
@@ -76,7 +76,7 @@ class BLEPeripheral: NSObject, CBPeripheralManagerDelegate {
         self.wctService = CBMutableService(type: BLEIDs.wctService, primary: true)
         
         // Add the characteristic to the service
-        self.wctService!.characteristics = [self.wctCharacteristic!]
+        self.wctService?.characteristics = [self.wctCharacteristic!]
         
         // finally, add the service to peripheral manager
         self.wctPeripheral!.addService(self.wctService)
@@ -90,7 +90,12 @@ class BLEPeripheral: NSObject, CBPeripheralManagerDelegate {
     
     func sendDataSequence() -> Bool {
         if self.wctSequence == .None {
-            println("sent data: none")
+            println("no data to sent, return")
+            return false
+        }
+        
+        if self.wctConnectedCentral == nil {
+            println("connection already closed, return")
             return false
         }
         
@@ -122,27 +127,27 @@ class BLEPeripheral: NSObject, CBPeripheralManagerDelegate {
     func peripheralManagerDidStartAdvertising(peripheral: CBPeripheralManager!, error: NSError!) {
         if let err = error {
             println("peripheralManagerDidStartAdvertising error: " + err.localizedFailureReason!)
-            self.delegate!.blePeripheralMsgUpdate("Bluetooth BLE error of advertising...\(err.localizedFailureReason!)")
+            self.delegate?.blePeripheralMsgUpdate("Bluetooth LE error of advertising...\(err.localizedFailureReason!)")
         }
         else {
             println("peripheralManagerDidStartAdvertising ok")
-            self.delegate!.blePeripheralMsgUpdate("Bluetooth BLE is waiting to connect...")
+            self.delegate?.blePeripheralMsgUpdate("Bluetooth LE is waiting to connect...")
         }
     }
     
     func peripheralManagerDidUpdateState(peripheral: CBPeripheralManager!) {
         // opt out from any other state
-        var statusMsg = "Bluetooth BLE error..."
+        var statusMsg = "Bluetooth LE error..."
         switch peripheral.state {
-        case .Unknown: statusMsg = "BLE Bluetoothe state is unknown"
-        case .Unsupported: statusMsg = "BLE Bluetooth is not supported on this device"
-        case .Unauthorized: statusMsg = "Needs your approval to use BLE Bluetooth on this device"
-        case .Resetting: statusMsg = "BLE Bluetooth is resetting, please wait..."
+        case .Unknown: statusMsg = "Bluetoothe LE state is unknown"
+        case .Unsupported: statusMsg = "Bluetooth LE is not supported on this device"
+        case .Unauthorized: statusMsg = "Needs your approval to use Bluetooth LE on this device"
+        case .Resetting: statusMsg = "Bluetooth LE is resetting, please wait..."
         case .PoweredOff: statusMsg = "Please turn on Bluetooth from settings and come back"
         default:
-            statusMsg = "Bluetooth BLE is ready..."
+            statusMsg = "Bluetooth LE is ready..."
         }
-        self.delegate!.blePeripheralMsgUpdate(statusMsg)
+        self.delegate?.blePeripheralMsgUpdate(statusMsg)
         
         
         if (peripheral.state != CBPeripheralManagerState.PoweredOn) {
@@ -153,7 +158,7 @@ class BLEPeripheral: NSObject, CBPeripheralManagerDelegate {
             println("BLE powered on")
         
             self.openService()
-            self.delegate!.blePeripheralIsReady()
+            self.delegate?.blePeripheralIsReady()
         }
         
     }
@@ -164,7 +169,7 @@ class BLEPeripheral: NSObject, CBPeripheralManagerDelegate {
         self.wctConnectedCentral = central
         self.wctSequence = .Init
         self.sendDataSequence()
-        self.delegate!.blePeripheralMsgUpdate("Data requester is connected...")
+        self.delegate?.blePeripheralMsgUpdate("Data requester is connected...")
     }
     
     func peripheralManager(peripheral: CBPeripheralManager!, central: CBCentral!, didUnsubscribeFromCharacteristic characteristic: CBCharacteristic!) {

@@ -32,7 +32,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dym-CI-LlI">
-                                <rect key="frame" x="185" y="374" width="231" height="39"/>
+                                <rect key="frame" x="185" y="360" width="231" height="39"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                 <state key="normal" title="Share My Tax Returns">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -58,10 +58,11 @@ safely and conveniently</string>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="Dym-CI-LlI" firstAttribute="top" secondItem="429-Nr-zfG" secondAttribute="bottom" constant="59" id="FWj-d3-Hk9"/>
+                            <constraint firstItem="Dym-CI-LlI" firstAttribute="top" secondItem="429-Nr-zfG" secondAttribute="bottom" constant="45" id="FWj-d3-Hk9"/>
                             <constraint firstItem="Dym-CI-LlI" firstAttribute="leading" secondItem="429-Nr-zfG" secondAttribute="leading" id="MGs-Bj-k5z"/>
                             <constraint firstItem="429-Nr-zfG" firstAttribute="trailing" secondItem="Dym-CI-LlI" secondAttribute="trailing" id="W86-58-ukk"/>
-                            <constraint firstItem="Wnz-VO-iQB" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="75" id="gQP-Jh-tdG"/>
+                            <constraint firstItem="429-Nr-zfG" firstAttribute="top" secondItem="Wnz-VO-iQB" secondAttribute="bottom" constant="70" id="byt-b5-Oh3"/>
+                            <constraint firstItem="Wnz-VO-iQB" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="50" id="gQP-Jh-tdG"/>
                             <constraint firstItem="Dym-CI-LlI" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="gyt-0C-Nao"/>
                             <constraint firstItem="429-Nr-zfG" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="oCk-wt-t98"/>
                             <constraint firstItem="Wnz-VO-iQB" firstAttribute="centerX" secondItem="429-Nr-zfG" secondAttribute="centerX" id="sDL-zs-SP0"/>
@@ -70,6 +71,9 @@ safely and conveniently</string>
                         <variation key="default">
                             <mask key="subviews">
                                 <exclude reference="EVj-7a-0a9"/>
+                            </mask>
+                            <mask key="constraints">
+                                <exclude reference="gQP-Jh-tdG"/>
                             </mask>
                         </variation>
                     </view>
@@ -106,9 +110,11 @@ safely and conveniently</string>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="dI0-7p-zzL" firstAttribute="top" secondItem="z9t-Qc-45F" secondAttribute="bottom" constant="125" id="83m-aV-Ban"/>
+                            <constraint firstItem="dI0-7p-zzL" firstAttribute="leading" secondItem="aRf-xu-Rqo" secondAttribute="leadingMargin" id="Avu-KR-b04"/>
                             <constraint firstItem="dI0-7p-zzL" firstAttribute="top" secondItem="exC-ub-ST8" secondAttribute="bottom" constant="40" id="H1h-0v-8sJ"/>
                             <constraint firstItem="dI0-7p-zzL" firstAttribute="trailing" secondItem="aRf-xu-Rqo" secondAttribute="trailingMargin" constant="20" id="QPU-Qx-doY"/>
                             <constraint firstAttribute="centerX" secondItem="dI0-7p-zzL" secondAttribute="centerX" id="Vs0-Wp-sb8"/>
+                            <constraint firstItem="dI0-7p-zzL" firstAttribute="trailing" secondItem="aRf-xu-Rqo" secondAttribute="trailingMargin" id="aql-20-bjV"/>
                             <constraint firstItem="exC-ub-ST8" firstAttribute="centerX" secondItem="dI0-7p-zzL" secondAttribute="centerX" constant="0.5" id="obI-VO-sKv"/>
                             <constraint firstItem="dI0-7p-zzL" firstAttribute="leading" secondItem="aRf-xu-Rqo" secondAttribute="leadingMargin" constant="25" id="qAJ-kD-hsD"/>
                             <constraint firstItem="dI0-7p-zzL" firstAttribute="trailing" secondItem="aRf-xu-Rqo" secondAttribute="trailingMargin" constant="25" id="rf7-G9-Fai"/>

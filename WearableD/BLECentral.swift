@@ -51,16 +51,16 @@ class BLECentral : NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
     //delegate method called after CBCentralManager constructor
     func centralManagerDidUpdateState(central: CBCentralManager!)  {
         
-        var statusMsg = "Bluetooth BLE error..."
+        var statusMsg = "Bluetooth LE error..."
         
         switch central.state {
-        case .Unknown: statusMsg = "BLE Bluetoothe state is unknown"
-        case .Unsupported: statusMsg = "BLE Bluetooth is not supported on this device"
-        case .Unauthorized: statusMsg = "Needs your approval to use BLE Bluetooth on this device"
-        case .Resetting: statusMsg = "BLE Bluetooth is resetting, please wait..."
+        case .Unknown: statusMsg = "Bluetoothe LE state is unknown"
+        case .Unsupported: statusMsg = "Bluetooth LE is not supported on this device"
+        case .Unauthorized: statusMsg = "Needs your approval to use Bluetooth LE on this device"
+        case .Resetting: statusMsg = "Bluetooth LE is resetting, please wait..."
         case .PoweredOff: statusMsg = "Please turn on Bluetooth from settings and come back"
         default:
-            statusMsg = "Bluetooth BLE is ready..."
+            statusMsg = "Bluetooth LE is ready..."
         }
         
         //make sure the device has bluetooth turned on
@@ -143,16 +143,12 @@ class BLECentral : NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
             var rawValue = NSString(data: characteristic.value, encoding: NSUTF8StringEncoding)
             
             if let value = rawValue {
+                println("data read from characteristic - \(value)")
                 self.delegate?.bleCentralCharactoristicValueUpdate(value)
-                println("VALUE")
-                println(value)
             }
             else {
                 self.delegate?.bleCentralCharactoristicValueUpdate("No Value Found")
             }
-            
-            
-            
         }
         
     }
@@ -171,8 +167,7 @@ class BLECentral : NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
                 rawValue = NSString(data: characteristic.value, encoding: NSUTF8StringEncoding)
                 if let value = rawValue {
                     self.delegate?.bleCentralCharactoristicValueUpdate(value)
-                    println("VALUE")
-                    println(value)
+                    println("data updated from characteristic - \(value)")
                 }
                 else {
                     self.delegate?.bleCentralCharactoristicValueUpdate("No Value Found")

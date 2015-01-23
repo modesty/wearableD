@@ -21,12 +21,14 @@ class HomeViewController: UIViewController {
     }
     
     override func viewWillAppear(animated: Bool) {
-        self.navigationController?.setNavigationBarHidden(true, animated: animated)
+//        self.navigationController?.setNavigationBarHidden(true, animated: animated)
+        self.title = "Wearable Transcript"
         super.viewWillAppear(animated)
     }
 
     override func viewWillDisappear(animated: Bool) {
-        self.navigationController?.setNavigationBarHidden(false, animated: animated)
+//        self.navigationController?.setNavigationBarHidden(false, animated: animated)
+        self.title = "Home"
         super.viewWillDisappear(animated)
     }
 

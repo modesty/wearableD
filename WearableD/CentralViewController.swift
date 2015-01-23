@@ -26,6 +26,10 @@ class CentralViewController: UIViewController, BLECentralDelegate {
         centralManager?.openBLECentral()
     }
     
+    override func viewWillAppear(animated: Bool) {
+        self.title = "Requesting"
+    }
+    
     override func viewDidDisappear(animated: Bool) {
         self.bleSpinner.stopAnimating()
         self.centralManager?.closeBLECentral()
@@ -49,10 +53,7 @@ class CentralViewController: UIViewController, BLECentralDelegate {
     }
     
     func bleCentralCharactoristicValueUpdate (update : String) {
-        println("Update from Central Char: \(update)")
-
-        self.statusLabel.text = "Received data: \(update)"
-        
+        self.bleCentralStatusUpdate("Received data: \(update)")
         parsePeripheralData(update)
     }
     
@@ -86,17 +87,18 @@ class CentralViewController: UIViewController, BLECentralDelegate {
     
     func parsePeripheralData(update: String) {
         
-        let values = update.componentsSeparatedByString(":")
-        if values.count != 2 {
-            return
-        }
-        
-        if values[0] == BLESequence.Token.rawValue {
-            self.access_token = values[1]
-            println("Got access_token: \(self.access_token)")
-        }
-        else if values[0] == BLESequence.End.rawValue {
+        if update == BLESequence.End.rawValue {
             self.centralManager?.closeBLECentral()
+            self.bleCentralStatusUpdate("Received token. Retrieving data by token...")
+        }
+        else {
+            let values = update.componentsSeparatedByString(":")
+            if values.count == 2 {
+                if values[0] == BLESequence.Token.rawValue {
+                    self.access_token = values[1]
+                    println("Got access_token: \(self.access_token)")
+                }
+            }
         }
     }
     
