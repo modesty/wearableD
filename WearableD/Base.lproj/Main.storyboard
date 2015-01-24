@@ -17,6 +17,31 @@
                         <rect key="frame" x="0.0" y="64" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="Transfer" translatesAutoresizingMaskIntoConstraints="NO" id="vvl-3a-O1F">
+                                <rect key="frame" x="180" y="140" width="240" height="128"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="240" id="Noj-ew-VZW"/>
+                                    <constraint firstAttribute="height" constant="128" id="f81-zV-dfz"/>
+                                </constraints>
+                                <variation key="heightClass=compact" misplaced="YES">
+                                    <rect key="frame" x="180" y="42" width="240" height="128"/>
+                                    <mask key="constraints">
+                                        <exclude reference="f81-zV-dfz"/>
+                                    </mask>
+                                </variation>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EVj-7a-0a9">
+                                <rect key="frame" x="277" y="385" width="46" height="30"/>
+                                <state key="normal" title="Button">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Request and send tax returns safely and conveniently" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Wnz-VO-iQB">
+                                <rect key="frame" x="0.0" y="125" width="600" height="103"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="429-Nr-zfG">
                                 <rect key="frame" x="185" y="285" width="231" height="30"/>
                                 <constraints>
@@ -41,39 +66,39 @@
                                     <segue destination="6RN-an-d6v" kind="show" id="cas-IH-xXX"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Wnz-VO-iQB">
-                                <rect key="frame" x="0.0" y="125" width="600" height="103"/>
-                                <string key="text">Request and send tax returns
-safely and conveniently</string>
-                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EVj-7a-0a9">
-                                <rect key="frame" x="277" y="385" width="46" height="30"/>
-                                <state key="normal" title="Button">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="vvl-3a-O1F" firstAttribute="centerX" secondItem="429-Nr-zfG" secondAttribute="centerX" id="E6I-Gv-SJ3"/>
                             <constraint firstItem="Dym-CI-LlI" firstAttribute="top" secondItem="429-Nr-zfG" secondAttribute="bottom" constant="45" id="FWj-d3-Hk9"/>
+                            <constraint firstItem="Dym-CI-LlI" firstAttribute="top" secondItem="vvl-3a-O1F" secondAttribute="bottom" constant="63" id="MEl-xC-JdR"/>
                             <constraint firstItem="Dym-CI-LlI" firstAttribute="leading" secondItem="429-Nr-zfG" secondAttribute="leading" id="MGs-Bj-k5z"/>
+                            <constraint firstItem="Wnz-VO-iQB" firstAttribute="height" secondItem="vvl-3a-O1F" secondAttribute="height" id="UUA-9R-gc9"/>
+                            <constraint firstItem="Wnz-VO-iQB" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="50" id="Vgr-7i-paL">
+                                <variation key="heightClass=compact" constant="20"/>
+                            </constraint>
                             <constraint firstItem="429-Nr-zfG" firstAttribute="trailing" secondItem="Dym-CI-LlI" secondAttribute="trailing" id="W86-58-ukk"/>
+                            <constraint firstItem="429-Nr-zfG" firstAttribute="top" secondItem="vvl-3a-O1F" secondAttribute="bottom" constant="15" id="WB4-bo-4zA"/>
+                            <constraint firstItem="vvl-3a-O1F" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="105" id="ZaN-66-1FV">
+                                <variation key="heightClass=compact" constant="60"/>
+                            </constraint>
                             <constraint firstItem="429-Nr-zfG" firstAttribute="top" secondItem="Wnz-VO-iQB" secondAttribute="bottom" constant="70" id="byt-b5-Oh3"/>
                             <constraint firstItem="Wnz-VO-iQB" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="50" id="gQP-Jh-tdG"/>
                             <constraint firstItem="Dym-CI-LlI" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="gyt-0C-Nao"/>
                             <constraint firstItem="429-Nr-zfG" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="oCk-wt-t98"/>
                             <constraint firstItem="Wnz-VO-iQB" firstAttribute="centerX" secondItem="429-Nr-zfG" secondAttribute="centerX" id="sDL-zs-SP0"/>
-                            <constraint firstItem="Wnz-VO-iQB" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="tP3-rp-Sln"/>
+                            <constraint firstItem="Wnz-VO-iQB" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="30" id="tP3-rp-Sln"/>
                         </constraints>
                         <variation key="default">
                             <mask key="subviews">
                                 <exclude reference="EVj-7a-0a9"/>
                             </mask>
                             <mask key="constraints">
+                                <exclude reference="UUA-9R-gc9"/>
                                 <exclude reference="gQP-Jh-tdG"/>
+                                <exclude reference="ZaN-66-1FV"/>
+                                <exclude reference="byt-b5-Oh3"/>
+                                <exclude reference="MEl-xC-JdR"/>
                             </mask>
                         </variation>
                     </view>
@@ -96,29 +121,29 @@ safely and conveniently</string>
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="exC-ub-ST8">
+                                <rect key="frame" x="282" y="112" width="37" height="37"/>
+                                <color key="color" cocoaTouchSystemColor="darkTextColor"/>
+                            </activityIndicatorView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Initializing Bluetooth LE..." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dI0-7p-zzL">
-                                <rect key="frame" x="16" y="189" width="568" height="57"/>
+                                <rect key="frame" x="50" y="225" width="504" height="98"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="exC-ub-ST8">
-                                <rect key="frame" x="282" y="112" width="37" height="37"/>
-                                <color key="color" cocoaTouchSystemColor="darkTextColor"/>
-                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="dI0-7p-zzL" firstAttribute="top" secondItem="z9t-Qc-45F" secondAttribute="bottom" constant="125" id="83m-aV-Ban"/>
-                            <constraint firstItem="dI0-7p-zzL" firstAttribute="leading" secondItem="aRf-xu-Rqo" secondAttribute="leadingMargin" id="Avu-KR-b04"/>
-                            <constraint firstItem="dI0-7p-zzL" firstAttribute="top" secondItem="exC-ub-ST8" secondAttribute="bottom" constant="40" id="H1h-0v-8sJ"/>
+                            <constraint firstAttribute="centerX" secondItem="dI0-7p-zzL" secondAttribute="centerX" constant="-2" id="19r-pm-YCf"/>
+                            <constraint firstItem="dI0-7p-zzL" firstAttribute="leading" secondItem="aRf-xu-Rqo" secondAttribute="leadingMargin" constant="25" id="LjA-eg-V8l"/>
                             <constraint firstItem="dI0-7p-zzL" firstAttribute="trailing" secondItem="aRf-xu-Rqo" secondAttribute="trailingMargin" constant="20" id="QPU-Qx-doY"/>
-                            <constraint firstAttribute="centerX" secondItem="dI0-7p-zzL" secondAttribute="centerX" id="Vs0-Wp-sb8"/>
-                            <constraint firstItem="dI0-7p-zzL" firstAttribute="trailing" secondItem="aRf-xu-Rqo" secondAttribute="trailingMargin" id="aql-20-bjV"/>
+                            <constraint firstItem="exC-ub-ST8" firstAttribute="centerX" secondItem="dI0-7p-zzL" secondAttribute="centerX" constant="-1.5" id="Rb9-AU-SaQ"/>
+                            <constraint firstItem="dI0-7p-zzL" firstAttribute="top" secondItem="exC-ub-ST8" secondAttribute="bottom" constant="25" id="gDl-wt-Qb6"/>
                             <constraint firstItem="exC-ub-ST8" firstAttribute="centerX" secondItem="dI0-7p-zzL" secondAttribute="centerX" constant="0.5" id="obI-VO-sKv"/>
+                            <constraint firstItem="dI0-7p-zzL" firstAttribute="top" secondItem="z9t-Qc-45F" secondAttribute="bottom" constant="116" id="p7o-bA-BWt"/>
                             <constraint firstItem="dI0-7p-zzL" firstAttribute="leading" secondItem="aRf-xu-Rqo" secondAttribute="leadingMargin" constant="25" id="qAJ-kD-hsD"/>
                             <constraint firstItem="dI0-7p-zzL" firstAttribute="trailing" secondItem="aRf-xu-Rqo" secondAttribute="trailingMargin" constant="25" id="rf7-G9-Fai"/>
-                            <constraint firstAttribute="centerX" secondItem="exC-ub-ST8" secondAttribute="centerX" constant="-0.5" id="z1u-I8-OiU"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="dI0-7p-zzL" secondAttribute="trailing" constant="25" id="x8n-o7-Hwx"/>
                             <constraint firstItem="dI0-7p-zzL" firstAttribute="leading" secondItem="aRf-xu-Rqo" secondAttribute="leadingMargin" constant="20" id="zYZ-ab-BD7"/>
                         </constraints>
                         <variation key="default">
@@ -126,6 +151,7 @@ safely and conveniently</string>
                                 <exclude reference="QPU-Qx-doY"/>
                                 <exclude reference="qAJ-kD-hsD"/>
                                 <exclude reference="rf7-G9-Fai"/>
+                                <exclude reference="x8n-o7-Hwx"/>
                                 <exclude reference="zYZ-ab-BD7"/>
                                 <exclude reference="obI-VO-sKv"/>
                             </mask>
@@ -210,4 +236,7 @@ safely and conveniently</string>
             <point key="canvasLocation" x="232" y="547"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Transfer" width="200" height="100"/>
+    </resources>
 </document>

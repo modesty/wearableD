@@ -71,7 +71,10 @@ class BLECentral : NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
             statusMsg = "Searching for device ..."
             self.delegate?.bleCentralIsReady()
         }
-        
+        else {
+            println("needs state: CBcentralState.PoweredOn, but got \(central.state.rawValue). quit.")
+        }
+    
         self.delegate?.bleCentralStatusUpdate(statusMsg)
     }
     
