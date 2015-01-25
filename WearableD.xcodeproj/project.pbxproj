@@ -19,6 +19,7 @@
 		2991177A1A60965B00972E46 /* BLEPeripheral.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299117791A60965B00972E46 /* BLEPeripheral.swift */; };
 		2991177C1A60990400972E46 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2991177B1A60990400972E46 /* CoreBluetooth.framework */; };
 		2991177E1A60AEC600972E46 /* BLEIDs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2991177D1A60AEC600972E46 /* BLEIDs.swift */; };
+		29CD74291A7472CC00D33228 /* PDFViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29CD74281A7472CC00D33228 /* PDFViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +49,7 @@
 		299117791A60965B00972E46 /* BLEPeripheral.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BLEPeripheral.swift; sourceTree = "<group>"; };
 		2991177B1A60990400972E46 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
 		2991177D1A60AEC600972E46 /* BLEIDs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BLEIDs.swift; sourceTree = "<group>"; };
+		29CD74281A7472CC00D33228 /* PDFViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PDFViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +100,7 @@
 				074E4AC21A6705620023A854 /* BLECentral.swift */,
 				299117771A608CCE00972E46 /* PeripheralViewController.swift */,
 				299117791A60965B00972E46 /* BLEPeripheral.swift */,
+				29CD74281A7472CC00D33228 /* PDFViewController.swift */,
 				299117591A608BBE00972E46 /* Main.storyboard */,
 				2991175C1A608BBE00972E46 /* Images.xcassets */,
 				2991175E1A608BBE00972E46 /* LaunchScreen.xib */,
@@ -235,6 +238,7 @@
 				2991177E1A60AEC600972E46 /* BLEIDs.swift in Sources */,
 				299117781A608CCE00972E46 /* PeripheralViewController.swift in Sources */,
 				074E4AC31A6705620023A854 /* BLECentral.swift in Sources */,
+				29CD74291A7472CC00D33228 /* PDFViewController.swift in Sources */,
 				299117581A608BBE00972E46 /* HomeViewController.swift in Sources */,
 				299117761A608C9600972E46 /* CentralViewController.swift in Sources */,
 				299117561A608BBE00972E46 /* AppDelegate.swift in Sources */,

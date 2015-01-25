@@ -125,22 +125,34 @@
                                 <rect key="frame" x="282" y="112" width="37" height="37"/>
                                 <color key="color" cocoaTouchSystemColor="darkTextColor"/>
                             </activityIndicatorView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Initializing Bluetooth LE..." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dI0-7p-zzL">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Initializing ..." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dI0-7p-zzL">
                                 <rect key="frame" x="50" y="225" width="504" height="98"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j5A-so-L8m">
+                                <rect key="frame" x="192" y="354" width="217" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <state key="normal" title="Retrieve Tax Return PDF">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="Pk8-0v-Ud6" kind="show" id="fYD-4X-lu0"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="centerX" secondItem="dI0-7p-zzL" secondAttribute="centerX" constant="-2" id="19r-pm-YCf"/>
                             <constraint firstItem="dI0-7p-zzL" firstAttribute="leading" secondItem="aRf-xu-Rqo" secondAttribute="leadingMargin" constant="25" id="LjA-eg-V8l"/>
+                            <constraint firstItem="j5A-so-L8m" firstAttribute="centerX" secondItem="dI0-7p-zzL" secondAttribute="centerX" constant="-2" id="PK7-x4-8lm"/>
                             <constraint firstItem="dI0-7p-zzL" firstAttribute="trailing" secondItem="aRf-xu-Rqo" secondAttribute="trailingMargin" constant="20" id="QPU-Qx-doY"/>
                             <constraint firstItem="exC-ub-ST8" firstAttribute="centerX" secondItem="dI0-7p-zzL" secondAttribute="centerX" constant="-1.5" id="Rb9-AU-SaQ"/>
                             <constraint firstItem="dI0-7p-zzL" firstAttribute="top" secondItem="exC-ub-ST8" secondAttribute="bottom" constant="25" id="gDl-wt-Qb6"/>
                             <constraint firstItem="exC-ub-ST8" firstAttribute="centerX" secondItem="dI0-7p-zzL" secondAttribute="centerX" constant="0.5" id="obI-VO-sKv"/>
                             <constraint firstItem="dI0-7p-zzL" firstAttribute="top" secondItem="z9t-Qc-45F" secondAttribute="bottom" constant="116" id="p7o-bA-BWt"/>
+                            <constraint firstItem="j5A-so-L8m" firstAttribute="top" secondItem="dI0-7p-zzL" secondAttribute="bottom" constant="30" id="pn3-Hv-MrV"/>
                             <constraint firstItem="dI0-7p-zzL" firstAttribute="leading" secondItem="aRf-xu-Rqo" secondAttribute="leadingMargin" constant="25" id="qAJ-kD-hsD"/>
                             <constraint firstItem="dI0-7p-zzL" firstAttribute="trailing" secondItem="aRf-xu-Rqo" secondAttribute="trailingMargin" constant="25" id="rf7-G9-Fai"/>
                             <constraint firstAttribute="trailingMargin" secondItem="dI0-7p-zzL" secondAttribute="trailing" constant="25" id="x8n-o7-Hwx"/>
@@ -165,6 +177,42 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0hd-Pj-lih" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1762" y="342"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="AtS-Hc-DRz">
+            <objects>
+                <viewController id="Pk8-0v-Ud6" customClass="PDFViewController" customModule="WearableD" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="8FU-GF-YAP"/>
+                        <viewControllerLayoutGuide type="bottom" id="vz0-YI-YpW"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="FDb-Nu-M1o">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7Vu-zi-u5X">
+                                <rect key="frame" x="5" y="-8" width="600" height="600"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="delegate" destination="Pk8-0v-Ud6" id="jBD-q4-aNi"/>
+                                </connections>
+                            </webView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="7Vu-zi-u5X" secondAttribute="trailing" constant="-21" id="04s-qb-N6r"/>
+                            <constraint firstItem="7Vu-zi-u5X" firstAttribute="leading" secondItem="FDb-Nu-M1o" secondAttribute="leadingMargin" constant="-11" id="54A-hm-Rjx"/>
+                            <constraint firstItem="7Vu-zi-u5X" firstAttribute="top" secondItem="FDb-Nu-M1o" secondAttribute="topMargin" constant="-8" id="qzD-3l-hZw"/>
+                            <constraint firstItem="vz0-YI-YpW" firstAttribute="top" secondItem="7Vu-zi-u5X" secondAttribute="bottom" constant="8" symbolic="YES" id="woE-kc-wEd"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="webView" destination="7Vu-zi-u5X" id="ZjN-7j-han"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jNq-Sh-brf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2497" y="373"/>
         </scene>
         <!--Share Data-->
         <scene sceneID="7GR-z5-e8A">

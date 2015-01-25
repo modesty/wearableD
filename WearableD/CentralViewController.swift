@@ -30,6 +30,11 @@ class CentralViewController: UIViewController, BLECentralDelegate {
         self.title = "Requesting"
     }
     
+    override func viewWillDisappear(animated: Bool) {
+        self.title = "Back"
+        super.viewWillDisappear(animated)
+    }
+    
     override func viewDidDisappear(animated: Bool) {
         self.bleSpinner.stopAnimating()
         self.centralManager?.closeBLECentral()
