@@ -30,16 +30,15 @@ class CentralViewController: UIViewController, BLECentralDelegate {
         
         centralManager = BLECentral(delegate: self)
         centralManager?.openBLECentral()
+
+        self.showHideNavButton(self.showBtnFirst, titleTxt: "")
+        self.showHideNavButton(self.showBtnSecond, titleTxt: "")
+//        self.access_token = ""
+//        self.retrieveDocsListByToken()
     }
     
     override func viewWillAppear(animated: Bool) {
         self.title = "Requesting"
-        
-        self.showHideNavButton(self.showBtnFirst, titleTxt: "")
-        self.showHideNavButton(self.showBtnSecond, titleTxt: "")
-        
-//        self.access_token = ""
-//        self.retrieveDocsListByToken()
     }
     
     override func viewWillDisappear(animated: Bool) {

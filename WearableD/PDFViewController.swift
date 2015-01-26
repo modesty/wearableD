@@ -11,6 +11,7 @@ import UIKit
 class PDFViewController: UIViewController, UIWebViewDelegate {
 
     @IBOutlet weak var webView: UIWebView!
+    @IBOutlet weak var webSpinner: UIActivityIndicatorView!
     
     var access_token: String = ""
     var document_id: String = ""
@@ -59,6 +60,8 @@ class PDFViewController: UIViewController, UIWebViewDelegate {
     }
     
     func showTaxDocument() {
+        self.webSpinner.startAnimating()
+        
         var request : NSMutableURLRequest = NSMutableURLRequest()
         request.URL = NSURL(string: "\(BLEIDs.ctHost)/unleash/v1/taxdocs/\(self.document_id)")
         request.HTTPMethod = "GET"
@@ -81,6 +84,10 @@ class PDFViewController: UIViewController, UIWebViewDelegate {
         println("PDFViewController Request - end")
      
         return true
+    }
+    
+    func webViewDidFinishLoad(webView: UIWebView) {
+        self.webSpinner.stopAnimating()
     }
 
 }
