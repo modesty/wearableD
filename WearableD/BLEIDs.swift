@@ -20,5 +20,25 @@ struct BLEIDs {
     static func getSequenceData(rawString: String) -> NSData? {
         return rawString.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)
     }
+    
+    static func randomStringWithLength (len : Int) -> String {
+        
+        let letters : NSString = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+        
+        var randomString : NSMutableString = NSMutableString(capacity: len)
+        
+        for (var i=0; i < len; i++){
+            var length = UInt32 (letters.length)
+            var rand = arc4random_uniform(length)
+            randomString.appendFormat("%C", letters.characterAtIndex(Int(rand)))
+        }
+        
+        return randomString
+    }
+    
+    static let ctHost = "https://consumertranscript-e2e.api.intuit.com"
+    static func getCTTransId() -> String {
+        return "ion-swift-wearable-\(BLEIDs.randomStringWithLength(4))"
+    }
 }
 

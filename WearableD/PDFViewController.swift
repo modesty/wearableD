@@ -23,6 +23,11 @@ class PDFViewController: UIViewController, UIWebViewDelegate {
         if access_token.isEmpty || document_id.isEmpty {
             showHTTPPDF()
         }
+        else {
+            println("document_id: \(document_id)")
+            println("access_token: \(access_token)")
+            showTaxDocument()
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -50,6 +55,18 @@ class PDFViewController: UIViewController, UIWebViewDelegate {
         let pdfUrl = NSURL(string: "http://unleash.intuitlabs.com/ionweb/assets/Intuit_API_OAuth2_Spec.pdf")
         var request = NSMutableURLRequest(URL: pdfUrl!)
         request.addValue("Bearer iOS PDFViewController TEST", forHTTPHeaderField: "Authorization")
+        self.webView.loadRequest(request)
+    }
+    
+    func showTaxDocument() {
+        var request : NSMutableURLRequest = NSMutableURLRequest()
+        request.URL = NSURL(string: "\(BLEIDs.ctHost)/unleash/v1/taxdocs/\(self.document_id)")
+        request.HTTPMethod = "GET"
+        request.addValue("application/pdf", forHTTPHeaderField: "Accept")
+        request.addValue("Bearer \(self.access_token)", forHTTPHeaderField: "Authorization")
+        request.addValue("docs", forHTTPHeaderField: "x-request-type")
+        request.addValue(BLEIDs.getCTTransId(), forHTTPHeaderField: "intuit_tid")
+
         self.webView.loadRequest(request)
     }
     

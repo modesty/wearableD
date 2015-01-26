@@ -18,7 +18,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="Transfer" translatesAutoresizingMaskIntoConstraints="NO" id="vvl-3a-O1F">
-                                <rect key="frame" x="180" y="140" width="240" height="128"/>
+                                <rect key="frame" x="180" y="140" width="240" height="110"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="240" id="Noj-ew-VZW"/>
                                     <constraint firstAttribute="height" constant="128" id="f81-zV-dfz"/>
@@ -57,7 +57,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dym-CI-LlI">
-                                <rect key="frame" x="185" y="360" width="231" height="39"/>
+                                <rect key="frame" x="185" y="335" width="231" height="39"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                 <state key="normal" title="Share My Tax Returns">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -70,7 +70,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="vvl-3a-O1F" firstAttribute="centerX" secondItem="429-Nr-zfG" secondAttribute="centerX" id="E6I-Gv-SJ3"/>
-                            <constraint firstItem="Dym-CI-LlI" firstAttribute="top" secondItem="429-Nr-zfG" secondAttribute="bottom" constant="45" id="FWj-d3-Hk9"/>
+                            <constraint firstItem="Dym-CI-LlI" firstAttribute="top" secondItem="429-Nr-zfG" secondAttribute="bottom" constant="20" id="FWj-d3-Hk9"/>
                             <constraint firstItem="Dym-CI-LlI" firstAttribute="top" secondItem="vvl-3a-O1F" secondAttribute="bottom" constant="63" id="MEl-xC-JdR"/>
                             <constraint firstItem="Dym-CI-LlI" firstAttribute="leading" secondItem="429-Nr-zfG" secondAttribute="leading" id="MGs-Bj-k5z"/>
                             <constraint firstItem="Wnz-VO-iQB" firstAttribute="height" secondItem="vvl-3a-O1F" secondAttribute="height" id="UUA-9R-gc9"/>
@@ -132,20 +132,32 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j5A-so-L8m">
-                                <rect key="frame" x="192" y="354" width="217" height="30"/>
+                                <rect key="frame" x="16" y="354" width="568" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                <state key="normal" title="Retrieve Tax Return PDF">
+                                <state key="normal">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="Pk8-0v-Ud6" kind="show" id="fYD-4X-lu0"/>
+                                    <segue destination="Pk8-0v-Ud6" kind="show" identifier="showFirst" id="fYD-4X-lu0"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" tag="1" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ytz-O5-xba">
+                                <rect key="frame" x="16" y="408" width="568" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <state key="normal">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="Pk8-0v-Ud6" kind="show" identifier="showSecond" id="UFA-Jt-96F"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="Ytz-O5-xba" firstAttribute="centerX" secondItem="j5A-so-L8m" secondAttribute="centerX" id="13Z-cg-F6p"/>
                             <constraint firstAttribute="centerX" secondItem="dI0-7p-zzL" secondAttribute="centerX" constant="-2" id="19r-pm-YCf"/>
                             <constraint firstItem="dI0-7p-zzL" firstAttribute="leading" secondItem="aRf-xu-Rqo" secondAttribute="leadingMargin" constant="25" id="LjA-eg-V8l"/>
+                            <constraint firstItem="Ytz-O5-xba" firstAttribute="top" secondItem="j5A-so-L8m" secondAttribute="bottom" constant="20" id="O7J-cE-HxU"/>
                             <constraint firstItem="j5A-so-L8m" firstAttribute="centerX" secondItem="dI0-7p-zzL" secondAttribute="centerX" constant="-2" id="PK7-x4-8lm"/>
                             <constraint firstItem="dI0-7p-zzL" firstAttribute="trailing" secondItem="aRf-xu-Rqo" secondAttribute="trailingMargin" constant="20" id="QPU-Qx-doY"/>
                             <constraint firstItem="exC-ub-ST8" firstAttribute="centerX" secondItem="dI0-7p-zzL" secondAttribute="centerX" constant="-1.5" id="Rb9-AU-SaQ"/>
@@ -171,6 +183,8 @@
                     </view>
                     <connections>
                         <outlet property="bleSpinner" destination="exC-ub-ST8" id="PsJ-uA-X6p"/>
+                        <outlet property="showBtnFirst" destination="j5A-so-L8m" id="tUX-wi-o2i"/>
+                        <outlet property="showBtnSecond" destination="Ytz-O5-xba" id="Xjg-Gy-h67"/>
                         <outlet property="statusLabel" destination="dI0-7p-zzL" id="oWQ-SP-ZnL"/>
                     </connections>
                 </viewController>
@@ -287,4 +301,7 @@
     <resources>
         <image name="Transfer" width="200" height="100"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="UFA-Jt-96F"/>
+    </inferredMetricsTieBreakers>
 </document>

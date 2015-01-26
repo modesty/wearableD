@@ -15,19 +15,31 @@ class CentralViewController: UIViewController, BLECentralDelegate {
     @IBOutlet weak var statusLabel: UILabel!
     @IBOutlet weak var bleSpinner: UIActivityIndicatorView!
     
+    @IBOutlet weak var showBtnFirst: UIButton!    
+    @IBOutlet weak var showBtnSecond: UIButton!
+    
     var access_token: String = ""
+    var retrieved_list: NSArray = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
         self.bleSpinner.stopAnimating()
+        self.retrieved_list = []
+        
         centralManager = BLECentral(delegate: self)
         centralManager?.openBLECentral()
     }
     
     override func viewWillAppear(animated: Bool) {
         self.title = "Requesting"
+        
+        self.showHideNavButton(self.showBtnFirst, titleTxt: "")
+        self.showHideNavButton(self.showBtnSecond, titleTxt: "")
+        
+//        self.access_token = ""
+//        self.retrieveDocsListByToken()
     }
     
     override func viewWillDisappear(animated: Bool) {
@@ -107,12 +119,86 @@ class CentralViewController: UIViewController, BLECentralDelegate {
         }
     }
     
-    func retrieveDataByToken() {
+    
+    func retrieveDocsListByToken() {
         if self.access_token.isEmpty {
             return
         }
-        
 
+        self.bleSpinner.startAnimating()
+        self.bleCentralStatusUpdate("Retrieveing Tax Return list...")
+        
+        var request : NSMutableURLRequest = NSMutableURLRequest()
+        request.URL = NSURL(string: "\(BLEIDs.ctHost)/unleash/v1/taxdocs")
+        request.HTTPMethod = "GET"
+        request.addValue("Bearer \(self.access_token)", forHTTPHeaderField: "Authorization")
+        request.addValue("docs", forHTTPHeaderField: "x-request-type")
+        request.addValue(BLEIDs.getCTTransId(), forHTTPHeaderField: "intuit_tid")
+        
+        NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue(),
+            completionHandler:{ (response:NSURLResponse!, data: NSData!, error: NSError!) -> Void in
+                if error != nil {
+                    println(error.localizedDescription)
+                    self.bleCentralStatusUpdate("Retrieveing Tax Return list error: \(error.localizedDescription) (Code:\(error.code))")
+                }
+                else {
+                    var json_error: AutoreleasingUnsafeMutablePointer<NSError?> = nil
+                    let jsonResult: NSDictionary! = NSJSONSerialization.JSONObjectWithData(data, options:NSJSONReadingOptions.MutableContainers, error: json_error) as? NSDictionary
+            
+                    if (jsonResult != nil) {
+                        self.onDocsListReady(jsonResult)
+                    } else {
+                        let serializationError = json_error.memory as NSError?
+                        self.bleCentralStatusUpdate("Retrieveing Tax Return list error: \(serializationError!.localizedFailureReason) (Code:\(serializationError!.code))")
+                    }
+                }
+                self.bleSpinner.stopAnimating()
+        })
+    }
+    
+    func showHideNavButton(btn: UIButton!, titleTxt: String!) {
+        btn.setTitle(titleTxt, forState: nil)
+        btn.hidden = titleTxt.isEmpty
+        btn.enabled = !titleTxt.isEmpty
+    }
+    
+    func showNavBtnWithData(btn: UIButton!, doc: NSDictionary?) {
+        if doc == nil {
+            self.showHideNavButton(btn, titleTxt: "")
+        }
+        else {
+            var name = doc!["name"] as String
+            var year = doc!["taxYear"] as String
+            self.showHideNavButton(btn, titleTxt: "Show \(name) \(year) Return")
+        }
+    }
+    
+    
+    func onDocsListReady(jsonData: NSDictionary!) {
+        self.bleCentralStatusUpdate("Processing Tax Return list data...")
+        retrieved_list = jsonData["data"] as NSArray
+        let numOfReturns = retrieved_list.count
+        if numOfReturns < 1 {
+            self.bleCentralStatusUpdate("No tax return found.")
+        }
+        else {
+            let doc = retrieved_list[0] as? NSDictionary
+            let name = doc!["name"] as String
+            self.bleCentralStatusUpdate("Got \(numOfReturns) Tax Returns for \(name)")
+            
+            self.showNavBtnWithData(self.showBtnFirst, doc: retrieved_list[0] as? NSDictionary)
+            self.showNavBtnWithData(self.showBtnSecond, doc: retrieved_list[1] as? NSDictionary)
+        }
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        var showBtn = sender as UIButton
+        var pdfVC = segue.destinationViewController as PDFViewController
+        
+        var docData = self.retrieved_list[showBtn.tag] as NSDictionary
+        
+        pdfVC.access_token = self.access_token
+        pdfVC.document_id = docData["key"] as String
     }
 
 }
