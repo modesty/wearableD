@@ -31,11 +31,11 @@ class CentralViewController: UIViewController, BLECentralDelegate {
         self.showHideNavButton(self.showBtnFirst, titleTxt: "")
         self.showHideNavButton(self.showBtnSecond, titleTxt: "")
         
-//        centralManager = BLECentral(delegate: self)
-//        centralManager?.openBLECentral()
+        centralManager = BLECentral(delegate: self)
+        centralManager?.openBLECentral()
 
-        self.access_token = ""
-        self.retrieveDocsListByToken()
+//        self.access_token = ""
+//        self.retrieveDocsListByToken()
     }
     
     override func viewWillAppear(animated: Bool) {
