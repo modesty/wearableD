@@ -11,6 +11,7 @@
 		074E4AC31A6705620023A854 /* BLECentral.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074E4AC21A6705620023A854 /* BLECentral.swift */; };
 		2953D3821A795D9F00C37A2E /* KeychainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2953D3811A795D9F00C37A2E /* KeychainService.swift */; };
 		2953D3851A79605A00C37A2E /* OAuth2FlowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2953D3841A79605A00C37A2E /* OAuth2FlowViewController.swift */; };
+		2953D3871A79682500C37A2E /* OAuth2Credentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2953D3861A79682500C37A2E /* OAuth2Credentials.swift */; };
 		299117561A608BBE00972E46 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299117551A608BBE00972E46 /* AppDelegate.swift */; };
 		299117581A608BBE00972E46 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299117571A608BBE00972E46 /* HomeViewController.swift */; };
 		2991175B1A608BBE00972E46 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 299117591A608BBE00972E46 /* Main.storyboard */; };
@@ -40,6 +41,7 @@
 		074E4AC21A6705620023A854 /* BLECentral.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BLECentral.swift; sourceTree = "<group>"; };
 		2953D3811A795D9F00C37A2E /* KeychainService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = KeychainService.swift; path = SimpleOAuth2/KeychainService.swift; sourceTree = "<group>"; };
 		2953D3841A79605A00C37A2E /* OAuth2FlowViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OAuth2FlowViewController.swift; path = SimpleOAuth2/OAuth2FlowViewController.swift; sourceTree = "<group>"; };
+		2953D3861A79682500C37A2E /* OAuth2Credentials.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OAuth2Credentials.swift; path = SimpleOAuth2/OAuth2Credentials.swift; sourceTree = "<group>"; };
 		299117501A608BBE00972E46 /* WearableD.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WearableD.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		299117541A608BBE00972E46 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		299117551A608BBE00972E46 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -252,6 +254,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2953D3871A79682500C37A2E /* OAuth2Credentials.swift in Sources */,
 				2991177E1A60AEC600972E46 /* BLEIDs.swift in Sources */,
 				0707014A1A79657000A252F5 /* OAuth2Client.swift in Sources */,
 				299117781A608CCE00972E46 /* PeripheralViewController.swift in Sources */,

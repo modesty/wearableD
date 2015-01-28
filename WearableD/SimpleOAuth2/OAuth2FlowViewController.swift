@@ -11,9 +11,6 @@ import Foundation
 import UIKit
 
 class OAuth2FlowViewController: UIViewController, UIWebViewDelegate {
-
-    let expectedState:String = "authDone"
-    
     var webView: UIWebView?
     
     var successCallback : ((code:String)-> Void)?
@@ -60,9 +57,7 @@ class OAuth2FlowViewController: UIViewController, UIWebViewDelegate {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
-        // TO alter if more parameters neede
-        var url:String! = CROAuth2Client.authorizeURL() + "?response_type=code&client_id=" + CROAuth2Client.clientID() + "&state=" + expectedState + "&redirect_uri=" + CROAuth2Client.redirectURI().stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLHostAllowedCharacterSet())!
-        let urlRequest : NSURLRequest = NSURLRequest(URL: NSURL(string: url))
+        let urlRequest : NSURLRequest = NSURLRequest(URL: NSURL(string: OAuth2Credentials.authUri())!)
         
         self.webView!.loadRequest(urlRequest)
     }
@@ -77,19 +72,18 @@ class OAuth2FlowViewController: UIViewController, UIWebViewDelegate {
         
         let url : NSString = request.URL.absoluteString!
         
-        self.isRetrievingAuthCode = url.hasPrefix(CROAuth2Client.redirectURI())
+        self.isRetrievingAuthCode = url.hasPrefix(OAuth2Credentials.redirectURI)
         
         if (self.isRetrievingAuthCode!) {
-            if(url.rangeOfString("error").location != NSNotFound) {
-                let error:NSError = NSError(domain:"CROAuth2UnknownErrorDomain", code:0, userInfo: nil)
+            if (url.rangeOfString("error").location != NSNotFound) {
+                let error:NSError = NSError(domain:"SimpleOAuth2", code:0, userInfo: nil)
                 self.failureCallback!(error:error)
-            } else {
-                
+            }
+            else {
                 let optionnalState:String? = self.extractParameterFromUrl("state", url: url)
                 
                 if let state = optionnalState {
-                    if (state == expectedState) {
-                        
+                    if (state == OAuth2Credentials.state) {
                         let optionnalCode:String? = self.extractParameterFromUrl("code", url: url)
                         if let code = optionnalCode {
                             self.successCallback!(code:code)
@@ -100,7 +94,6 @@ class OAuth2FlowViewController: UIViewController, UIWebViewDelegate {
         }
         
         return true
-        
     }
     
     func webView(webView: UIWebView!, didFailLoadWithError error: NSError!) {
