@@ -22,5 +22,16 @@ struct OAuth2Credentials {
         var queryString = "response_type=code&client_id=\(OAuth2Credentials.clientID)&state=\(OAuth2Credentials.state)&redirect_uri=\(OAuth2Credentials.redirectURI)&scope=\(OAuth2Credentials.scope)".stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLHostAllowedCharacterSet())!
         return "\(OAuth2Credentials.authorizeURL)?\(queryString)"
     }
+    
+    static func exchangeHeader() -> (String, String) {
+        var authValue = "\(OAuth2Credentials.clientID):\(OAuth2Credentials.clientSecret)".dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)
+        var headerData = authValue!.base64EncodedStringWithOptions(NSDataBase64EncodingOptions.EncodingEndLineWithLineFeed)
+        return ("Authorization", headerData)
+    }
+    
+    static func exchangeUri(authCode: String) -> String {
+        var queryString = "grant_type=authorization_code&redirect_uri=\(OAuth2Credentials.redirectURI)&code=\(authCode)".stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLHostAllowedCharacterSet())!
+        return "\(OAuth2Credentials.tokenURL)?\(queryString)"
+    }
 }
 
