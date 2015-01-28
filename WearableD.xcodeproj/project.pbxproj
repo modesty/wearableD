@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0707014A1A79657000A252F5 /* OAuth2Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = 070701491A79657000A252F5 /* OAuth2Client.swift */; };
 		074E4AC31A6705620023A854 /* BLECentral.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074E4AC21A6705620023A854 /* BLECentral.swift */; };
 		2953D3821A795D9F00C37A2E /* KeychainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2953D3811A795D9F00C37A2E /* KeychainService.swift */; };
 		2953D3851A79605A00C37A2E /* OAuth2FlowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2953D3841A79605A00C37A2E /* OAuth2FlowViewController.swift */; };
@@ -35,6 +36,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		070701491A79657000A252F5 /* OAuth2Client.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OAuth2Client.swift; sourceTree = "<group>"; };
 		074E4AC21A6705620023A854 /* BLECentral.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BLECentral.swift; sourceTree = "<group>"; };
 		2953D3811A795D9F00C37A2E /* KeychainService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = KeychainService.swift; path = SimpleOAuth2/KeychainService.swift; sourceTree = "<group>"; };
 		2953D3841A79605A00C37A2E /* OAuth2FlowViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OAuth2FlowViewController.swift; path = SimpleOAuth2/OAuth2FlowViewController.swift; sourceTree = "<group>"; };
@@ -80,6 +82,7 @@
 			children = (
 				2953D3811A795D9F00C37A2E /* KeychainService.swift */,
 				2953D3841A79605A00C37A2E /* OAuth2FlowViewController.swift */,
+				070701491A79657000A252F5 /* OAuth2Client.swift */,
 			);
 			name = SimpleOAuth2;
 			sourceTree = "<group>";
@@ -250,6 +253,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2991177E1A60AEC600972E46 /* BLEIDs.swift in Sources */,
+				0707014A1A79657000A252F5 /* OAuth2Client.swift in Sources */,
 				299117781A608CCE00972E46 /* PeripheralViewController.swift in Sources */,
 				074E4AC31A6705620023A854 /* BLECentral.swift in Sources */,
 				29CD74291A7472CC00D33228 /* PDFViewController.swift in Sources */,
