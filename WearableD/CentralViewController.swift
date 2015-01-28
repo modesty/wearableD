@@ -28,13 +28,14 @@ class CentralViewController: UIViewController, BLECentralDelegate {
         self.bleSpinner.stopAnimating()
         self.retrieved_list = []
         
-        centralManager = BLECentral(delegate: self)
-        centralManager?.openBLECentral()
-
         self.showHideNavButton(self.showBtnFirst, titleTxt: "")
         self.showHideNavButton(self.showBtnSecond, titleTxt: "")
-//        self.access_token = ""
-//        self.retrieveDocsListByToken()
+        
+//        centralManager = BLECentral(delegate: self)
+//        centralManager?.openBLECentral()
+
+        self.access_token = ""
+        self.retrieveDocsListByToken()
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -138,7 +139,7 @@ class CentralViewController: UIViewController, BLECentralDelegate {
             completionHandler:{ (response:NSURLResponse!, data: NSData!, error: NSError!) -> Void in
                 if error != nil {
                     println(error.localizedDescription)
-                    self.bleCentralStatusUpdate("Retrieveing Tax Return list error: \(error.localizedDescription) (Code:\(error.code))")
+                    self.bleCentralStatusUpdate("Error: \(error.localizedDescription) (Code:\(error.code))")
                 }
                 else {
                     var json_error: AutoreleasingUnsafeMutablePointer<NSError?> = nil
@@ -148,7 +149,7 @@ class CentralViewController: UIViewController, BLECentralDelegate {
                         self.onDocsListReady(jsonResult)
                     } else {
                         let serializationError = json_error.memory as NSError?
-                        self.bleCentralStatusUpdate("Retrieveing Tax Return list error: \(serializationError!.localizedFailureReason) (Code:\(serializationError!.code))")
+                        self.bleCentralStatusUpdate("Error: \(serializationError!.localizedFailureReason) (Code:\(serializationError!.code))")
                     }
                 }
                 self.bleSpinner.stopAnimating()
