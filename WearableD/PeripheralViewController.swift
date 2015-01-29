@@ -12,6 +12,7 @@ import CoreBluetooth
 class PeripheralViewController: UIViewController, BLEPeripheralDelegate {
     
     var wctPeripheral: BLEPeripheral? = nil
+
     
     @IBOutlet weak var bleSpinner: UIActivityIndicatorView!
     @IBOutlet weak var bleStatusMsg: UILabel!
@@ -21,8 +22,16 @@ class PeripheralViewController: UIViewController, BLEPeripheralDelegate {
 
         // Do any additional setup after loading the view.
         self.bleSpinner.stopAnimating()
-        wctPeripheral = BLEPeripheral()
-        wctPeripheral!.openPeripheral(self)
+        //wctPeripheral = BLEPeripheral()
+        //wctPeripheral!.openPeripheral(self)
+        var client = OAuth2Client(controller: self);
+        client.retrieveAuthToken({ (authToken) -> Void in
+            if let optionnalAuthToken = authToken {
+                println("Received access token " + optionnalAuthToken)
+            }
+        
+        })
+        
     }
     
     override func viewWillAppear(animated: Bool) {

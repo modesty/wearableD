@@ -152,15 +152,13 @@ class OAuth2Client : NSObject {
         
         println("Need to refresh the token with refreshToken : " + refreshToken)
         
-        let url:String = "\(self.tokenUrl)?grant_type=refresh_token"
-            + "&client_id=\(self.clientId)"
-            + "&client_secret=\(self.clientSecret)"
-            + "&redirect_uri=\(self.redirectUrl.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLHostAllowedCharacterSet())!)"
-            + "&refresh_token=\(refreshToken)"
+        let url:String = OAuth2Credentials.refreshTokenUri(refreshToken)
         
         
         var request : NSMutableURLRequest = NSMutableURLRequest()
         request.URL = NSURL(string: url)
+        var (authHeaderKey, authHeaderValue) = OAuth2Credentials.exchangeHeader()
+        request.addValue(authHeaderKey, forHTTPHeaderField: authHeaderValue)
         request.HTTPMethod = "POST"
         
         NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue(),
