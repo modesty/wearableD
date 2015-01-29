@@ -13,8 +13,8 @@ struct OAuth2Credentials {
     static let authorizeURL = "https://accounts-e2e.intuit.com/op/v1/ase"
     static let tokenURL = "https://oauth-e2e.platform.intuit.com/oauth2/v1/tokens/bearer"
     static let redirectURI = "http://ion.mydev.com/#/code"
-    static let clientID = ""
-    static let clientSecret = ""
+    static let clientID = "e2elvGr2vnQpJsTC8oHZqPsFbgzpMsjHJG3XJBLtvfNKaVKHd8"
+    static let clientSecret = "JMFZBucRS86C1fyvP14p7wOSzvdPk2rQjN6GBVu6"
     static let scope = "intuit.cg.turbotax.unleash"
     static let state = "wearableD"
     

@@ -111,13 +111,34 @@ class CentralViewController: UIViewController, BLECentralDelegate {
         else {
             let values = update.componentsSeparatedByString(":")
             if values.count == 2 {
-                if values[0] == BLESequence.Token.rawValue {
-                    self.access_token = values[1]
-                    println("Got access_token: \(self.access_token)")
-
-//                    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(NSEC_PER_SEC / 10)), dispatch_get_main_queue(), { () -> Void in
-                        self.retrieveDocsListByToken()
-//                    })
+                if values[0] == BLESequence.Token1.rawValue {
+                    self.access_token += values[1]
+                    println("Got access_token chunks: \(self.access_token)")
+                }
+                else if values[0] == BLESequence.Token2.rawValue {
+                    self.access_token += values[1]
+                    println("Got access_token chunks: \(self.access_token)")
+                }
+                else if values[0] == BLESequence.Token3.rawValue {
+                    self.access_token += values[1]
+                    println("Got access_token chunks: \(self.access_token)")
+                }
+                else if values[0] == BLESequence.Token4.rawValue {
+                    self.access_token += values[1]
+                    println("Got access_token chunks: \(self.access_token)")
+                }
+                else if values[0] == BLESequence.Token5.rawValue {
+                    self.access_token += values[1]
+                    println("Got access_token chunks: \(self.access_token)")
+                }
+                else if values[0] == BLESequence.Token6.rawValue {
+                    self.access_token += values[1]
+                    println("Got access_token chunks: \(self.access_token)")
+                    println("GOT LAST CHUNK!!!!!!!")
+                    println(self.access_token)
+                    //send the token 
+                     self.retrieveDocsListByToken()
+                    
                 }
             }
         }

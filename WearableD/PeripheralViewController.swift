@@ -27,9 +27,33 @@ class PeripheralViewController: UIViewController, BLEPeripheralDelegate {
         client.retrieveAccessToken({ (authToken) -> Void in
             if let optionnalAuthToken = authToken {
                 println("Received access token " + optionnalAuthToken)
+                println("AUTH TOEKEN LENGTH")
+                println(countElements(optionnalAuthToken))
+
+                var str = optionnalAuthToken;
+                var chunkAmount = 6
+                var chunkLength = 110
+                var chunks = [String]()
+                var startIndex = str.startIndex
+                var endIndex = advance(startIndex, chunkLength)
+                
+                while chunkAmount  > 0 {
+                    var length = countElements(str)
+                    if length < chunkLength {
+                        endIndex = advance(startIndex, length)
+                    }
+                    var chunk = str.substringToIndex(endIndex)
+                    chunks.append(chunk)
+                    str.removeRange(Range(start : startIndex, end : endIndex))
+                    chunkAmount--
+                }
+                
+                println(chunks)
+                
+                
                 self.blePeripheralMsgUpdate("Got access token...")
                 self.wctPeripheral = BLEPeripheral()
-                self.wctPeripheral!.data_token = optionnalAuthToken
+                self.wctPeripheral!.data_token = chunks
                 self.wctPeripheral!.openPeripheral(self)
             }
         })
@@ -82,8 +106,13 @@ class PeripheralViewController: UIViewController, BLEPeripheralDelegate {
         switch dataSequence {
         case .Init: self.wctPeripheral?.wctSequence = .Working
         case .Working: self.wctPeripheral?.wctSequence = .Ready
-        case .Ready: self.wctPeripheral?.wctSequence = .Token
-        case .Token: self.wctPeripheral?.wctSequence = .End
+        case .Ready: self.wctPeripheral?.wctSequence = .Token1
+        case .Token1: self.wctPeripheral?.wctSequence = .Token2
+        case .Token2: self.wctPeripheral?.wctSequence = .Token3
+        case .Token3: self.wctPeripheral?.wctSequence = .Token4
+        case .Token4: self.wctPeripheral?.wctSequence = .Token5
+        case .Token5: self.wctPeripheral?.wctSequence = .Token6
+        case .Token6: self.wctPeripheral?.wctSequence = .End
         case .Error: self.wctPeripheral?.wctSequence = .End
         case .End:
             self.wctPeripheral?.wctSequence = .None

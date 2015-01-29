@@ -30,7 +30,7 @@ class BLEPeripheral: NSObject, CBPeripheralManagerDelegate {
     // oAuth error or cancel
     var data_error: String
     // oAuth access token
-    var data_token: String
+    var data_token: [String]
     
     override init() {
         self.wctPeripheral = nil
@@ -41,7 +41,7 @@ class BLEPeripheral: NSObject, CBPeripheralManagerDelegate {
         self.wctConnectedCentral = nil
         
         self.data_error = ""
-        self.data_token = ""
+        self.data_token = [String]()
         self.delegate = nil
         
         super.init()
@@ -87,7 +87,7 @@ class BLEPeripheral: NSObject, CBPeripheralManagerDelegate {
         
     }
     
-    
+
     func sendDataSequence() -> Bool {
         if self.wctSequence == .None {
             println("no data to sent, return")
@@ -100,10 +100,32 @@ class BLEPeripheral: NSObject, CBPeripheralManagerDelegate {
         }
         
         var rawValue = self.wctSequence.rawValue
-        if self.wctSequence == .Token {
-            rawValue += ":\(self.data_token)"
-            println("sending token:\(self.data_token)")
+        //use int values for token enum so no need to keep token count here
+        if self.wctSequence == .Token1 {
+            rawValue += ":\(self.data_token[0])"
+            println("sending token:\(self.data_token[0])")
         }
+        else if self.wctSequence == .Token2 {
+            rawValue += ":\(self.data_token[1])"
+            println("sending token:\(self.data_token[1])")
+        }
+        else if self.wctSequence == .Token3 {
+            rawValue += ":\(self.data_token[2])"
+            println("sending token:\(self.data_token[2])")
+        }
+        else if self.wctSequence == .Token4 {
+            rawValue += ":\(self.data_token[3])"
+            println("sending token:\(self.data_token[3])")
+        }
+        else if self.wctSequence == .Token5 {
+            rawValue += ":\(self.data_token[4])"
+            println("sending token:\(self.data_token[4])")
+        }
+        else if self.wctSequence == .Token6 {
+            rawValue += ":\(self.data_token[5])"
+            println("sending token:\(self.data_token[5])")
+        }
+        
         else if self.wctSequence == .Error {
             rawValue += ":\(self.data_error)"
             println("sending error:\(self.data_error)")
