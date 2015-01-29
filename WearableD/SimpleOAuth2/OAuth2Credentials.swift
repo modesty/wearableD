@@ -29,14 +29,12 @@ struct OAuth2Credentials {
         return ("Authorization", "Basic \(headerValue)")
     }
     
-    static func exchangeUri(authCode: String) -> String {
-        var queryString = "grant_type=authorization_code&redirect_uri=\(OAuth2Credentials.redirectURI)&code=\(authCode)".stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLHostAllowedCharacterSet())!
-        return "\(OAuth2Credentials.tokenURL)?\(queryString)"
+    static func exchangeBody(authCode: String) -> NSData? {
+        return "grant_type=authorization_code&redirect_uri=\(OAuth2Credentials.redirectURI)&code=\(authCode)".dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)
     }
     
-    static func refreshTokenUri(refreshToken: String) -> String {
-        var queryString = "grant_type=refresh_token&refresh_token=\(refreshToken)".stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLHostAllowedCharacterSet())!
-        return "\(OAuth2Credentials.tokenURL)?\(queryString)"
+    static func refreshTokenBody(refreshToken: String) -> NSData? {
+        return "grant_type=refresh_token&refresh_token=\(refreshToken)".dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)
     }
 }
 

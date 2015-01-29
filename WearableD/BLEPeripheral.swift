@@ -40,8 +40,8 @@ class BLEPeripheral: NSObject, CBPeripheralManagerDelegate {
         self.wctSequence = .None
         self.wctConnectedCentral = nil
         
-        self.data_error = "data error or cancel"
-        self.data_token = "data access token"
+        self.data_error = ""
+        self.data_token = ""
         self.delegate = nil
         
         super.init()
@@ -102,9 +102,11 @@ class BLEPeripheral: NSObject, CBPeripheralManagerDelegate {
         var rawValue = self.wctSequence.rawValue
         if self.wctSequence == .Token {
             rawValue += ":\(self.data_token)"
+            println("sending token:\(self.data_token)")
         }
         else if self.wctSequence == .Error {
             rawValue += ":\(self.data_error)"
+            println("sending error:\(self.data_error)")
         }
         
         var didSend = self.wctPeripheral?.updateValue(BLEIDs.getSequenceData(rawValue), forCharacteristic: self.wctCharacteristic, onSubscribedCentrals: [self.wctConnectedCentral!])

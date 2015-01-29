@@ -39,38 +39,39 @@ class OAuth2Client : NSObject {
         self.sourceViewController = controller
     }
     
-    func retrieveAuthToken(token:((accessToken:String?) -> Void)) -> Void {
+    func retrieveAccessToken(token:((accessToken:String?) -> Void)) -> Void {
         
         // We found a token in the keychain, we need to check if it is not expired
-        if let optionalStoredAccessToken: String? = self.retrieveAccessTokenFromKeychain() {
-            
-            // Token expired, attempt to refresh it
-            if (self.isAccessTokenExpired()) {
-                if let refreshToken = self.retrieveRefreshTokenFromKeychain() {
-                    self.refreshToken(refreshToken, newToken: token)
-                }
-            }
-                // Token not expired, use it to authenticate future requests.
-            else {
-                token(accessToken: optionalStoredAccessToken)
-            }
-            
-        }
-        else {
+//        if let optionalStoredAccessToken = self.retrieveAccessTokenFromKeychain() {
+//            // Token expired, attempt to refresh it
+//            if (self.isAccessTokenExpired()) {
+//                if let refreshToken = self.retrieveRefreshTokenFromKeychain() {
+//                    self.refreshAccessToken(refreshToken, newToken: token)
+//                }
+//            }
+//            else {
+//                // Token not expired, use it to authenticate future requests.
+//                token(accessToken: optionalStoredAccessToken)
+//            }
+//        }
+//        else {
             // First, let's retrieve the autorization_code by login the user in.
             self.retrieveAuthorizationCode { (authorizationCode) -> Void in
                 
                 if let optionalAuthCode = authorizationCode {
+
                     // We have the authorization_code, we now need to exchange it for the accessToken by doind a POST request
-                    let url : String = OAuth2Credentials.exchangeUri(optionalAuthCode)
-                    
-                    // Trigger the POST request
-                    //add header
-                    var request : NSMutableURLRequest = NSMutableURLRequest()
-                    request.URL = NSURL(string: url)
+                    let url : String = OAuth2Credentials.tokenURL
                     var (authHeaderKey, authHeaderValue) = OAuth2Credentials.exchangeHeader()
-                    request.addValue(authHeaderKey, forHTTPHeaderField: authHeaderValue)
+                    
+                    println("received authCode: \(optionalAuthCode)")
+                    
+                    var request : NSMutableURLRequest = NSMutableURLRequest()
                     request.HTTPMethod = "POST"
+                    request.URL = NSURL(string: url)
+                    request.addValue(authHeaderValue, forHTTPHeaderField: authHeaderKey)
+                    request.addValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
+                    request.HTTPBody = OAuth2Credentials.exchangeBody(optionalAuthCode)
                     
                     NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue(),
                         completionHandler:{ (response:NSURLResponse!, data: NSData!, error: NSError!) -> Void in
@@ -87,7 +88,7 @@ class OAuth2Client : NSObject {
                     })//end connection
                 }//end optionalAuthCode
             }
-        }//end else
+//        }end else
 
     }//end function
     
@@ -97,7 +98,7 @@ class OAuth2Client : NSObject {
     private func retrieveAuthorizationCode(authoCode:((authorizationCode:String?) -> Void)) -> Void{
         
         func success(code:String) -> Void {
-            println("SUCCESS AND CODE = " + code)
+            println("OAuth2 authCode = \(code)")
             self.sourceViewController?.dismissViewControllerAnimated(true, completion: nil)
             authoCode(authorizationCode:code)
         }
@@ -148,18 +149,20 @@ class OAuth2Client : NSObject {
     }
     
     // Request a new access token with our refresh token
-    func refreshToken(refreshToken:String, newToken:((accessToken:String?) -> Void)) -> Void {
+    func refreshAccessToken(refreshToken:String, newToken:((accessToken:String?) -> Void)) -> Void {
         
         println("Need to refresh the token with refreshToken : " + refreshToken)
         
-        let url:String = OAuth2Credentials.refreshTokenUri(refreshToken)
-        
+        let url:String = OAuth2Credentials.tokenURL
+        var (authHeaderKey, authHeaderValue) = OAuth2Credentials.exchangeHeader()
         
         var request : NSMutableURLRequest = NSMutableURLRequest()
-        request.URL = NSURL(string: url)
-        var (authHeaderKey, authHeaderValue) = OAuth2Credentials.exchangeHeader()
-        request.addValue(authHeaderKey, forHTTPHeaderField: authHeaderValue)
+
         request.HTTPMethod = "POST"
+        request.URL = NSURL(string: url)
+        request.addValue(authHeaderValue, forHTTPHeaderField: authHeaderKey)
+        request.addValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
+        request.HTTPBody = OAuth2Credentials.refreshTokenBody(refreshToken)
         
         NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue(),
             completionHandler:{ (response:NSURLResponse!, data: NSData!, error: NSError!) -> Void in

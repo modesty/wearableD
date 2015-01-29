@@ -21,21 +21,23 @@ class PeripheralViewController: UIViewController, BLEPeripheralDelegate {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        self.bleSpinner.stopAnimating()
-        //wctPeripheral = BLEPeripheral()
-        //wctPeripheral!.openPeripheral(self)
+        self.bleSpinner.startAnimating()
+        
         var client = OAuth2Client(controller: self);
-        client.retrieveAuthToken({ (authToken) -> Void in
+        client.retrieveAccessToken({ (authToken) -> Void in
             if let optionnalAuthToken = authToken {
                 println("Received access token " + optionnalAuthToken)
+                self.blePeripheralMsgUpdate("Got access token...")
+                self.wctPeripheral = BLEPeripheral()
+                self.wctPeripheral!.data_token = optionnalAuthToken
+                self.wctPeripheral!.openPeripheral(self)
             }
-        
         })
-        
     }
     
     override func viewWillAppear(animated: Bool) {
         self.title = "Sharing"
+        super.viewWillAppear(animated)
     }
 
     override func didReceiveMemoryWarning() {
@@ -44,7 +46,10 @@ class PeripheralViewController: UIViewController, BLEPeripheralDelegate {
     }
     
     override func viewWillDisappear(animated: Bool) {
-        wctPeripheral!.closePeripheral()
+        if wctPeripheral != nil {
+            wctPeripheral!.closePeripheral()
+        }
+        
         self.bleSpinner.stopAnimating()
         super.viewWillDisappear(animated)
     }

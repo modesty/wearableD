@@ -28,11 +28,9 @@ public class KeychainService : NSObject
     
     class func retrieveStringFromKeychain(service: CFStringRef) -> NSString? {
         
-        // Build the query
         var keychainQuery: NSMutableDictionary = NSMutableDictionary(objects: [kSecClassGenericPassword, service, account, kCFBooleanTrue, kSecMatchLimitOne],
             forKeys: [kSecClass, kSecAttrService, kSecAttrAccount, kSecReturnData, kSecMatchLimit])
         
-        // Retrieve the data and convert it
         var dataTypeRef :Unmanaged<AnyObject>?
         let status: OSStatus = SecItemCopyMatching(keychainQuery, &dataTypeRef)
         let opaque = dataTypeRef?.toOpaque()

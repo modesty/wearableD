@@ -90,6 +90,8 @@ class OAuth2FlowViewController: UIViewController, UIWebViewDelegate {
                         }
                     }
                 }
+                
+                return false
             }
         }
         

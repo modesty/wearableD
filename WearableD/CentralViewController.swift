@@ -115,9 +115,9 @@ class CentralViewController: UIViewController, BLECentralDelegate {
                     self.access_token = values[1]
                     println("Got access_token: \(self.access_token)")
 
-                    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(NSEC_PER_SEC / 10)), dispatch_get_main_queue(), { () -> Void in
+//                    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(NSEC_PER_SEC / 10)), dispatch_get_main_queue(), { () -> Void in
                         self.retrieveDocsListByToken()
-                    })
+//                    })
                 }
             }
         }
