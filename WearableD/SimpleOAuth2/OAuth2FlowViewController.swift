@@ -12,6 +12,7 @@ import UIKit
 
 class OAuth2FlowViewController: UIViewController, UIWebViewDelegate {
     var webView: UIWebView?
+    var spinnerView: UIActivityIndicatorView?
     
     var successCallback : ((code:String)-> Void)?
     var failureCallback : ((error:NSError) -> Void)?
@@ -41,12 +42,21 @@ class OAuth2FlowViewController: UIViewController, UIWebViewDelegate {
         self.title = "Login"
         
         self.webView = UIWebView(frame: self.view.bounds);
+        self.spinnerView = UIActivityIndicatorView(frame: self.view.bounds)
         
         if let bindCheck = self.webView {
             self.webView!.backgroundColor = UIColor.clearColor()
             self.webView!.scalesPageToFit = true
             self.webView!.delegate = self
             self.view.addSubview(self.webView!)
+            
+            self.spinnerView!.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.WhiteLarge
+            self.spinnerView!.hidesWhenStopped = true
+            self.spinnerView!.color = UIColor.darkTextColor()
+            self.spinnerView!.center = self.view.center;
+            self.spinnerView!.startAnimating()
+            
+            self.view.addSubview(self.spinnerView!)
         }
         
         self.view.backgroundColor = UIColor.whiteColor()
@@ -58,21 +68,21 @@ class OAuth2FlowViewController: UIViewController, UIWebViewDelegate {
         super.viewWillAppear(animated)
         
         let urlRequest : NSURLRequest = NSURLRequest(URL: NSURL(string: OAuth2Credentials.authUri())!)
-        
         self.webView!.loadRequest(urlRequest)
     }
     
     
     func cancelAction() {
-        self.dismissViewControllerAnimated(true, completion: nil)
+//        self.dismissViewControllerAnimated(true, completion: {
+            self.failureCallback!(error: NSError(domain: "Authentication cancelled", code: 409, userInfo: nil))
+//        })
     }
     
     
     func webView(webView: UIWebView!, shouldStartLoadWithRequest request: NSURLRequest!, navigationType: UIWebViewNavigationType) -> Bool {
-        
         let url : NSString = request.URL.absoluteString!
         
-        self.isRetrievingAuthCode = url.hasPrefix(OAuth2Credentials.redirectURI)
+        self.isRetrievingAuthCode = url.hasPrefix(OAuth2Credentials.redirectURL)
         
         if (self.isRetrievingAuthCode!) {
             if (url.rangeOfString("error").location != NSNotFound) {
@@ -88,14 +98,27 @@ class OAuth2FlowViewController: UIViewController, UIWebViewDelegate {
                         if let code = optionnalCode {
                             self.successCallback!(code:code)
                         }
+                        else {
+                            self.failureCallback!(error: NSError(domain: "Authentication failed: missing authorization code", code: 409, userInfo: nil))
+                        }
                     }
+                    else {
+                        self.failureCallback!(error: NSError(domain: "Authentication failed: not recognized state", code: 409, userInfo: nil))
+                    }
+                }
+                else {
+                    self.failureCallback!(error: NSError(domain: "Authentication failed:  missing state", code: 409, userInfo: nil))
                 }
                 
                 return false
             }
         }
-        
+
         return true
+    }
+    
+    func webViewDidFinishLoad(webView: UIWebView) {
+        self.spinnerView!.stopAnimating()
     }
     
     func webView(webView: UIWebView!, didFailLoadWithError error: NSError!) {

@@ -56,6 +56,11 @@ class PeripheralViewController: UIViewController, BLEPeripheralDelegate {
                 self.wctPeripheral!.data_token = chunks
                 self.wctPeripheral!.openPeripheral(self)
             }
+            else {
+                println("No access token completed...")
+                self.bleSpinner.stopAnimating()
+                self.blePeripheralMsgUpdate("No access token received, please try again.")
+            }
         })
     }
     
