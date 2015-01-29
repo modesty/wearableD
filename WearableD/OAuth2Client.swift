@@ -92,6 +92,9 @@ class OAuth2Client : NSObject {
                             }
                     })//end connection
                 }//end optionalAuthCode
+                else {
+                    token(accessToken: nil)
+                }
             }
         }//end else
     }//end function
@@ -99,17 +102,19 @@ class OAuth2Client : NSObject {
     
     // Retrieves the autorization code by presenting a webView that will let the user login
     private func retrieveAuthorizationCode(authoCode:((authorizationCode:String?) -> Void)) -> Void{
-        
         func success(code:String) -> Void {
             println("OAuth2 authCode = \(code)")
-            self.sourceViewController?.dismissViewControllerAnimated(true, completion: nil)
-            authoCode(authorizationCode:code)
+            self.sourceViewController?.dismissViewControllerAnimated(true, completion: {
+                authoCode(authorizationCode:code)
+            })
+            
         }
         
         func failure(error:NSError) -> Void {
             println("ERROR = " + error.description)
-            self.sourceViewController?.dismissViewControllerAnimated(true, completion: nil)
-            authoCode(authorizationCode:nil)
+            self.sourceViewController?.dismissViewControllerAnimated(true, completion: {
+                authoCode(authorizationCode:nil)
+            })
         }
         
         var authenticationViewController: OAuth2FlowViewController = OAuth2FlowViewController(successCallback:success, failureCallback:failure)
@@ -197,6 +202,7 @@ class OAuth2Client : NSObject {
             if let accessToken = optionalAccessToken {
                 result = accessToken
                 if OAuth2Credentials.tokenCache {
+                   
                     KeychainService.storeStringToKeychain(accessToken, service: self.oAuth2AccessToken)
 
                     if let refreshToken = optionalRefreshToken {

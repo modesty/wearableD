@@ -27,10 +27,16 @@ class PeripheralViewController: UIViewController, BLEPeripheralDelegate {
         client.retrieveAccessToken({ (authToken) -> Void in
             if let optionnalAuthToken = authToken {
                 println("Received access token " + optionnalAuthToken)
+                
                 self.blePeripheralMsgUpdate("Got access token...")
                 self.wctPeripheral = BLEPeripheral()
                 self.wctPeripheral!.data_token = optionnalAuthToken
                 self.wctPeripheral!.openPeripheral(self)
+            }
+            else {
+                println("No access token completed...")
+                self.bleSpinner.stopAnimating()
+                self.blePeripheralMsgUpdate("No access token received, please try again.")
             }
         })
     }
