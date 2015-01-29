@@ -24,13 +24,18 @@ struct OAuth2Credentials {
     }
     
     static func exchangeHeader() -> (String, String) {
-        var authValue = "\(OAuth2Credentials.clientID):\(OAuth2Credentials.clientSecret)".dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)
-        var headerData = authValue!.base64EncodedStringWithOptions(NSDataBase64EncodingOptions.EncodingEndLineWithLineFeed)
-        return ("Authorization", headerData)
+        var authData = "\(OAuth2Credentials.clientID):\(OAuth2Credentials.clientSecret)".dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)
+        var headerValue = authData!.base64EncodedStringWithOptions(NSDataBase64EncodingOptions.EncodingEndLineWithLineFeed)
+        return ("Authorization", "Basic \(headerValue)")
     }
     
     static func exchangeUri(authCode: String) -> String {
         var queryString = "grant_type=authorization_code&redirect_uri=\(OAuth2Credentials.redirectURI)&code=\(authCode)".stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLHostAllowedCharacterSet())!
+        return "\(OAuth2Credentials.tokenURL)?\(queryString)"
+    }
+    
+    static func refreshTokenUri(refreshToken: String) -> String {
+        var queryString = "grant_type=refresh_token&refresh_token=\(refreshToken)".stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLHostAllowedCharacterSet())!
         return "\(OAuth2Credentials.tokenURL)?\(queryString)"
     }
 }
