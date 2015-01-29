@@ -72,7 +72,7 @@ class OAuth2FlowViewController: UIViewController, UIWebViewDelegate {
         
         let url : NSString = request.URL.absoluteString!
         
-        self.isRetrievingAuthCode = url.hasPrefix(OAuth2Credentials.redirectURI)
+        self.isRetrievingAuthCode = url.hasPrefix(OAuth2Credentials.redirectURL)
         
         if (self.isRetrievingAuthCode!) {
             if (url.rangeOfString("error").location != NSNotFound) {

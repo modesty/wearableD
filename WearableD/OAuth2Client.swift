@@ -16,9 +16,6 @@
 import Foundation
 import UIKit
 
-
-
-
 class OAuth2Client : NSObject {
     
     var baseURL = OAuth2Credentials.baseURL
@@ -32,7 +29,7 @@ class OAuth2Client : NSObject {
     private let tokenUrl = OAuth2Credentials.tokenURL
     private let clientId = OAuth2Credentials.clientID
     private let clientSecret = OAuth2Credentials.clientSecret
-    private let redirectUrl = OAuth2Credentials.redirectURI
+    private let redirectUrl = OAuth2Credentials.redirectURL
 
     
     init (controller : UIViewController) {
@@ -40,21 +37,29 @@ class OAuth2Client : NSObject {
     }
     
     func retrieveAccessToken(token:((accessToken:String?) -> Void)) -> Void {
+        var startOver = true
+        
+        if !OAuth2Credentials.tokenCache {
+            self.cleanUpKeyChainTokens()
+        }
         
         // We found a token in the keychain, we need to check if it is not expired
-//        if let optionalStoredAccessToken = self.retrieveAccessTokenFromKeychain() {
-//            // Token expired, attempt to refresh it
-//            if (self.isAccessTokenExpired()) {
-//                if let refreshToken = self.retrieveRefreshTokenFromKeychain() {
-//                    self.refreshAccessToken(refreshToken, newToken: token)
-//                }
-//            }
-//            else {
-//                // Token not expired, use it to authenticate future requests.
-//                token(accessToken: optionalStoredAccessToken)
-//            }
-//        }
-//        else {
+        if let optionalStoredAccessToken = self.retrieveAccessTokenFromKeychain() {
+            // Token expired, attempt to refresh it
+            if (self.isAccessTokenExpired()) {
+                if let refreshToken = self.retrieveRefreshTokenFromKeychain() {
+                    self.refreshAccessToken(refreshToken, newToken: token)
+                    startOver = false
+                }
+            }
+            else {
+                // Token not expired, use it to authenticate future requests.
+                token(accessToken: optionalStoredAccessToken)
+                startOver = false
+            }
+        }
+            
+        if startOver == true {
             // First, let's retrieve the autorization_code by login the user in.
             self.retrieveAuthorizationCode { (authorizationCode) -> Void in
                 
@@ -88,10 +93,8 @@ class OAuth2Client : NSObject {
                     })//end connection
                 }//end optionalAuthCode
             }
-//        }end else
-
+        }//end else
     }//end function
-    
     
     
     // Retrieves the autorization code by presenting a webView that will let the user login
@@ -182,7 +185,6 @@ class OAuth2Client : NSObject {
     
     // Extract the accessToken from the JSON response that the authentication server returned
     private func retrieveAccessTokenFromJSONResponse(jsonResponse: NSDictionary?) -> String {
-        
         var result:String = String()
         
         if let jsonResult: NSDictionary = jsonResponse {
@@ -194,21 +196,31 @@ class OAuth2Client : NSObject {
             // Store the required info for future token refresh in the Keychain.
             if let accessToken = optionalAccessToken {
                 result = accessToken
-                KeychainService.storeStringToKeychain(accessToken, service: self.oAuth2AccessToken)
+                if OAuth2Credentials.tokenCache {
+                    KeychainService.storeStringToKeychain(accessToken, service: self.oAuth2AccessToken)
+
+                    if let refreshToken = optionalRefreshToken {
+                        KeychainService.storeStringToKeychain(refreshToken, service: self.oAuth2RefreshToken)
+                    }
+                    
+                    if let expiresIn = optionalExpiresIn {
+                        KeychainService.storeStringToKeychain(expiresIn.stringValue, service: self.oAuth2ExpiresIn)
+                    }
+                    
+                    let date:NSTimeInterval = NSDate().timeIntervalSince1970
+                    KeychainService.storeStringToKeychain(NSString(format: "%f", date), service: self.oAuth2CreationDate)
+                }
             }
-            if let refreshToken = optionalRefreshToken {
-                KeychainService.storeStringToKeychain(refreshToken, service: self.oAuth2RefreshToken)
-            }
-            if let expiresIn = optionalExpiresIn {
-                let string:NSString = "1"
-                KeychainService.storeStringToKeychain(string, service: self.oAuth2ExpiresIn)
-            }
-            
-            let date:NSTimeInterval = NSDate().timeIntervalSince1970
-            KeychainService.storeStringToKeychain(NSString(format: "%f", date), service: oAuth2CreationDate)
         }
         
         return result
+    }
+    
+    private func cleanUpKeyChainTokens() {
+        KeychainService.deleteAccountItems(self.oAuth2AccessToken)
+        KeychainService.deleteAccountItems(self.oAuth2RefreshToken)
+        KeychainService.deleteAccountItems(self.oAuth2ExpiresIn)
+        KeychainService.deleteAccountItems(self.oAuth2CreationDate)
     }
     
     

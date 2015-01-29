@@ -14,6 +14,13 @@ public class KeychainService : NSObject
 {
     class var account: String {return "OAuth2Tokens"}
     
+    class func deleteAccountItems(service: CFStringRef) -> OSStatus {
+        var keychainQuery: NSMutableDictionary = NSMutableDictionary(objects: [kSecClassGenericPassword, service, account],
+            forKeys: [kSecClass, kSecAttrService, kSecAttrAccount])
+        
+        return SecItemDelete(keychainQuery as CFDictionaryRef)
+    }
+    
     class func storeStringToKeychain(stringToStore:NSString, service:CFStringRef) -> Void {
         
         let data: NSData? = stringToStore.dataUsingEncoding(NSUTF8StringEncoding)
@@ -45,8 +52,6 @@ public class KeychainService : NSObject
                 println("retrieved from keychain : " + (service as NSString) + "= " + finalString)
                 return finalString
             }
-            
-            
         }
         
         return nil
