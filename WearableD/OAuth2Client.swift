@@ -21,22 +21,18 @@ import UIKit
 
 class OAuth2Client : NSObject {
     
-    var baseURL = "url"
+    var baseURL = OAuth2Credentials.baseURL
     var sourceViewController:UIViewController?
     
-//    var oAuth2AccessToken : String {return "CROAuth2AccessToken"}
-//    var oAuth2RefreshToken : String { return "CROAuth2RefreshToken"}
-//    var oAuth2ExpiresIn : String  {return "CROAuth2ExpiresIn"}
-//    var oAuth2CreationDate: String {return "CROAuth2CreationDate"}
-    private var oAuth2AccessToken  = "CROAuth2AccessToken"
-    private var oAuth2RefreshToken  = "CROAuth2RefreshToken"
-    private var oAuth2ExpiresIn  = "CROAuth2ExpiresIn"
-    private var oAuth2CreationDate = "CROAuth2CreationDate"
+    private let oAuth2AccessToken  = "oAuth2AccessToken"
+    private let oAuth2RefreshToken  = "oAuth2RefreshToken"
+    private let oAuth2ExpiresIn  = "oAuth2ExpiresIn"
+    private let oAuth2CreationDate = "oAuth2CreationDate"
     
-    private let tokenUrl = "tokenUrl"
-    private let clientId = "clientId"
-    private let clientSecret = "secret"
-    private let redirectUrl = "url"
+    private let tokenUrl = OAuth2Credentials.tokenURL
+    private let clientId = OAuth2Credentials.clientID
+    private let clientSecret = OAuth2Credentials.clientSecret
+    private let redirectUrl = OAuth2Credentials.redirectURI
 
     
     init (controller : UIViewController) {
@@ -66,15 +62,14 @@ class OAuth2Client : NSObject {
                 
                 if let optionalAuthCode = authorizationCode {
                     // We have the authorization_code, we now need to exchange it for the accessToken by doind a POST request
-                    let url : String = "\(self.tokenUrl)?grant_type=authorization_code"
-                        + "&client_id=\(self.clientId)"
-                        + "&client_secret=\(self.clientSecret)"
-                        + "&redirect_uri=\(self.redirectUrl.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLHostAllowedCharacterSet())!)"
-                        + "&code=\(optionalAuthCode)"
+                    let url : String = OAuth2Credentials.exchangeUri(optionalAuthCode)
                     
                     // Trigger the POST request
+                    //add header
                     var request : NSMutableURLRequest = NSMutableURLRequest()
                     request.URL = NSURL(string: url)
+                    var (authHeaderKey, authHeaderValue) = OAuth2Credentials.exchangeHeader()
+                    request.addValue(authHeaderKey, forHTTPHeaderField: authHeaderValue)
                     request.HTTPMethod = "POST"
                     
                     NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue(),
@@ -145,11 +140,11 @@ class OAuth2Client : NSObject {
     }
     
     private func retrieveAccessTokenFromKeychain() -> String? {
-        return KeychainService.retrieveStringFromKeychain(oAuth2AccessToken)
+        return KeychainService.retrieveStringFromKeychain(self.oAuth2AccessToken)
     }
     
     private func retrieveRefreshTokenFromKeychain() -> String? {
-        return KeychainService.retrieveStringFromKeychain(oAuth2RefreshToken)
+        return KeychainService.retrieveStringFromKeychain(self.oAuth2RefreshToken)
     }
     
     // Request a new access token with our refresh token
@@ -198,14 +193,14 @@ class OAuth2Client : NSObject {
             // Store the required info for future token refresh in the Keychain.
             if let accessToken = optionalAccessToken {
                 result = accessToken
-                KeychainService.storeStringToKeychain(accessToken, service: oAuth2AccessToken)
+                KeychainService.storeStringToKeychain(accessToken, service: self.oAuth2AccessToken)
             }
             if let refreshToken = optionalRefreshToken {
-                KeychainService.storeStringToKeychain(refreshToken, service: oAuth2RefreshToken)
+                KeychainService.storeStringToKeychain(refreshToken, service: self.oAuth2RefreshToken)
             }
             if let expiresIn = optionalExpiresIn {
                 let string:NSString = "1"
-                KeychainService.storeStringToKeychain(string, service: oAuth2ExpiresIn)
+                KeychainService.storeStringToKeychain(string, service: self.oAuth2ExpiresIn)
             }
             
             let date:NSTimeInterval = NSDate().timeIntervalSince1970
