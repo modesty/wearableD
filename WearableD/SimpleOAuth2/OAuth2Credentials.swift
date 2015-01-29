@@ -17,9 +17,10 @@ struct OAuth2Credentials {
     static let clientSecret = "JMFZBucRS86C1fyvP14p7wOSzvdPk2rQjN6GBVu6"
     static let scope = "intuit.cg.turbotax.unleash"
     static let state = "wearableD"
+    static let tokenCache = false
     
     static func authUri() -> String {
-        var queryString = "response_type=code&client_id=\(OAuth2Credentials.clientID)&state=\(OAuth2Credentials.state)&redirect_uri=\(OAuth2Credentials.redirectURI)&scope=\(OAuth2Credentials.scope)".stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLHostAllowedCharacterSet())!
+        var queryString = "response_type=code&client_id=\(OAuth2Credentials.clientID)&state=\(OAuth2Credentials.state)&redirect_uri=\(OAuth2Credentials.redirectURL)&scope=\(OAuth2Credentials.scope)".stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLHostAllowedCharacterSet())!
         return "\(OAuth2Credentials.authorizeURL)?\(queryString)"
     }
     
@@ -30,7 +31,7 @@ struct OAuth2Credentials {
     }
     
     static func exchangeBody(authCode: String) -> NSData? {
-        return "grant_type=authorization_code&redirect_uri=\(OAuth2Credentials.redirectURI)&code=\(authCode)".dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)
+        return "grant_type=authorization_code&redirect_uri=\(OAuth2Credentials.redirectURL)&code=\(authCode)".dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)
     }
     
     static func refreshTokenBody(refreshToken: String) -> NSData? {
