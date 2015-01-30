@@ -211,8 +211,14 @@ class CentralViewController: UIViewController, BLECentralDelegate {
             let name = doc!["name"] as String
             self.bleCentralStatusUpdate("Got \(numOfReturns) Tax Returns for \(name)")
             
-            self.showNavBtnWithData(self.showBtnFirst, doc: retrieved_list[0] as? NSDictionary)
-            self.showNavBtnWithData(self.showBtnSecond, doc: retrieved_list[1] as? NSDictionary)
+            if retrieved_list.count > 0 {
+                self.showNavBtnWithData(self.showBtnFirst, doc: retrieved_list[0] as? NSDictionary)
+            }
+            if retrieved_list.count > 1 {
+                self.showNavBtnWithData(self.showBtnSecond, doc: retrieved_list[1] as? NSDictionary)
+            }
+            
+          
         }
     }
     
