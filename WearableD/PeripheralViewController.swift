@@ -27,34 +27,11 @@ class PeripheralViewController: UIViewController, BLEPeripheralDelegate {
         client.retrieveAccessToken({ (authToken) -> Void in
             if let optionnalAuthToken = authToken {
                 println("Received access token " + optionnalAuthToken)
-                println("AUTH TOEKEN LENGTH")
-                println(countElements(optionnalAuthToken))
-
-                var str = optionnalAuthToken;
-                var chunkAmount = 6
-                var chunkLength = 110
-                var chunks = [String]()
-                var startIndex = str.startIndex
-                var endIndex = advance(startIndex, chunkLength)
-                
-                while chunkAmount  > 0 {
-                    var length = countElements(str)
-                    if length < chunkLength {
-                        endIndex = advance(startIndex, length)
-                    }
-                    var chunk = str.substringToIndex(endIndex)
-                    chunks.append(chunk)
-                    str.removeRange(Range(start : startIndex, end : endIndex))
-                    chunkAmount--
-                }
-                
-                println(chunks)
-                
                 
                 self.blePeripheralMsgUpdate("Got access token...")
                 self.wctPeripheral = BLEPeripheral()
-                self.wctPeripheral!.data_token = chunks
-                self.wctPeripheral!.openPeripheral(self)
+                self.wctPeripheral?.raw_token = optionnalAuthToken
+                self.wctPeripheral?.openPeripheral(self)
             }
             else {
                 println("No access token completed...")
@@ -75,10 +52,8 @@ class PeripheralViewController: UIViewController, BLEPeripheralDelegate {
     }
     
     override func viewWillDisappear(animated: Bool) {
-        if wctPeripheral != nil {
-            wctPeripheral!.closePeripheral()
-        }
-        
+        wctPeripheral?.closePeripheral()
+
         self.bleSpinner.stopAnimating()
         super.viewWillDisappear(animated)
     }

@@ -30,7 +30,40 @@ class BLEPeripheral: NSObject, CBPeripheralManagerDelegate {
     // oAuth error or cancel
     var data_error: String
     // oAuth access token
-    var data_token: [String]
+    private var data_token: [String]
+    
+    private var _raw_token: String
+    var raw_token: String {
+        get {
+            return _raw_token
+        }
+        
+        set (rawValue) {
+            _raw_token = rawValue
+            println("AUTH TOEKEN LENGTH: \(countElements(_raw_token))")
+            
+            var str = rawValue
+            var chunkAmount = 6
+            var chunkLength = 110
+            var chunks = [String]()
+            var startIndex = str.startIndex
+            var endIndex = advance(startIndex, chunkLength)
+            
+            while chunkAmount  > 0 {
+                var length = countElements(str)
+                if length < chunkLength {
+                    endIndex = advance(startIndex, length)
+                }
+                var chunk = str.substringToIndex(endIndex)
+                chunks.append(chunk)
+                str.removeRange(Range(start : startIndex, end : endIndex))
+                chunkAmount--
+            }
+            
+            data_token = chunks
+            println(chunks)
+        }
+    }
     
     override init() {
         self.wctPeripheral = nil
@@ -43,6 +76,8 @@ class BLEPeripheral: NSObject, CBPeripheralManagerDelegate {
         self.data_error = ""
         self.data_token = [String]()
         self.delegate = nil
+        
+        self._raw_token = ""
         
         super.init()
     }
