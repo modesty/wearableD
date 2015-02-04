@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="haa-ba-RRG">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="haa-ba-RRG">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
         <!--Wearable Transcripts-->
@@ -17,22 +18,48 @@
                         <rect key="frame" x="0.0" y="64" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="Transfer" translatesAutoresizingMaskIntoConstraints="NO" id="vvl-3a-O1F">
-                                <rect key="frame" x="180" y="140" width="240" height="128"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="240" id="Noj-ew-VZW">
-                                        <variation key="heightClass=compact" constant="140"/>
-                                    </constraint>
-                                    <constraint firstAttribute="height" constant="135" id="f81-zV-dfz">
-                                        <variation key="heightClass=compact" constant="80"/>
-                                    </constraint>
-                                </constraints>
-                                <variation key="heightClass=compact" misplaced="YES">
-                                    <rect key="frame" x="180" y="42" width="240" height="128"/>
-                                    <mask key="constraints">
-                                        <include reference="f81-zV-dfz"/>
-                                    </mask>
-                                </variation>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="SecureDocShare" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Wnz-VO-iQB" userLabel="Logo">
+                                <rect key="frame" x="0.0" y="0.0" width="163" height="27"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RsK-Oy-qtZ" userLabel="HomeBtnContainer">
+                                <rect key="frame" x="-6" y="200" width="600" height="452"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="429-Nr-zfG">
+                                        <rect key="frame" x="78" y="247" width="201" height="39"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                        <state key="normal" title="Request Tax Returns">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <segue destination="wzG-I1-ITq" kind="show" id="Itt-m6-I3L"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dym-CI-LlI">
+                                        <rect key="frame" x="72" y="174" width="212" height="39"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                        <state key="normal" title="Share My Tax Returns">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <segue destination="6RN-an-d6v" kind="show" id="cas-IH-xXX"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="0.24313725490196078" green="0.38823529411764707" blue="0.44705882352941173" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QAc-vM-mEE" userLabel="TagLine">
+                                <rect key="frame" x="0.0" y="0.0" width="167" height="21"/>
+                                <string key="text">Share access to your 
+financial data in the most secure way possible</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="DocShare" translatesAutoresizingMaskIntoConstraints="NO" id="ZrL-Pd-ona">
+                                <rect key="frame" x="186" y="119" width="150" height="150"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EVj-7a-0a9">
                                 <rect key="frame" x="277" y="385" width="46" height="30"/>
@@ -40,71 +67,23 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Request and send tax returns safely and conveniently" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Wnz-VO-iQB">
-                                <rect key="frame" x="0.0" y="125" width="600" height="103"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="429-Nr-zfG">
-                                <rect key="frame" x="185" y="285" width="231" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="Jb0-yh-seO"/>
-                                    <constraint firstAttribute="width" constant="231" id="X5G-IE-825"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
-                                <state key="normal" title="Request Tax Returns">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <segue destination="wzG-I1-ITq" kind="show" id="Itt-m6-I3L"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dym-CI-LlI">
-                                <rect key="frame" x="185" y="335" width="231" height="39"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
-                                <state key="normal" title="Share My Tax Returns">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <segue destination="6RN-an-d6v" kind="show" id="cas-IH-xXX"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="vvl-3a-O1F" firstAttribute="centerX" secondItem="429-Nr-zfG" secondAttribute="centerX" id="E6I-Gv-SJ3"/>
-                            <constraint firstItem="Dym-CI-LlI" firstAttribute="top" secondItem="429-Nr-zfG" secondAttribute="bottom" constant="20" id="FWj-d3-Hk9"/>
-                            <constraint firstItem="Dym-CI-LlI" firstAttribute="top" secondItem="vvl-3a-O1F" secondAttribute="bottom" constant="63" id="MEl-xC-JdR"/>
-                            <constraint firstItem="Dym-CI-LlI" firstAttribute="leading" secondItem="429-Nr-zfG" secondAttribute="leading" id="MGs-Bj-k5z"/>
-                            <constraint firstItem="Wnz-VO-iQB" firstAttribute="height" secondItem="vvl-3a-O1F" secondAttribute="height" id="UUA-9R-gc9"/>
-                            <constraint firstItem="Wnz-VO-iQB" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="50" id="Vgr-7i-paL">
-                                <variation key="heightClass=compact" constant="20"/>
-                            </constraint>
-                            <constraint firstItem="429-Nr-zfG" firstAttribute="trailing" secondItem="Dym-CI-LlI" secondAttribute="trailing" id="W86-58-ukk"/>
-                            <constraint firstItem="429-Nr-zfG" firstAttribute="top" secondItem="vvl-3a-O1F" secondAttribute="bottom" constant="15" id="WB4-bo-4zA">
-                                <variation key="heightClass=compact" constant="10"/>
-                            </constraint>
-                            <constraint firstItem="vvl-3a-O1F" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="105" id="ZaN-66-1FV">
-                                <variation key="heightClass=compact" constant="60"/>
-                            </constraint>
-                            <constraint firstItem="429-Nr-zfG" firstAttribute="top" secondItem="Wnz-VO-iQB" secondAttribute="bottom" constant="70" id="byt-b5-Oh3"/>
-                            <constraint firstItem="Wnz-VO-iQB" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="50" id="gQP-Jh-tdG"/>
-                            <constraint firstItem="Dym-CI-LlI" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="gyt-0C-Nao"/>
-                            <constraint firstItem="429-Nr-zfG" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="oCk-wt-t98"/>
-                            <constraint firstItem="Wnz-VO-iQB" firstAttribute="centerX" secondItem="429-Nr-zfG" secondAttribute="centerX" id="sDL-zs-SP0"/>
-                            <constraint firstItem="Wnz-VO-iQB" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="30" id="tP3-rp-Sln"/>
+                            <constraint firstAttribute="bottom" secondItem="RsK-Oy-qtZ" secondAttribute="bottom" id="0fq-oX-RYF"/>
+                            <constraint firstAttribute="trailing" secondItem="RsK-Oy-qtZ" secondAttribute="trailing" id="JRZ-xo-bdy"/>
+                            <constraint firstItem="RsK-Oy-qtZ" firstAttribute="top" secondItem="ZrL-Pd-ona" secondAttribute="bottom" constant="-75" id="NUE-yq-YMz"/>
+                            <constraint firstItem="RsK-Oy-qtZ" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="c5E-RT-z7H"/>
+                            <constraint firstItem="ZrL-Pd-ona" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="top" multiplier="0.5" constant="150" id="jDe-60-a6n"/>
+                            <constraint firstAttribute="centerY" secondItem="ZrL-Pd-ona" secondAttribute="centerY" id="soc-qP-vd9"/>
+                            <constraint firstAttribute="centerX" secondItem="ZrL-Pd-ona" secondAttribute="centerX" id="uga-Y0-EQc"/>
                         </constraints>
                         <variation key="default">
                             <mask key="subviews">
                                 <exclude reference="EVj-7a-0a9"/>
                             </mask>
                             <mask key="constraints">
-                                <exclude reference="UUA-9R-gc9"/>
-                                <exclude reference="gQP-Jh-tdG"/>
-                                <exclude reference="ZaN-66-1FV"/>
-                                <exclude reference="byt-b5-Oh3"/>
-                                <exclude reference="MEl-xC-JdR"/>
+                                <exclude reference="jDe-60-a6n"/>
                             </mask>
                         </variation>
                     </view>
@@ -312,7 +291,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Transfer" width="200" height="100"/>
+        <image name="DocShare" width="150" height="150"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="UFA-Jt-96F"/>
