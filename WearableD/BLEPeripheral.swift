@@ -31,6 +31,8 @@ class BLEPeripheral: NSObject, CBPeripheralManagerDelegate {
     var data_error: String
     // oAuth access token
     private var data_token: [String]
+    // token chunk idx
+    private var chunk_idx = 0
     
     private var _raw_token: String
     var raw_token: String {
@@ -43,25 +45,33 @@ class BLEPeripheral: NSObject, CBPeripheralManagerDelegate {
             println("AUTH TOEKEN LENGTH: \(countElements(_raw_token))")
             
             var str = rawValue
-            var chunkAmount = 6
-            var chunkLength = 110
+            //MQZ.2/3/2015 max-chunk-length is 150
+            var chunkLength = 120
             var chunks = [String]()
             var startIndex = str.startIndex
-            var endIndex = advance(startIndex, chunkLength)
             
-            while chunkAmount  > 0 {
-                var length = countElements(str)
-                if length < chunkLength {
-                    endIndex = advance(startIndex, length)
+            var chunkAmount = Int(countElements(_raw_token) / chunkLength) + 1
+            while chunkAmount > 0 {
+                var oneLength = chunkLength
+                if chunkAmount == 1 {
+                    oneLength = countElements(str) - Int(countElements(_raw_token) / chunkLength) * chunkLength
                 }
-                var chunk = str.substringToIndex(endIndex)
+                var endIndex = advance(startIndex, oneLength)
+                
+                var chunk = str.substringWithRange(Range(start: startIndex, end: endIndex))
                 chunks.append(chunk)
-                str.removeRange(Range(start : startIndex, end : endIndex))
+                
+                startIndex = endIndex
                 chunkAmount--
             }
             
             data_token = chunks
-            println(chunks)
+        }
+    }
+    
+    var is_all_chunk_sent: Bool {
+        get {
+            return (self.chunk_idx == self.data_token.count) ? true : false
         }
     }
     
@@ -119,10 +129,8 @@ class BLEPeripheral: NSObject, CBPeripheralManagerDelegate {
         println(self.wctService?.peripheral?.name)
         
         println("BLE service is set up.")
-        
     }
     
-
     func sendDataSequence() -> Bool {
         if self.wctSequence == .None {
             println("no data to sent, return")
@@ -135,32 +143,18 @@ class BLEPeripheral: NSObject, CBPeripheralManagerDelegate {
         }
         
         var rawValue = self.wctSequence.rawValue
-        //use int values for token enum so no need to keep token count here
-        if self.wctSequence == .Token1 {
-            rawValue += ":\(self.data_token[0])"
-            println("sending token:\(self.data_token[0])")
-        }
-        else if self.wctSequence == .Token2 {
-            rawValue += ":\(self.data_token[1])"
-            println("sending token:\(self.data_token[1])")
-        }
-        else if self.wctSequence == .Token3 {
-            rawValue += ":\(self.data_token[2])"
-            println("sending token:\(self.data_token[2])")
-        }
-        else if self.wctSequence == .Token4 {
-            rawValue += ":\(self.data_token[3])"
-            println("sending token:\(self.data_token[3])")
-        }
-        else if self.wctSequence == .Token5 {
-            rawValue += ":\(self.data_token[4])"
-            println("sending token:\(self.data_token[4])")
-        }
-        else if self.wctSequence == .Token6 {
-            rawValue += ":\(self.data_token[5])"
-            println("sending token:\(self.data_token[5])")
-        }
         
+        if self.wctSequence == .Init {
+            self.chunk_idx = 0
+        }
+        else if self.wctSequence == .Ready {
+            rawValue += ":\(self.data_token.count)"
+            println("ready for token: \(self.data_token.count) chunks")
+        }
+        else if self.wctSequence == .Token {
+            rawValue += ":\(self.data_token[self.chunk_idx])"
+            println("sending token: \(self.data_token[self.chunk_idx]) - \(self.chunk_idx) of \(self.data_token.count)")
+        }
         else if self.wctSequence == .Error {
             rawValue += ":\(self.data_error)"
             println("sending error:\(self.data_error)")
@@ -169,7 +163,10 @@ class BLEPeripheral: NSObject, CBPeripheralManagerDelegate {
         var didSend = self.wctPeripheral?.updateValue(BLEIDs.getSequenceData(rawValue), forCharacteristic: self.wctCharacteristic, onSubscribedCentrals: [self.wctConnectedCentral!])
         
         if didSend! {
-            println("sent Data ok: \(rawValue)" )
+            println("sent Data ok: \(rawValue)")
+            if self.wctSequence == .Token {
+                self.chunk_idx++
+            }
             self.delegate!.blePeripheralDidSendData(self.wctSequence)
         }
         else {

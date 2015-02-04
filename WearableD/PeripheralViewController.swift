@@ -86,13 +86,14 @@ class PeripheralViewController: UIViewController, BLEPeripheralDelegate {
         switch dataSequence {
         case .Init: self.wctPeripheral?.wctSequence = .Working
         case .Working: self.wctPeripheral?.wctSequence = .Ready
-        case .Ready: self.wctPeripheral?.wctSequence = .Token1
-        case .Token1: self.wctPeripheral?.wctSequence = .Token2
-        case .Token2: self.wctPeripheral?.wctSequence = .Token3
-        case .Token3: self.wctPeripheral?.wctSequence = .Token4
-        case .Token4: self.wctPeripheral?.wctSequence = .Token5
-        case .Token5: self.wctPeripheral?.wctSequence = .Token6
-        case .Token6: self.wctPeripheral?.wctSequence = .End
+        case .Ready: self.wctPeripheral?.wctSequence = .Token
+        case .Token:
+            if self.wctPeripheral!.is_all_chunk_sent {
+                self.wctPeripheral?.wctSequence = .End
+            }
+            else {
+                self.wctPeripheral?.wctSequence = .Token
+            }
         case .Error: self.wctPeripheral?.wctSequence = .End
         case .End:
             self.wctPeripheral?.wctSequence = .None

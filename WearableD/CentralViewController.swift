@@ -19,6 +19,7 @@ class CentralViewController: UIViewController, BLECentralDelegate {
     @IBOutlet weak var showBtnSecond: UIButton!
     
     var access_token: String = ""
+    var chunks_count: String = ""
     var retrieved_list: NSArray = []
     
     override func viewDidLoad() {
@@ -107,38 +108,25 @@ class CentralViewController: UIViewController, BLECentralDelegate {
         if update == BLESequence.End.rawValue {
             self.centralManager?.closeBLECentral()
             self.bleCentralStatusUpdate("Received token. Retrieving data by token...")
+            
+            println("Got access_token \(self.access_token)")
+            self.retrieveDocsListByToken()
+        }
+        else if update == BLESequence.Init.rawValue {
+            self.access_token = ""
         }
         else {
             let values = update.componentsSeparatedByString(":")
             if values.count == 2 {
-                if values[0] == BLESequence.Token1.rawValue {
-                    self.access_token += values[1]
-                    println("Got access_token chunks: \(self.access_token)")
+                if values[0] == BLESequence.Ready.rawValue {
+                    self.chunks_count = values[1]
+                    println("")
                 }
-                else if values[0] == BLESequence.Token2.rawValue {
+                else if values[0] == BLESequence.Token.rawValue {
                     self.access_token += values[1]
-                    println("Got access_token chunks: \(self.access_token)")
                 }
-                else if values[0] == BLESequence.Token3.rawValue {
-                    self.access_token += values[1]
-                    println("Got access_token chunks: \(self.access_token)")
-                }
-                else if values[0] == BLESequence.Token4.rawValue {
-                    self.access_token += values[1]
-                    println("Got access_token chunks: \(self.access_token)")
-                }
-                else if values[0] == BLESequence.Token5.rawValue {
-                    self.access_token += values[1]
-                    println("Got access_token chunks: \(self.access_token)")
-                }
-                else if values[0] == BLESequence.Token6.rawValue {
-                    self.access_token += values[1]
-                    println("Got access_token chunks: \(self.access_token)")
-                    println("GOT LAST CHUNK!!!!!!!")
-                    println(self.access_token)
-                    //send the token 
-                     self.retrieveDocsListByToken()
-                    
+                else if values[0] == BLESequence.Error.rawValue {
+                    println("data error: \(values[1])")
                 }
             }
         }

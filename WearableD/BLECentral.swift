@@ -126,12 +126,10 @@ class BLECentral : NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
                 self.delegate?.bleCentralStatusUpdate("Characteristic Found: \(characteristic.UUIDString). Start to subscribe value updates...")
                 //peripheral.readValueForCharacteristic(characteristic as CBCharacteristic)
                 
-                
                 //subscibe to value updates
                 peripheral.setNotifyValue(true, forCharacteristic : characteristic as CBCharacteristic)
             }
         }
-        
     }
     
     
