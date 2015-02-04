@@ -18,29 +18,33 @@
                         <rect key="frame" x="0.0" y="64" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="SecureDocShare" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Wnz-VO-iQB" userLabel="Logo">
-                                <rect key="frame" x="0.0" y="0.0" width="163" height="27"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RsK-Oy-qtZ" userLabel="HomeBtnContainer">
-                                <rect key="frame" x="-6" y="200" width="600" height="452"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RsK-Oy-qtZ" userLabel="HomeBtnContainer">
+                                <rect key="frame" x="0.0" y="300" width="600" height="300"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="429-Nr-zfG">
-                                        <rect key="frame" x="78" y="247" width="201" height="39"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="22"/>
-                                        <state key="normal" title="Request Tax Returns">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="429-Nr-zfG">
+                                        <rect key="frame" x="40" y="210" width="520" height="50"/>
+                                        <color key="backgroundColor" red="0.69803921568627447" green="0.83137254901960778" blue="0.86274509803921573" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="Xyd-mj-58J"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-CondensedBold" family="Helvetica Neue" pointSize="22"/>
+                                        <state key="normal" title="Share A Document">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
                                             <segue destination="wzG-I1-ITq" kind="show" id="Itt-m6-I3L"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dym-CI-LlI">
-                                        <rect key="frame" x="72" y="174" width="212" height="39"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="22"/>
-                                        <state key="normal" title="Share My Tax Returns">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dym-CI-LlI">
+                                        <rect key="frame" x="40" y="130" width="520" height="50"/>
+                                        <color key="backgroundColor" red="0.69803921570000005" green="0.83137254900000002" blue="0.86274509799999999" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="f0v-hF-EzA"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-CondensedBold" family="Helvetica Neue" pointSize="22"/>
+                                        <state key="normal" title="Request A Document">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
@@ -49,18 +53,55 @@
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.24313725490196078" green="0.38823529411764707" blue="0.44705882352941173" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="429-Nr-zfG" secondAttribute="trailing" constant="40" id="7HT-6A-KYv"/>
+                                    <constraint firstItem="429-Nr-zfG" firstAttribute="leading" secondItem="RsK-Oy-qtZ" secondAttribute="leading" constant="40" id="8PO-Jn-aTJ"/>
+                                    <constraint firstItem="Dym-CI-LlI" firstAttribute="leading" secondItem="RsK-Oy-qtZ" secondAttribute="leading" constant="40" id="LGb-BB-FFB"/>
+                                    <constraint firstAttribute="trailing" secondItem="Dym-CI-LlI" secondAttribute="trailing" constant="40" id="SO1-qC-pd9"/>
+                                    <constraint firstItem="429-Nr-zfG" firstAttribute="top" secondItem="Dym-CI-LlI" secondAttribute="bottom" constant="30" id="vBu-CS-zz0"/>
+                                    <constraint firstAttribute="bottom" secondItem="429-Nr-zfG" secondAttribute="bottom" constant="40" id="vgL-sT-u6a"/>
+                                </constraints>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QAc-vM-mEE" userLabel="TagLine">
-                                <rect key="frame" x="0.0" y="0.0" width="167" height="21"/>
-                                <string key="text">Share access to your 
-financial data in the most secure way possible</string>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="DocShare" translatesAutoresizingMaskIntoConstraints="NO" id="ZrL-Pd-ona">
+                                <rect key="frame" x="225" y="225" width="150" height="150"/>
+                            </imageView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tCe-Yf-cBm" userLabel="LogoContainer">
+                                <rect key="frame" x="200" y="84" width="200" height="50"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Secure" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="668-8z-T4Z">
+                                        <rect key="frame" x="20" y="10" width="69" height="30"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-CondensedBold" family="Helvetica Neue" pointSize="25"/>
+                                        <color key="textColor" red="1" green="0.41176470590000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DocShare" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="heE-20-gam">
+                                        <rect key="frame" x="88" y="10" width="96" height="30"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-CondensedBold" family="Helvetica Neue" pointSize="25"/>
+                                        <color key="textColor" red="0.24313725489999999" green="0.38823529410000002" blue="0.44705882349999998" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="668-8z-T4Z" firstAttribute="top" secondItem="tCe-Yf-cBm" secondAttribute="top" constant="10" id="5r6-0C-xfI"/>
+                                    <constraint firstItem="heE-20-gam" firstAttribute="top" secondItem="tCe-Yf-cBm" secondAttribute="top" constant="10" id="7wT-re-m0K"/>
+                                    <constraint firstAttribute="width" constant="200" id="F7K-dO-1BP"/>
+                                    <constraint firstItem="668-8z-T4Z" firstAttribute="leading" secondItem="tCe-Yf-cBm" secondAttribute="leading" constant="20" id="aon-Xv-Ah7"/>
+                                    <constraint firstAttribute="trailing" secondItem="heE-20-gam" secondAttribute="trailing" constant="16" id="bGA-yH-j47"/>
+                                    <constraint firstAttribute="height" constant="50" id="fDG-Ut-Kk7"/>
+                                </constraints>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="juc-OE-ZZP">
+                                <rect key="frame" x="150" y="119" width="300" height="120"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="120" id="0ZW-i5-H8m"/>
+                                    <constraint firstAttribute="width" constant="300" id="M39-t2-xgn"/>
+                                </constraints>
+                                <string key="text">Share access to your financial data 
+in the most secure way possible</string>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                <color key="textColor" red="0.24313725489999999" green="0.38823529410000002" blue="0.44705882349999998" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="DocShare" translatesAutoresizingMaskIntoConstraints="NO" id="ZrL-Pd-ona">
-                                <rect key="frame" x="186" y="119" width="150" height="150"/>
-                            </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EVj-7a-0a9">
                                 <rect key="frame" x="277" y="385" width="46" height="30"/>
                                 <state key="normal" title="Button">
@@ -71,10 +112,15 @@ financial data in the most secure way possible</string>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="RsK-Oy-qtZ" secondAttribute="bottom" id="0fq-oX-RYF"/>
+                            <constraint firstAttribute="centerX" secondItem="tCe-Yf-cBm" secondAttribute="centerX" id="6s2-dZ-iSB"/>
                             <constraint firstAttribute="trailing" secondItem="RsK-Oy-qtZ" secondAttribute="trailing" id="JRZ-xo-bdy"/>
                             <constraint firstItem="RsK-Oy-qtZ" firstAttribute="top" secondItem="ZrL-Pd-ona" secondAttribute="bottom" constant="-75" id="NUE-yq-YMz"/>
+                            <constraint firstItem="tCe-Yf-cBm" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="20" id="aGv-MD-Wap"/>
                             <constraint firstItem="RsK-Oy-qtZ" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="c5E-RT-z7H"/>
+                            <constraint firstAttribute="centerX" secondItem="juc-OE-ZZP" secondAttribute="centerX" id="hou-ab-dRq"/>
                             <constraint firstItem="ZrL-Pd-ona" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="top" multiplier="0.5" constant="150" id="jDe-60-a6n"/>
+                            <constraint firstItem="juc-OE-ZZP" firstAttribute="top" secondItem="tCe-Yf-cBm" secondAttribute="bottom" constant="-15" id="lhw-TN-V50"/>
+                            <constraint firstItem="juc-OE-ZZP" firstAttribute="top" secondItem="tCe-Yf-cBm" secondAttribute="bottom" constant="-20" id="oUU-Qs-6fA"/>
                             <constraint firstAttribute="centerY" secondItem="ZrL-Pd-ona" secondAttribute="centerY" id="soc-qP-vd9"/>
                             <constraint firstAttribute="centerX" secondItem="ZrL-Pd-ona" secondAttribute="centerX" id="uga-Y0-EQc"/>
                         </constraints>
@@ -83,6 +129,7 @@ financial data in the most secure way possible</string>
                                 <exclude reference="EVj-7a-0a9"/>
                             </mask>
                             <mask key="constraints">
+                                <exclude reference="oUU-Qs-6fA"/>
                                 <exclude reference="jDe-60-a6n"/>
                             </mask>
                         </variation>

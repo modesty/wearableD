@@ -203,11 +203,11 @@
 				TargetAttributes = {
 					2991174F1A608BBE00972E46 = {
 						CreatedOnToolsVersion = 6.1.1;
-						DevelopmentTeam = BNU6KWDW7R;
+						DevelopmentTeam = XGA5C4NC3J;
 					};
 					299117641A608BBE00972E46 = {
 						CreatedOnToolsVersion = 6.1.1;
-						DevelopmentTeam = BNU6KWDW7R;
+						DevelopmentTeam = XGA5C4NC3J;
 						TestTargetID = 2991174F1A608BBE00972E46;
 					};
 				};
