@@ -103,7 +103,7 @@ class PeripheralViewController: UIViewController, BLEPeripheralDelegate {
             self.wctPeripheral?.wctSequence = .None
         }
         
-//TODO: remove this waiting 1s to start next sequence, do real work
+//TODO: remove this delay start next sequence, do real work
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(NSEC_PER_SEC)), dispatch_get_main_queue(), { () -> Void in
             self.sendDataSequenceToCentral()
         })
