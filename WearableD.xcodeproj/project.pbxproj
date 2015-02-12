@@ -24,6 +24,7 @@
 		2991177C1A60990400972E46 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2991177B1A60990400972E46 /* CoreBluetooth.framework */; };
 		2991177E1A60AEC600972E46 /* BLEIDs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2991177D1A60AEC600972E46 /* BLEIDs.swift */; };
 		29CD74291A7472CC00D33228 /* PDFViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29CD74281A7472CC00D33228 /* PDFViewController.swift */; };
+		29E52C1A1A8C19B500AC17C8 /* OAuth2Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E52C191A8C19B500AC17C8 /* OAuth2Utils.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +59,7 @@
 		2991177B1A60990400972E46 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
 		2991177D1A60AEC600972E46 /* BLEIDs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BLEIDs.swift; sourceTree = "<group>"; };
 		29CD74281A7472CC00D33228 /* PDFViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PDFViewController.swift; sourceTree = "<group>"; };
+		29E52C191A8C19B500AC17C8 /* OAuth2Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OAuth2Utils.swift; path = SimpleOAuth2/OAuth2Utils.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,10 +84,11 @@
 		2953D3831A795DB100C37A2E /* SimpleOAuth2 */ = {
 			isa = PBXGroup;
 			children = (
+				2953D3861A79682500C37A2E /* OAuth2Credentials.swift */,
+				29E52C191A8C19B500AC17C8 /* OAuth2Utils.swift */,
 				2953D3811A795D9F00C37A2E /* KeychainService.swift */,
 				298D13C11A7AF99A0020AFAB /* OAuth2Client.swift */,
 				2953D3841A79605A00C37A2E /* OAuth2FlowViewController.swift */,
-				2953D3861A79682500C37A2E /* OAuth2Credentials.swift */,
 			);
 			name = SimpleOAuth2;
 			sourceTree = "<group>";
@@ -257,6 +260,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2953D3871A79682500C37A2E /* OAuth2Credentials.swift in Sources */,
+				29E52C1A1A8C19B500AC17C8 /* OAuth2Utils.swift in Sources */,
 				2991177E1A60AEC600972E46 /* BLEIDs.swift in Sources */,
 				299117781A608CCE00972E46 /* PeripheralViewController.swift in Sources */,
 				074E4AC31A6705620023A854 /* BLECentral.swift in Sources */,

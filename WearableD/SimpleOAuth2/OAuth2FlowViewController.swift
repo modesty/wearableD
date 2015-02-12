@@ -67,7 +67,7 @@ class OAuth2FlowViewController: UIViewController, UIWebViewDelegate {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
-        let urlRequest : NSURLRequest = NSURLRequest(URL: NSURL(string: OAuth2Credentials.authUri())!)
+        let urlRequest : NSURLRequest = NSURLRequest(URL: NSURL(string: OAuth2Utils.authUri())!)
         self.webView!.loadRequest(urlRequest)
     }
     

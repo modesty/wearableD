@@ -189,24 +189,33 @@ class CentralViewController: UIViewController, BLECentralDelegate {
     
     func onDocsListReady(jsonData: NSDictionary!) {
         self.bleCentralStatusUpdate("Processing Tax Return list data...")
-        retrieved_list = jsonData["data"] as NSArray
-        let numOfReturns = retrieved_list.count
-        if numOfReturns < 1 {
-            self.bleCentralStatusUpdate("No tax return found.")
+        if let dataList = jsonData.objectForKey("data") as NSArray? {
+            retrieved_list = dataList
+            let numOfReturns = retrieved_list.count
+            if numOfReturns < 1 {
+                self.bleCentralStatusUpdate("No tax return found.")
+            }
+            else {
+                let doc = retrieved_list[0] as? NSDictionary
+                let name = doc!["name"] as String
+                self.bleCentralStatusUpdate("Got \(numOfReturns) Tax Returns for \(name)")
+            
+                if retrieved_list.count > 0 {
+                    self.showNavBtnWithData(self.showBtnFirst, doc: retrieved_list[0] as? NSDictionary)
+                }
+                if retrieved_list.count > 1 {
+                    self.showNavBtnWithData(self.showBtnSecond, doc: retrieved_list[1] as? NSDictionary)
+                }
+            }
         }
         else {
-            let doc = retrieved_list[0] as? NSDictionary
-            let name = doc!["name"] as String
-            self.bleCentralStatusUpdate("Got \(numOfReturns) Tax Returns for \(name)")
-            
-            if retrieved_list.count > 0 {
-                self.showNavBtnWithData(self.showBtnFirst, doc: retrieved_list[0] as? NSDictionary)
+            var errMsg = "No tax return found."
+            if let statusObj = jsonData.objectForKey("status") as NSDictionary? {
+                let message = statusObj["message"] as String
+                let code = statusObj["code"] as Int
+                errMsg = "\(message). Error code: \(code)."
             }
-            if retrieved_list.count > 1 {
-                self.showNavBtnWithData(self.showBtnSecond, doc: retrieved_list[1] as? NSDictionary)
-            }
-            
-          
+            self.bleCentralStatusUpdate(errMsg)
         }
     }
     
