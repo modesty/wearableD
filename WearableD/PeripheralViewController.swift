@@ -13,15 +13,19 @@ class PeripheralViewController: UIViewController, BLEPeripheralDelegate {
     
     var wctPeripheral: BLEPeripheral? = nil
 
-    
-    @IBOutlet weak var bleSpinner: UIActivityIndicatorView!
     @IBOutlet weak var bleStatusMsg: UILabel!
+    
+    @IBOutlet weak var loadingContainer: UIView!
+    
+    var loader = Loader(frame: CGRect(x: 0, y: 0, width: 175, height: 250))
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.loadingContainer?.addSubview(self.loader)
 
-        // Do any additional setup after loading the view.
-        self.bleSpinner.startAnimating()
+        //uncomment this for emulator
+        //self.startLoader()
         
         var client = OAuth2Client(controller: self);
         client.retrieveAccessToken({ (authToken) -> Void in
@@ -35,10 +39,17 @@ class PeripheralViewController: UIViewController, BLEPeripheralDelegate {
             }
             else {
                 println("No access token completed...")
-                self.bleSpinner.stopAnimating()
+                self.stopLoader()
                 self.blePeripheralMsgUpdate("No access token received, please try again.")
             }
         })
+    }
+    
+    func startLoader () {
+        self.loader.startAnimating(UIViewAnimationOptions.TransitionCurlUp)
+    }
+    func stopLoader () {
+        self.loader.stopAnimating()
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -54,7 +65,7 @@ class PeripheralViewController: UIViewController, BLEPeripheralDelegate {
     override func viewWillDisappear(animated: Bool) {
         wctPeripheral?.closePeripheral()
 
-        self.bleSpinner.stopAnimating()
+        self.stopLoader()
         super.viewWillDisappear(animated)
     }
     
@@ -76,7 +87,7 @@ class PeripheralViewController: UIViewController, BLEPeripheralDelegate {
 
     func blePeripheralIsReady() {
         println("\(_stdlib_getTypeName(self)) - blePeripheralIsReady")
-        self.bleSpinner.startAnimating()
+        self.startLoader()
         wctPeripheral?.startPeripheral()
     }
     
@@ -111,8 +122,10 @@ class PeripheralViewController: UIViewController, BLEPeripheralDelegate {
     
     func blePeripheralDidStop() {
         println("\(_stdlib_getTypeName(self)) - blePerpheralDidStop")
-        self.bleSpinner.stopAnimating()
-        self.blePeripheralMsgUpdate("All data sent. Connection is closed.")
+        self.loader.hide() {
+           self.blePeripheralMsgUpdate("All data sent. Connection is closed.")
+        }
+        
     }
     
     func sendDataSequenceToCentral() {

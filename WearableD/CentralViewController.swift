@@ -13,14 +13,11 @@ class CentralViewController: UIViewController, BLECentralDelegate {
     var centralManager : BLECentral?
 
     @IBOutlet weak var statusLabel: UILabel!
-    @IBOutlet weak var bleSpinner: UIActivityIndicatorView!
     
     @IBOutlet weak var loadingContainer: UIView!
     @IBOutlet weak var showBtnFirst: UIButton!    
     @IBOutlet weak var showBtnSecond: UIButton!
     
-    var docViewFirstLayer = UIView()
-    var docViewSecondLayer = UIView()
     var loader = Loader(frame: CGRect(x: 0, y: 0, width: 175, height: 250))
 
     
@@ -32,14 +29,19 @@ class CentralViewController: UIViewController, BLECentralDelegate {
         super.viewDidLoad()
 
         self.loadingContainer?.addSubview(self.loader)
-
-        self.loader.startAnimation(UIViewAnimationOptions.TransitionCurlDown)
-
         
-        //self.showLoader()
+        //uncomment this line when using emulator
+        //self.startLoader()
         
-        // Do any additional setup after loading the view.
-        //self.bleSpinner.stopAnimating()
+        var delta: Int64 = 1 * Int64(NSEC_PER_SEC)
+        
+        var time = dispatch_time(DISPATCH_TIME_NOW, delta)
+        
+        dispatch_after(time, dispatch_get_main_queue(), {
+            println("run")
+            //self.loader.hide()
+        })
+
         self.retrieved_list = []
         
         self.showHideNavButton(self.showBtnFirst, titleTxt: "")
@@ -53,7 +55,12 @@ class CentralViewController: UIViewController, BLECentralDelegate {
     }
     
 
-  
+    func startLoader () {
+        self.loader.startAnimating(UIViewAnimationOptions.TransitionCurlDown)
+    }
+    func stopLoader () {
+        self.loader.stopAnimating()
+    }
     
     override func viewWillAppear(animated: Bool) {
         self.title = "Requesting"
@@ -65,7 +72,7 @@ class CentralViewController: UIViewController, BLECentralDelegate {
     }
     
     override func viewDidDisappear(animated: Bool) {
-        self.bleSpinner.stopAnimating()
+        stopLoader()
         self.centralManager?.closeBLECentral()
         super.viewDidDisappear(animated)
     }
@@ -84,11 +91,11 @@ class CentralViewController: UIViewController, BLECentralDelegate {
     }
     
     func bleCentralIsReady() {
-        self.bleSpinner.startAnimating()
+        self.startLoader()
     }
     
     func bleCentralDidStop() {
-        self.bleSpinner.stopAnimating()
+        self.stopLoader()
     }
     
     override func didReceiveMemoryWarning() {
@@ -141,8 +148,7 @@ class CentralViewController: UIViewController, BLECentralDelegate {
         if self.access_token.isEmpty {
             return
         }
-
-        self.bleSpinner.startAnimating()
+        self.startLoader()
         self.bleCentralStatusUpdate("Retrieveing Tax Return list...")
         
         var request : NSMutableURLRequest = NSMutableURLRequest()
@@ -169,7 +175,8 @@ class CentralViewController: UIViewController, BLECentralDelegate {
                         self.bleCentralStatusUpdate("Error: \(serializationError!.localizedFailureReason) (Code:\(serializationError!.code))")
                     }
                 }
-                self.bleSpinner.stopAnimating()
+                self.stopLoader()
+                
         })
     }
     
@@ -203,13 +210,17 @@ class CentralViewController: UIViewController, BLECentralDelegate {
                 let doc = retrieved_list[0] as? NSDictionary
                 let name = doc!["name"] as String
                 self.bleCentralStatusUpdate("Got \(numOfReturns) Tax Returns for \(name)")
+                
+                self.loader.hide() {
+                    if self.retrieved_list.count > 0 {
+                        self.showNavBtnWithData(self.showBtnFirst, doc: self.retrieved_list[0] as? NSDictionary)
+                    }
+                    if self.retrieved_list.count > 1 {
+                        self.showNavBtnWithData(self.showBtnSecond, doc: self.retrieved_list[1] as? NSDictionary)
+                    }
+                }
             
-                if retrieved_list.count > 0 {
-                    self.showNavBtnWithData(self.showBtnFirst, doc: retrieved_list[0] as? NSDictionary)
-                }
-                if retrieved_list.count > 1 {
-                    self.showNavBtnWithData(self.showBtnSecond, doc: retrieved_list[1] as? NSDictionary)
-                }
+             
             }
         }
         else {

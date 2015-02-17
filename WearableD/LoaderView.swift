@@ -11,8 +11,10 @@ import UIKit
 import QuartzCore
 
 class Loader : UIView {
-    var loaderOne = LoadingView(frame: CGRect(x: 0, y: 0, width: 175, height: 250))
-    var loaderTwo = LoadingView(frame: CGRect(x: 0, y: 0, width: 175, height: 250))
+    var loaderOne = LoadingPageView(frame: CGRect(x: 0, y: 0, width: 175, height: 250))
+    var loaderTwo = LoadingPageView(frame: CGRect(x: 0, y: 0, width: 175, height: 250))
+    private var keepAnimating = false;
+    
     var transitionOptions = UIViewAnimationOptions.TransitionCurlUp
     
     override init(frame: CGRect) {
@@ -30,19 +32,41 @@ class Loader : UIView {
         self.addSubview(self.loaderOne)
     }
     
-    func startAnimation (transitionOps : UIViewAnimationOptions?) {
+    
+    
+    func startAnimating (transitionOps : UIViewAnimationOptions?) {
         if transitionOps != nil {
-            println("seeting opts")
             self.transitionOptions = transitionOps!
-        }        
-        self.loaderOne.startAnimation() {
-            self.flip()
         }
+        self.keepAnimating = true;
+        self.loaderOne.startAnimation() {
+            if self.keepAnimating {
+               self.flip()
+            }
+            
+        }
+    }
+    
+    func stopAnimating () {
+        self.keepAnimating = false
+    }
+        
+    func hide (callback : () -> ()) {
+        self.stopAnimating();
+        let duration = 2.0
+        let delay = 0.0 // delay will be 0.0 seconds (e.g. nothing)
+        let options = UIViewAnimationOptions.CurveEaseInOut
+        UIView.animateWithDuration(duration, delay: delay, options: options, animations: {
+            self.alpha = 0.0
+            
+            }, completion: { finished in
+                callback()
+        })
     }
     
     func flip () {
         // create view tuple
-        var views : (frontView: LoadingView, backView: LoadingView)
+        var views : (frontView: LoadingPageView, backView: LoadingPageView)
         
         if self.loaderOne.superview != nil {
             views = (frontView: self.loaderOne, backView: self.loaderTwo)
@@ -50,13 +74,12 @@ class Loader : UIView {
         else {
             views = (frontView: self.loaderTwo,  backView: self.loaderOne)
         }
-        
-        // set a transition style
-        //let transitionOptions = UIViewAnimationOptions.TransitionCurlUp
-        
+                
         UIView.transitionFromView(views.frontView, toView: views.backView, duration: 1.5, options: self.transitionOptions, completion: { void in
             views.backView.startAnimation() {
-                self.flip()
+                if self.keepAnimating {
+                    self.flip()
+                }
             }
             
         })
