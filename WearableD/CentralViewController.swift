@@ -217,9 +217,11 @@ class CentralViewController: UIViewController, BLECentralDelegate {
         else {
             var errMsg = "No tax return found."
             if let statusObj = jsonData.objectForKey("status") as NSDictionary? {
-                let message = statusObj["message"] as String
-                let code = statusObj["code"] as Int
-                errMsg = "\(message). Error code: \(code)."
+                if let message = statusObj["message"] as? String {
+                    if let code = statusObj["code"] as? Int {
+                        errMsg = "\(message). Error code: \(code)."
+                    }
+                }
             }
             self.bleCentralStatusUpdate(errMsg)
         }
