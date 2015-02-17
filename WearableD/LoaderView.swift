@@ -53,13 +53,14 @@ class Loader : UIView {
         
     func hide (callback : () -> ()) {
         self.stopAnimating();
-        let duration = 2.0
+        let duration = 0.3
         let delay = 0.0 // delay will be 0.0 seconds (e.g. nothing)
         let options = UIViewAnimationOptions.CurveEaseInOut
         UIView.animateWithDuration(duration, delay: delay, options: options, animations: {
             self.alpha = 0.0
             
             }, completion: { finished in
+                self.stopAnimating()
                 callback()
         })
     }

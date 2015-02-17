@@ -32,15 +32,6 @@ class CentralViewController: UIViewController, BLECentralDelegate {
         
         //uncomment this line when using emulator
         //self.startLoader()
-        
-        var delta: Int64 = 1 * Int64(NSEC_PER_SEC)
-        
-        var time = dispatch_time(DISPATCH_TIME_NOW, delta)
-        
-        dispatch_after(time, dispatch_get_main_queue(), {
-            println("run")
-            //self.loader.hide()
-        })
 
         self.retrieved_list = []
         
@@ -175,7 +166,7 @@ class CentralViewController: UIViewController, BLECentralDelegate {
                         self.bleCentralStatusUpdate("Error: \(serializationError!.localizedFailureReason) (Code:\(serializationError!.code))")
                     }
                 }
-                self.stopLoader()
+                //self.stopLoader()
                 
         })
     }
