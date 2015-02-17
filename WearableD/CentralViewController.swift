@@ -15,8 +15,14 @@ class CentralViewController: UIViewController, BLECentralDelegate {
     @IBOutlet weak var statusLabel: UILabel!
     @IBOutlet weak var bleSpinner: UIActivityIndicatorView!
     
+    @IBOutlet weak var loadingContainer: UIView!
     @IBOutlet weak var showBtnFirst: UIButton!    
     @IBOutlet weak var showBtnSecond: UIButton!
+    
+    var docViewFirstLayer = UIView()
+    var docViewSecondLayer = UIView()
+    var loader = Loader(frame: CGRect(x: 0, y: 0, width: 175, height: 250))
+
     
     var access_token: String = ""
     var chunks_count: String = ""
@@ -24,9 +30,16 @@ class CentralViewController: UIViewController, BLECentralDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        self.loadingContainer?.addSubview(self.loader)
+
+        self.loader.startAnimation(UIViewAnimationOptions.TransitionCurlDown)
+
+        
+        //self.showLoader()
         
         // Do any additional setup after loading the view.
-        self.bleSpinner.stopAnimating()
+        //self.bleSpinner.stopAnimating()
         self.retrieved_list = []
         
         self.showHideNavButton(self.showBtnFirst, titleTxt: "")
@@ -38,6 +51,9 @@ class CentralViewController: UIViewController, BLECentralDelegate {
 //        self.access_token = ""
 //        self.retrieveDocsListByToken()
     }
+    
+
+  
     
     override func viewWillAppear(animated: Bool) {
         self.title = "Requesting"
@@ -56,18 +72,6 @@ class CentralViewController: UIViewController, BLECentralDelegate {
     
     func bleCentralStatusUpdate (update : String) {
         self.statusLabel.text = update
-        
-//        UIView.animateWithDuration(2, animations: {
-//            self.statusLabel.alpha = 0.0
-//          
-//            }, completion: {
-//                (finished: Bool) -> Void in
-//                //self.statusLabel.alpha = 1.0
-//                self.statusLabel.text = update
-//            
-//            })
-//        
-//        println(update)
     }
     
     func bleCentralCharactoristicValueUpdate (update : String) {

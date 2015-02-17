@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		073E330C1A92DA3D001B49C9 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 073E330B1A92DA3D001B49C9 /* LoadingView.swift */; };
+		073E330E1A92F655001B49C9 /* LoaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 073E330D1A92F655001B49C9 /* LoaderView.swift */; };
 		074E4AC31A6705620023A854 /* BLECentral.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074E4AC21A6705620023A854 /* BLECentral.swift */; };
 		2953D3821A795D9F00C37A2E /* KeychainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2953D3811A795D9F00C37A2E /* KeychainService.swift */; };
 		2953D3851A79605A00C37A2E /* OAuth2FlowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2953D3841A79605A00C37A2E /* OAuth2FlowViewController.swift */; };
@@ -38,6 +40,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		073E330B1A92DA3D001B49C9 /* LoadingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
+		073E330D1A92F655001B49C9 /* LoaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoaderView.swift; sourceTree = "<group>"; };
 		074E4AC21A6705620023A854 /* BLECentral.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BLECentral.swift; sourceTree = "<group>"; };
 		2953D3811A795D9F00C37A2E /* KeychainService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = KeychainService.swift; path = SimpleOAuth2/KeychainService.swift; sourceTree = "<group>"; };
 		2953D3841A79605A00C37A2E /* OAuth2FlowViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OAuth2FlowViewController.swift; path = SimpleOAuth2/OAuth2FlowViewController.swift; sourceTree = "<group>"; };
@@ -115,6 +119,8 @@
 		299117521A608BBE00972E46 /* WearableD */ = {
 			isa = PBXGroup;
 			children = (
+				073E330D1A92F655001B49C9 /* LoaderView.swift */,
+				073E330B1A92DA3D001B49C9 /* LoadingView.swift */,
 				2991177D1A60AEC600972E46 /* BLEIDs.swift */,
 				299117551A608BBE00972E46 /* AppDelegate.swift */,
 				299117571A608BBE00972E46 /* HomeViewController.swift */,
@@ -261,9 +267,11 @@
 			files = (
 				2953D3871A79682500C37A2E /* OAuth2Credentials.swift in Sources */,
 				29E52C1A1A8C19B500AC17C8 /* OAuth2Utils.swift in Sources */,
+				073E330E1A92F655001B49C9 /* LoaderView.swift in Sources */,
 				2991177E1A60AEC600972E46 /* BLEIDs.swift in Sources */,
 				299117781A608CCE00972E46 /* PeripheralViewController.swift in Sources */,
 				074E4AC31A6705620023A854 /* BLECentral.swift in Sources */,
+				073E330C1A92DA3D001B49C9 /* LoadingView.swift in Sources */,
 				29CD74291A7472CC00D33228 /* PDFViewController.swift in Sources */,
 				299117581A608BBE00972E46 /* HomeViewController.swift in Sources */,
 				2953D3821A795D9F00C37A2E /* KeychainService.swift in Sources */,
