@@ -49,7 +49,7 @@ class PeripheralViewController: UIViewController, BLEPeripheralDelegate {
         self.loader.startAnimating(UIViewAnimationOptions.TransitionCurlUp)
     }
     func stopLoader () {
-        self.loader.stopAnimating()
+        self.loader.stopAnimating(nil)
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -122,8 +122,8 @@ class PeripheralViewController: UIViewController, BLEPeripheralDelegate {
     
     func blePeripheralDidStop() {
         println("\(_stdlib_getTypeName(self)) - blePerpheralDidStop")
-        self.loader.hide() {
-           self.blePeripheralMsgUpdate("All data sent. Connection is closed.")
+        self.loader.stopAnimating() {
+           self.blePeripheralMsgUpdate("Token sent. Connection is closed.")
         }
         
     }

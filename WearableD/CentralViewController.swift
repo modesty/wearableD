@@ -49,8 +49,9 @@ class CentralViewController: UIViewController, BLECentralDelegate {
     func startLoader () {
         self.loader.startAnimating(UIViewAnimationOptions.TransitionCurlDown)
     }
+    
     func stopLoader () {
-        self.loader.stopAnimating()
+        self.loader.stopAnimating(nil)
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -86,7 +87,7 @@ class CentralViewController: UIViewController, BLECentralDelegate {
     }
     
     func bleCentralDidStop() {
-        self.stopLoader()
+//        self.stopLoader()
     }
     
     override func didReceiveMemoryWarning() {
@@ -139,7 +140,6 @@ class CentralViewController: UIViewController, BLECentralDelegate {
         if self.access_token.isEmpty {
             return
         }
-        self.startLoader()
         self.bleCentralStatusUpdate("Retrieveing Tax Return list...")
         
         var request : NSMutableURLRequest = NSMutableURLRequest()
@@ -166,8 +166,7 @@ class CentralViewController: UIViewController, BLECentralDelegate {
                         self.bleCentralStatusUpdate("Error: \(serializationError!.localizedFailureReason) (Code:\(serializationError!.code))")
                     }
                 }
-                //self.stopLoader()
-                
+                self.stopLoader()
         })
     }
     
@@ -202,7 +201,7 @@ class CentralViewController: UIViewController, BLECentralDelegate {
                 let name = doc!["name"] as String
                 self.bleCentralStatusUpdate("Got \(numOfReturns) Tax Returns for \(name)")
                 
-                self.loader.hide() {
+                self.loader.stopAnimating() {
                     if self.retrieved_list.count > 0 {
                         self.showNavBtnWithData(self.showBtnFirst, doc: self.retrieved_list[0] as? NSDictionary)
                     }
@@ -210,8 +209,6 @@ class CentralViewController: UIViewController, BLECentralDelegate {
                         self.showNavBtnWithData(self.showBtnSecond, doc: self.retrieved_list[1] as? NSDictionary)
                     }
                 }
-            
-             
             }
         }
         else {

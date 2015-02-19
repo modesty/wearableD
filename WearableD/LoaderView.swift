@@ -11,16 +11,18 @@ import UIKit
 import QuartzCore
 
 class Loader : UIView {
-    var loaderOne = LoadingPageView(frame: CGRect(x: 0, y: 0, width: 175, height: 250))
-    var loaderTwo = LoadingPageView(frame: CGRect(x: 0, y: 0, width: 175, height: 250))
+    private var loaderOne = LoadingPageView(frame: CGRect(x: 0, y: 0, width: 175, height: 250))
+    private var loaderTwo = LoadingPageView(frame: CGRect(x: 0, y: 0, width: 175, height: 250))
+
     private var keepAnimating = false;
-    
-    var transitionOptions = UIViewAnimationOptions.TransitionCurlUp
+    private var transitionOptions = UIViewAnimationOptions.TransitionCurlUp
+
+    private var animatingView: LoadingPageView? = nil
+    private var callback: (()->())? = nil
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.setupView()
-        
     }
     
     required init(coder aDecoder: NSCoder) {
@@ -32,36 +34,53 @@ class Loader : UIView {
         self.addSubview(self.loaderOne)
     }
     
-    
-    
     func startAnimating (transitionOps : UIViewAnimationOptions?) {
         if transitionOps != nil {
             self.transitionOptions = transitionOps!
         }
-        self.keepAnimating = true;
-        self.loaderOne.startAnimation() {
-            if self.keepAnimating {
-               self.flip()
-            }
-            
+        
+        if !self.keepAnimating {
+            self.keepAnimating = true;
+            self.animatingView = self.loaderOne
+            self.animateLoop()
         }
     }
     
-    func stopAnimating () {
+    private func animateLoop() {
+        if self.animatingView != nil && self.keepAnimating {
+            self.animatingView?.startAnimation() {
+                if self.keepAnimating {
+                    self.flip()
+                }
+                else {
+                    self.hide()
+                }
+            }
+        }
+        else {
+            self.hide()
+        }
+    }
+    
+    func stopAnimating( callback : (() -> ())? ) {
+        println("stop animating...")
         self.keepAnimating = false
+        
+        if callback != nil {
+            self.callback = callback
+        }
     }
         
-    func hide (callback : () -> ()) {
-        self.stopAnimating();
-        let duration = 0.3
-        let delay = 0.0 // delay will be 0.0 seconds (e.g. nothing)
+    private func hide () {
+        let duration = 1.0
+        let delay = 1.0 // delay will be 0.0 seconds (e.g. nothing)
         let options = UIViewAnimationOptions.CurveEaseInOut
         UIView.animateWithDuration(duration, delay: delay, options: options, animations: {
             self.alpha = 0.0
-            
             }, completion: { finished in
-                self.stopAnimating()
-                callback()
+                println("faded out: \(finished)")
+                self.callback?()
+                self.callback = nil
         })
     }
     
@@ -76,13 +95,11 @@ class Loader : UIView {
             views = (frontView: self.loaderTwo,  backView: self.loaderOne)
         }
                 
-        UIView.transitionFromView(views.frontView, toView: views.backView, duration: 1.5, options: self.transitionOptions, completion: { void in
-            views.backView.startAnimation() {
-                if self.keepAnimating {
-                    self.flip()
-                }
-            }
-            
+        println("starting transition")
+        UIView.transitionFromView(views.frontView, toView: views.backView, duration: 1.5, options: self.transitionOptions, completion: { finished in
+            println("stopping transition: \(finished)")
+            self.animatingView = views.backView
+            self.animateLoop()
         })
     }
 }
