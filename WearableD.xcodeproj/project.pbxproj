@@ -10,6 +10,13 @@
 		073E330C1A92DA3D001B49C9 /* LoadingPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 073E330B1A92DA3D001B49C9 /* LoadingPageView.swift */; };
 		073E330E1A92F655001B49C9 /* LoaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 073E330D1A92F655001B49C9 /* LoaderView.swift */; };
 		074E4AC31A6705620023A854 /* BLECentral.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074E4AC21A6705620023A854 /* BLECentral.swift */; };
+		290CC11E1AC21917003BBA46 /* InterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 290CC11D1AC21917003BBA46 /* InterfaceController.swift */; };
+		290CC1201AC21917003BBA46 /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 290CC11F1AC21917003BBA46 /* NotificationController.swift */; };
+		290CC1221AC21917003BBA46 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 290CC1211AC21917003BBA46 /* Images.xcassets */; };
+		290CC1261AC21917003BBA46 /* WearableD WatchKit App.app in Resources */ = {isa = PBXBuildFile; fileRef = 290CC1251AC21917003BBA46 /* WearableD WatchKit App.app */; };
+		290CC12E1AC21917003BBA46 /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 290CC12C1AC21917003BBA46 /* Interface.storyboard */; };
+		290CC1301AC21917003BBA46 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 290CC12F1AC21917003BBA46 /* Images.xcassets */; };
+		290CC1331AC21917003BBA46 /* WearableD WatchKit Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 290CC1181AC21917003BBA46 /* WearableD WatchKit Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		2953D3821A795D9F00C37A2E /* KeychainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2953D3811A795D9F00C37A2E /* KeychainService.swift */; };
 		2953D3851A79605A00C37A2E /* OAuth2FlowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2953D3841A79605A00C37A2E /* OAuth2FlowViewController.swift */; };
 		2953D3871A79682500C37A2E /* OAuth2Credentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2953D3861A79682500C37A2E /* OAuth2Credentials.swift */; };
@@ -30,6 +37,20 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		290CC1271AC21917003BBA46 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 299117481A608BBE00972E46 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 290CC1241AC21917003BBA46;
+			remoteInfo = "WearableD WatchKit App";
+		};
+		290CC1311AC21917003BBA46 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 299117481A608BBE00972E46 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 290CC1171AC21917003BBA46;
+			remoteInfo = "WearableD WatchKit Extension";
+		};
 		299117661A608BBE00972E46 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 299117481A608BBE00972E46 /* Project object */;
@@ -39,10 +60,34 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		290CC13A1AC21917003BBA46 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				290CC1331AC21917003BBA46 /* WearableD WatchKit Extension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		073E330B1A92DA3D001B49C9 /* LoadingPageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingPageView.swift; sourceTree = "<group>"; };
 		073E330D1A92F655001B49C9 /* LoaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoaderView.swift; sourceTree = "<group>"; };
 		074E4AC21A6705620023A854 /* BLECentral.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BLECentral.swift; sourceTree = "<group>"; };
+		290CC1181AC21917003BBA46 /* WearableD WatchKit Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "WearableD WatchKit Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		290CC11B1AC21917003BBA46 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		290CC11C1AC21917003BBA46 /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
+		290CC11D1AC21917003BBA46 /* InterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterfaceController.swift; sourceTree = "<group>"; };
+		290CC11F1AC21917003BBA46 /* NotificationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationController.swift; sourceTree = "<group>"; };
+		290CC1211AC21917003BBA46 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		290CC1251AC21917003BBA46 /* WearableD WatchKit App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "WearableD WatchKit App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		290CC12B1AC21917003BBA46 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		290CC12D1AC21917003BBA46 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
+		290CC12F1AC21917003BBA46 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		2953D3811A795D9F00C37A2E /* KeychainService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = KeychainService.swift; path = SimpleOAuth2/KeychainService.swift; sourceTree = "<group>"; };
 		2953D3841A79605A00C37A2E /* OAuth2FlowViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OAuth2FlowViewController.swift; path = SimpleOAuth2/OAuth2FlowViewController.swift; sourceTree = "<group>"; };
 		2953D3861A79682500C37A2E /* OAuth2Credentials.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OAuth2Credentials.swift; path = SimpleOAuth2/OAuth2Credentials.swift; sourceTree = "<group>"; };
@@ -67,6 +112,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		290CC1151AC21917003BBA46 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		2991174D1A608BBE00972E46 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -85,6 +137,44 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		290CC1191AC21917003BBA46 /* WearableD WatchKit Extension */ = {
+			isa = PBXGroup;
+			children = (
+				290CC11D1AC21917003BBA46 /* InterfaceController.swift */,
+				290CC11F1AC21917003BBA46 /* NotificationController.swift */,
+				290CC1211AC21917003BBA46 /* Images.xcassets */,
+				290CC11A1AC21917003BBA46 /* Supporting Files */,
+			);
+			path = "WearableD WatchKit Extension";
+			sourceTree = "<group>";
+		};
+		290CC11A1AC21917003BBA46 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				290CC11B1AC21917003BBA46 /* Info.plist */,
+				290CC11C1AC21917003BBA46 /* PushNotificationPayload.apns */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		290CC1291AC21917003BBA46 /* WearableD WatchKit App */ = {
+			isa = PBXGroup;
+			children = (
+				290CC12C1AC21917003BBA46 /* Interface.storyboard */,
+				290CC12F1AC21917003BBA46 /* Images.xcassets */,
+				290CC12A1AC21917003BBA46 /* Supporting Files */,
+			);
+			path = "WearableD WatchKit App";
+			sourceTree = "<group>";
+		};
+		290CC12A1AC21917003BBA46 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				290CC12B1AC21917003BBA46 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		2953D3831A795DB100C37A2E /* SimpleOAuth2 */ = {
 			isa = PBXGroup;
 			children = (
@@ -102,6 +192,8 @@
 			children = (
 				299117521A608BBE00972E46 /* WearableD */,
 				299117681A608BBE00972E46 /* WearableDTests */,
+				290CC1191AC21917003BBA46 /* WearableD WatchKit Extension */,
+				290CC1291AC21917003BBA46 /* WearableD WatchKit App */,
 				299117511A608BBE00972E46 /* Products */,
 				2991177B1A60990400972E46 /* CoreBluetooth.framework */,
 			);
@@ -112,6 +204,8 @@
 			children = (
 				299117501A608BBE00972E46 /* WearableD.app */,
 				299117651A608BBE00972E46 /* WearableDTests.xctest */,
+				290CC1181AC21917003BBA46 /* WearableD WatchKit Extension.appex */,
+				290CC1251AC21917003BBA46 /* WearableD WatchKit App.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -119,10 +213,10 @@
 		299117521A608BBE00972E46 /* WearableD */ = {
 			isa = PBXGroup;
 			children = (
+				299117551A608BBE00972E46 /* AppDelegate.swift */,
 				073E330D1A92F655001B49C9 /* LoaderView.swift */,
 				073E330B1A92DA3D001B49C9 /* LoadingPageView.swift */,
 				2991177D1A60AEC600972E46 /* BLEIDs.swift */,
-				299117551A608BBE00972E46 /* AppDelegate.swift */,
 				299117571A608BBE00972E46 /* HomeViewController.swift */,
 				299117751A608C9600972E46 /* CentralViewController.swift */,
 				074E4AC21A6705620023A854 /* BLECentral.swift */,
@@ -166,6 +260,39 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		290CC1171AC21917003BBA46 /* WearableD WatchKit Extension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 290CC1371AC21917003BBA46 /* Build configuration list for PBXNativeTarget "WearableD WatchKit Extension" */;
+			buildPhases = (
+				290CC1141AC21917003BBA46 /* Sources */,
+				290CC1151AC21917003BBA46 /* Frameworks */,
+				290CC1161AC21917003BBA46 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				290CC1281AC21917003BBA46 /* PBXTargetDependency */,
+			);
+			name = "WearableD WatchKit Extension";
+			productName = "WearableD WatchKit Extension";
+			productReference = 290CC1181AC21917003BBA46 /* WearableD WatchKit Extension.appex */;
+			productType = "com.apple.product-type.watchkit-extension";
+		};
+		290CC1241AC21917003BBA46 /* WearableD WatchKit App */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 290CC1341AC21917003BBA46 /* Build configuration list for PBXNativeTarget "WearableD WatchKit App" */;
+			buildPhases = (
+				290CC1231AC21917003BBA46 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "WearableD WatchKit App";
+			productName = "WearableD WatchKit App";
+			productReference = 290CC1251AC21917003BBA46 /* WearableD WatchKit App.app */;
+			productType = "com.apple.product-type.application.watchapp";
+		};
 		2991174F1A608BBE00972E46 /* WearableD */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2991176F1A608BBE00972E46 /* Build configuration list for PBXNativeTarget "WearableD" */;
@@ -173,10 +300,12 @@
 				2991174C1A608BBE00972E46 /* Sources */,
 				2991174D1A608BBE00972E46 /* Frameworks */,
 				2991174E1A608BBE00972E46 /* Resources */,
+				290CC13A1AC21917003BBA46 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				290CC1321AC21917003BBA46 /* PBXTargetDependency */,
 			);
 			name = WearableD;
 			productName = WearableD;
@@ -210,6 +339,13 @@
 				LastUpgradeCheck = 0610;
 				ORGANIZATIONNAME = Intuit;
 				TargetAttributes = {
+					290CC1171AC21917003BBA46 = {
+						CreatedOnToolsVersion = 6.2;
+						DevelopmentTeam = BNU6KWDW7R;
+					};
+					290CC1241AC21917003BBA46 = {
+						CreatedOnToolsVersion = 6.2;
+					};
 					2991174F1A608BBE00972E46 = {
 						CreatedOnToolsVersion = 6.1.1;
 						DevelopmentTeam = BNU6KWDW7R;
@@ -236,11 +372,31 @@
 			targets = (
 				2991174F1A608BBE00972E46 /* WearableD */,
 				299117641A608BBE00972E46 /* WearableDTests */,
+				290CC1171AC21917003BBA46 /* WearableD WatchKit Extension */,
+				290CC1241AC21917003BBA46 /* WearableD WatchKit App */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		290CC1161AC21917003BBA46 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				290CC1261AC21917003BBA46 /* WearableD WatchKit App.app in Resources */,
+				290CC1221AC21917003BBA46 /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		290CC1231AC21917003BBA46 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				290CC12E1AC21917003BBA46 /* Interface.storyboard in Resources */,
+				290CC1301AC21917003BBA46 /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		2991174E1A608BBE00972E46 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -261,6 +417,15 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		290CC1141AC21917003BBA46 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				290CC1201AC21917003BBA46 /* NotificationController.swift in Sources */,
+				290CC11E1AC21917003BBA46 /* InterfaceController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		2991174C1A608BBE00972E46 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -294,6 +459,16 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		290CC1281AC21917003BBA46 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 290CC1241AC21917003BBA46 /* WearableD WatchKit App */;
+			targetProxy = 290CC1271AC21917003BBA46 /* PBXContainerItemProxy */;
+		};
+		290CC1321AC21917003BBA46 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 290CC1171AC21917003BBA46 /* WearableD WatchKit Extension */;
+			targetProxy = 290CC1311AC21917003BBA46 /* PBXContainerItemProxy */;
+		};
 		299117671A608BBE00972E46 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 2991174F1A608BBE00972E46 /* WearableD */;
@@ -302,6 +477,14 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		290CC12C1AC21917003BBA46 /* Interface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				290CC12D1AC21917003BBA46 /* Base */,
+			);
+			name = Interface.storyboard;
+			sourceTree = "<group>";
+		};
 		299117591A608BBE00972E46 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -321,6 +504,70 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		290CC1351AC21917003BBA46 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				IBSC_MODULE = WearableD_WatchKit_Extension;
+				INFOPLIST_FILE = "WearableD WatchKit App/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				"TARGETED_DEVICE_FAMILY[sdk=iphonesimulator*]" = "1,4";
+			};
+			name = Debug;
+		};
+		290CC1361AC21917003BBA46 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COPY_PHASE_STRIP = NO;
+				IBSC_MODULE = WearableD_WatchKit_Extension;
+				INFOPLIST_FILE = "WearableD WatchKit App/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				"TARGETED_DEVICE_FAMILY[sdk=iphonesimulator*]" = "1,4";
+			};
+			name = Release;
+		};
+		290CC1381AC21917003BBA46 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "WearableD WatchKit Extension/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		290CC1391AC21917003BBA46 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				INFOPLIST_FILE = "WearableD WatchKit Extension/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
 		2991176D1A608BBE00972E46 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -406,8 +653,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = WearableD/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -420,8 +668,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = WearableD/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -465,6 +714,24 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		290CC1341AC21917003BBA46 /* Build configuration list for PBXNativeTarget "WearableD WatchKit App" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				290CC1351AC21917003BBA46 /* Debug */,
+				290CC1361AC21917003BBA46 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		290CC1371AC21917003BBA46 /* Build configuration list for PBXNativeTarget "WearableD WatchKit Extension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				290CC1381AC21917003BBA46 /* Debug */,
+				290CC1391AC21917003BBA46 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		2991174B1A608BBE00972E46 /* Build configuration list for PBXProject "WearableD" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

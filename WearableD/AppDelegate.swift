@@ -41,6 +41,46 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 
+    func application(application: UIApplication!, handleWatchKitExtensionRequest userInfo: [NSObject : AnyObject]!, reply: (([NSObject : AnyObject]!) -> Void)!) {
+        if let viewNameStr = userInfo["viewName"] as? String {
+            var urlStr = "wearabled://\(viewNameStr)"
+            println("to open: \(urlStr)")
+            UIApplication.sharedApplication().openURL(NSURL(string:urlStr)!)
+        }
+        
+//        NSNotificationCenter.defaultCenter().postNotificationName("WearableDWKMsg", object: userInfo)
+    }
+    
+    func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject?) -> Bool {
+        println("about to open: \(url.absoluteURL)")
+        if url.scheme == "wearabled" {
+            
+            let rootViewController = self.window!.rootViewController as UINavigationController
+            let topVC = rootViewController.topViewController
 
+            let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+            var bleVC: UIViewController? = nil
+            
+            if url.path == "requestDoc" {
+                if (topVC is CentralViewController) == false {
+                    rootViewController.popToRootViewControllerAnimated(true)
+                    bleVC = mainStoryboard.instantiateViewControllerWithIdentifier("CentralViewController") as CentralViewController
+                }
+            }
+            else if url.path == "shareDoc" {
+                if (topVC is PeripheralViewController) == false {
+                    rootViewController.popToRootViewControllerAnimated(true)
+                    bleVC = mainStoryboard.instantiateViewControllerWithIdentifier("PeripheralViewController") as PeripheralViewController
+                }
+            }
+            
+            if bleVC != nil {
+                rootViewController.pushViewController(bleVC!, animated: true)
+            }
+            
+            return true
+        }
+        return true
+    }
 }
 

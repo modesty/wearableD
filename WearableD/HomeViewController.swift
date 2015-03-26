@@ -13,6 +13,12 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("handleWatchKitNotification"), name: "WearableDWKMsg", object: nil)
+    }
+    
+    deinit {
+        NSNotificationCenter.defaultCenter().removeObserver(self)
     }
 
     override func didReceiveMemoryWarning() {
@@ -30,6 +36,20 @@ class HomeViewController: UIViewController {
 //        self.navigationController?.setNavigationBarHidden(false, animated: animated)
         self.title = "Home"
         super.viewWillDisappear(animated)
+    }
+    
+    func handleWatchKitNotification(notification: NSNotification) {
+        println("Got notification: \(notification.object)")
+        if let userInfo = notification.object as? [String:String] {
+            if let viewNameStr = userInfo["viewName"] {
+                if viewNameStr == "requestDoc" {
+                    
+                }
+                else if viewNameStr == "shareDoc" {
+                    
+                }
+            }
+        }
     }
 
 }
