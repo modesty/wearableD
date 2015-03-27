@@ -13,8 +13,8 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("handleWatchKitNotification"), name: "WearableDWKMsg", object: nil)
+    
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "handleWatchKitNotification:", name: "WearableDWKMsg", object: nil)
     }
     
     deinit {
@@ -42,14 +42,34 @@ class HomeViewController: UIViewController {
         println("Got notification: \(notification.object)")
         if let userInfo = notification.object as? [String:String] {
             if let viewNameStr = userInfo["viewName"] {
+                
+                let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+                let topVC = self.navigationController?.topViewController
+                var bleVC: UIViewController? = nil
+                
                 if viewNameStr == "requestDoc" {
-                    
+                    if (topVC is CentralViewController) == false {
+                        self.returnToRoot()
+                        bleVC = mainStoryboard.instantiateViewControllerWithIdentifier("CentralViewController") as CentralViewController
+                    }
                 }
                 else if viewNameStr == "shareDoc" {
-                    
+                    if (topVC is PeripheralViewController) == false {
+                        self.returnToRoot()
+                        bleVC = mainStoryboard.instantiateViewControllerWithIdentifier("PeripheralViewController") as PeripheralViewController
+                    }
+                }
+                
+                if bleVC != nil {
+                    self.navigationController?.pushViewController(bleVC!, animated: true)
                 }
             }
         }
+    }
+    
+    func returnToRoot() {
+        self.dismissViewControllerAnimated(true, completion: nil)
+        self.navigationController?.popToRootViewControllerAnimated(true)
     }
 
 }

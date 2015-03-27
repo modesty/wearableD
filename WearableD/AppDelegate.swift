@@ -47,38 +47,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             println("to open: \(urlStr)")
             UIApplication.sharedApplication().openURL(NSURL(string:urlStr)!)
         }
-        
-//        NSNotificationCenter.defaultCenter().postNotificationName("WearableDWKMsg", object: userInfo)
     }
     
     func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject?) -> Bool {
         println("about to open: \(url.absoluteURL)")
+        
         if url.scheme == "wearabled" {
-            
-            let rootViewController = self.window!.rootViewController as UINavigationController
-            let topVC = rootViewController.topViewController
-
-            let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-            var bleVC: UIViewController? = nil
-            
-            if url.path == "requestDoc" {
-                if (topVC is CentralViewController) == false {
-                    rootViewController.popToRootViewControllerAnimated(true)
-                    bleVC = mainStoryboard.instantiateViewControllerWithIdentifier("CentralViewController") as CentralViewController
-                }
-            }
-            else if url.path == "shareDoc" {
-                if (topVC is PeripheralViewController) == false {
-                    rootViewController.popToRootViewControllerAnimated(true)
-                    bleVC = mainStoryboard.instantiateViewControllerWithIdentifier("PeripheralViewController") as PeripheralViewController
-                }
-            }
-            
-            if bleVC != nil {
-                rootViewController.pushViewController(bleVC!, animated: true)
-            }
-            
-            return true
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(NSEC_PER_SEC)), dispatch_get_main_queue(), { () -> Void in
+                NSNotificationCenter.defaultCenter().postNotificationName("WearableDWKMsg", object: ["viewName": url.host!])
+            })
         }
         return true
     }

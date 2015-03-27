@@ -12,14 +12,14 @@
                     <items>
                         <group alignment="center" verticalAlignment="center" animationDuration="2" layout="vertical" id="18H-pB-aPa">
                             <items>
-                                <button alignment="center" title="Request" id="feJ-EJ-UsR">
+                                <button alignment="center" title="Request Doc" id="feJ-EJ-UsR">
                                     <color key="backgroundColor" red="0.24313725489999999" green="0.38823529410000002" blue="0.44705882349999998" alpha="1" colorSpace="calibratedRGB"/>
                                     <fontDescription key="font" style="UICTFontTextStyleBody"/>
                                     <connections>
                                         <action selector="onRequestDoc" destination="AgC-eL-Hgc" id="QFR-Ac-5El"/>
                                     </connections>
                                 </button>
-                                <button width="1" alignment="center" title="Share" id="bsC-1L-wrJ">
+                                <button width="1" alignment="center" title="Share Doc" id="bsC-1L-wrJ">
                                     <color key="titleColor" red="1" green="0.41176470590000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="backgroundColor" red="0.24313725489999999" green="0.38823529410000002" blue="0.44705882349999998" alpha="1" colorSpace="calibratedRGB"/>
                                     <fontDescription key="font" style="UICTFontTextStyleBody"/>
