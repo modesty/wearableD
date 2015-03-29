@@ -41,4 +41,3 @@ struct BLEIDs {
         return "ion-swift-wearable-\(BLEIDs.randomStringWithLength(4))"
     }
 }
-

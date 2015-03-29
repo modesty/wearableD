@@ -9,6 +9,20 @@
 import UIKit
 import CoreBluetooth
 
+
+//Get these settings from your OAuth2 provider first
+let OAuth2Settings = OAuth2Keys(
+    baseURL: "https://",
+    authorizeURL: "https://accounts-e2e.intuit.com/op/v1/ase",
+    tokenURL: "https://oauth-e2e.platform.intuit.com/oauth2/v1/tokens/bearer",
+    redirectURL: "http://ion.mydev.com/#/code",
+    clientID: "",
+    clientSecret: "",
+    scope: "",
+    state: "wearableD",
+    tokenCache: false
+)
+
 class PeripheralViewController: UIViewController, BLEPeripheralDelegate {
     
     var wctPeripheral: BLEPeripheral? = nil
@@ -27,7 +41,7 @@ class PeripheralViewController: UIViewController, BLEPeripheralDelegate {
         //uncomment this for emulator
         //self.startLoader()
         
-        var client = OAuth2Client(controller: self);
+        var client = OAuth2Client(controller: self, settings: OAuth2Settings);
         client.retrieveAccessToken({ (authToken) -> Void in
             if let optionnalAuthToken = authToken {
                 println("Received access token " + optionnalAuthToken)

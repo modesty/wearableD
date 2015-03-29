@@ -16,12 +16,27 @@
 import Foundation
 import UIKit
 
+public struct OAuth2Keys {
+    var baseURL = "https://"
+    var authorizeURL = ""
+    var tokenURL = ""
+    var redirectURL = ""
+    var clientID = ""
+    var clientSecret = ""
+    var scope = ""
+    var state = "wearableD"
+    var tokenCache = false
+}
+
+var OAuth2Credentials = OAuth2Keys()
+
 public class OAuth2Client : NSObject {
 
     var sourceViewController:UIViewController?
     
-    init (controller : UIViewController) {
+    init (controller: UIViewController, settings: OAuth2Keys) {
         self.sourceViewController = controller
+        OAuth2Credentials = settings
     }
     
     func retrieveAccessToken(token:((accessToken:String?) -> Void)) -> Void {
@@ -112,7 +127,7 @@ public class OAuth2Client : NSObject {
     }
     
     // Request a new access token with our refresh token
-    func refreshAccessToken(refreshToken:String, newToken:((accessToken:String?) -> Void)) -> Void {
+    private func refreshAccessToken(refreshToken:String, newToken:((accessToken:String?) -> Void)) -> Void {
         
         println("Need to refresh the token with refreshToken : " + refreshToken)
         

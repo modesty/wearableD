@@ -19,7 +19,6 @@
 		290CC1331AC21917003BBA46 /* WearableD WatchKit Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 290CC1181AC21917003BBA46 /* WearableD WatchKit Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		2953D3821A795D9F00C37A2E /* KeychainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2953D3811A795D9F00C37A2E /* KeychainService.swift */; };
 		2953D3851A79605A00C37A2E /* OAuth2FlowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2953D3841A79605A00C37A2E /* OAuth2FlowViewController.swift */; };
-		2953D3871A79682500C37A2E /* OAuth2Credentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2953D3861A79682500C37A2E /* OAuth2Credentials.swift */; };
 		298D13C21A7AF99A0020AFAB /* OAuth2Client.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298D13C11A7AF99A0020AFAB /* OAuth2Client.swift */; };
 		299117561A608BBE00972E46 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299117551A608BBE00972E46 /* AppDelegate.swift */; };
 		299117581A608BBE00972E46 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299117571A608BBE00972E46 /* HomeViewController.swift */; };
@@ -90,7 +89,6 @@
 		290CC12F1AC21917003BBA46 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		2953D3811A795D9F00C37A2E /* KeychainService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = KeychainService.swift; path = SimpleOAuth2/KeychainService.swift; sourceTree = "<group>"; };
 		2953D3841A79605A00C37A2E /* OAuth2FlowViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OAuth2FlowViewController.swift; path = SimpleOAuth2/OAuth2FlowViewController.swift; sourceTree = "<group>"; };
-		2953D3861A79682500C37A2E /* OAuth2Credentials.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OAuth2Credentials.swift; path = SimpleOAuth2/OAuth2Credentials.swift; sourceTree = "<group>"; };
 		298D13C11A7AF99A0020AFAB /* OAuth2Client.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OAuth2Client.swift; path = SimpleOAuth2/OAuth2Client.swift; sourceTree = "<group>"; };
 		299117501A608BBE00972E46 /* WearableD.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WearableD.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		299117541A608BBE00972E46 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -178,10 +176,9 @@
 		2953D3831A795DB100C37A2E /* SimpleOAuth2 */ = {
 			isa = PBXGroup;
 			children = (
-				2953D3861A79682500C37A2E /* OAuth2Credentials.swift */,
+				298D13C11A7AF99A0020AFAB /* OAuth2Client.swift */,
 				29E52C191A8C19B500AC17C8 /* OAuth2Utils.swift */,
 				2953D3811A795D9F00C37A2E /* KeychainService.swift */,
-				298D13C11A7AF99A0020AFAB /* OAuth2Client.swift */,
 				2953D3841A79605A00C37A2E /* OAuth2FlowViewController.swift */,
 			);
 			name = SimpleOAuth2;
@@ -430,7 +427,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2953D3871A79682500C37A2E /* OAuth2Credentials.swift in Sources */,
 				29E52C1A1A8C19B500AC17C8 /* OAuth2Utils.swift in Sources */,
 				073E330E1A92F655001B49C9 /* LoaderView.swift in Sources */,
 				2991177E1A60AEC600972E46 /* BLEIDs.swift in Sources */,

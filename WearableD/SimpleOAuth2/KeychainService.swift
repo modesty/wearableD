@@ -10,7 +10,7 @@
 import Foundation
 import Security
 
-public class KeychainService : NSObject
+class KeychainService : NSObject
 {
     class var account: String {return "OAuth2Tokens"}
     
