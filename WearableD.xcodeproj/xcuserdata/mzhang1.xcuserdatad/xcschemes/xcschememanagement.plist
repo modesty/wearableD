@@ -9,6 +9,11 @@
 			<key>orderHint</key>
 			<integer>2</integer>
 		</dict>
+		<key>SimpleOAuth2.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>3</integer>
+		</dict>
 		<key>WearableD WatchKit App.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
@@ -23,6 +28,16 @@
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
 		<key>290CC1241AC21917003BBA46</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>296693901AC7A6A400A0CDC5</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>2966939A1AC7A6A400A0CDC5</key>
 		<dict>
 			<key>primary</key>
 			<true/>

@@ -16,9 +16,9 @@ let OAuth2Settings = OAuth2Keys(
     authorizeURL: "https://accounts-e2e.intuit.com/op/v1/ase",
     tokenURL: "https://oauth-e2e.platform.intuit.com/oauth2/v1/tokens/bearer",
     redirectURL: "http://ion.mydev.com/#/code",
-    clientID: "",
-    clientSecret: "",
-    scope: "",
+    clientID: "e2elvGr2vnQpJsTC8oHZqPsFbgzpMsjHJG3XJBLtvfNKaVKHd8",
+    clientSecret: "JMFZBucRS86C1fyvP14p7wOSzvdPk2rQjN6GBVu6",
+    scope: "intuit.cg.turbotax.unleash",
     state: "wearableD",
     tokenCache: false
 )

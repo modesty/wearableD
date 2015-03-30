@@ -34,6 +34,20 @@
                ReferencedContainer = "container:WearableD.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "2966939A1AC7A6A400A0CDC5"
+               BuildableName = "SimpleOAuth2Tests.xctest"
+               BlueprintName = "SimpleOAuth2Tests"
+               ReferencedContainer = "container:WearableD.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction
@@ -49,6 +63,16 @@
                BlueprintIdentifier = "299117641A608BBE00972E46"
                BuildableName = "WearableDTests.xctest"
                BlueprintName = "WearableDTests"
+               ReferencedContainer = "container:WearableD.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "2966939A1AC7A6A400A0CDC5"
+               BuildableName = "SimpleOAuth2Tests.xctest"
+               BlueprintName = "SimpleOAuth2Tests"
                ReferencedContainer = "container:WearableD.xcodeproj">
             </BuildableReference>
          </TestableReference>
@@ -72,7 +96,8 @@
       ignoresPersistentStateOnLaunch = "NO"
       debugDocumentVersioning = "YES"
       allowLocationSimulation = "YES">
-      <BuildableProductRunnable>
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "2991174F1A608BBE00972E46"
@@ -90,7 +115,8 @@
       useCustomWorkingDirectory = "NO"
       buildConfiguration = "Release"
       debugDocumentVersioning = "YES">
-      <BuildableProductRunnable>
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "2991174F1A608BBE00972E46"
