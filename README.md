@@ -51,6 +51,7 @@ implementation follows the standard OAuth2 client spec, it's indented to work wi
 Code examples of calling OAuth2 protected RESTful API with custom headers and error handling.
 
 ## WatchKit
-(no code committed yet, work in progress...) 
+
+Similar to the home view controller in iPhone app, the watch app has "Request a Doc" and "Share a Doc" buttons. Tap on the button, the watch app will communicate with parent application, not only launch the iPhone app, but also auto-navigate to different ViewController: either central or peripheral. Then OAuth2 flows on iPhone app in Peripheral mode for sharing, while Bluetoothe LE starts advertisting and waiting to connect in Central mode. 
   
 
