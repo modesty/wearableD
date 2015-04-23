@@ -42,7 +42,9 @@ Three main Swift modules/codes are developed with reusability: Bluetooth LE, inc
 
 Two main reusable Swift class, BLECentral and BLEPeripheral together with two main delegates: BLECentralDelegate and BLEPeripheralDelegate.
 
-### SinmpleOAuth2 Client Framework
+### SimpleOAuth2 Client Framework
+
+This project includes a reusable Swift Framework target for generic OAuth2 consent flow integration.
 
 Four Swift files underneath SimpleOAuth2 folder can be drag and drop to your Swift project if you need to integrate with OAuth2, the implementation follows the standard OAuth2 client spec, it's indented to work with any standard OAuth2 providers.
 
