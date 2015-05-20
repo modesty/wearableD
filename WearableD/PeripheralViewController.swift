@@ -13,12 +13,12 @@ import CoreBluetooth
 //Get these settings from your OAuth2 provider first
 let OAuth2Settings = OAuth2Keys(
     baseURL: "https://",
-    authorizeURL: "https://accounts-e2e.intuit.com/op/v1/ase",
-    tokenURL: "https://oauth-e2e.platform.intuit.com/oauth2/v1/tokens/bearer",
-    redirectURL: "http://ion.mydev.com/#/code",
-    clientID: "e2elvGr2vnQpJsTC8oHZqPsFbgzpMsjHJG3XJBLtvfNKaVKHd8",
-    clientSecret: "JMFZBucRS86C1fyvP14p7wOSzvdPk2rQjN6GBVu6",
-    scope: "intuit.cg.turbotax.unleash",
+    authorizeURL: "",
+    tokenURL: "",
+    redirectURL: "",
+    clientID: "",
+    clientSecret: "",
+    scope: "",
     state: "wearableD",
     tokenCache: false
 )
@@ -100,13 +100,13 @@ class PeripheralViewController: UIViewController, BLEPeripheralDelegate {
     }
 
     func blePeripheralIsReady() {
-        println("\(_stdlib_getTypeName(self)) - blePeripheralIsReady")
+//        println("\(_stdlib_getTypeName(self)) - blePeripheralIsReady")
         self.startLoader()
         wctPeripheral?.startPeripheral()
     }
     
     func blePeripheralDidSendData(dataSequence: BLESequence) {
-        println("\(_stdlib_getTypeName(self)) - blePeripheralIsworking")
+//        println("\(_stdlib_getTypeName(self)) - blePeripheralIsworking")
         
         switch dataSequence {
         case .Init: self.wctPeripheral?.wctSequence = .Working
@@ -135,7 +135,7 @@ class PeripheralViewController: UIViewController, BLEPeripheralDelegate {
     }
     
     func blePeripheralDidStop() {
-        println("\(_stdlib_getTypeName(self)) - blePerpheralDidStop")
+//        println("\(_stdlib_getTypeName(self)) - blePerpheralDidStop")
         self.loader.stopAnimating() {
            self.blePeripheralMsgUpdate("Token sent. Connection is closed.")
         }

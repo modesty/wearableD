@@ -41,8 +41,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 
-    func application(application: UIApplication!, handleWatchKitExtensionRequest userInfo: [NSObject : AnyObject]!, reply: (([NSObject : AnyObject]!) -> Void)!) {
-        if let viewNameStr = userInfo["viewName"] as? String {
+    func application(application: UIApplication, handleWatchKitExtensionRequest userInfo: [NSObject : AnyObject]?, reply: (([NSObject : AnyObject]!) -> Void)!) {
+        var uiDict = userInfo! as Dictionary
+        if let viewNameStr = uiDict["viewName"] as? String {
             var urlStr = "wearabled://\(viewNameStr)"
             println("to open: \(urlStr)")
             UIApplication.sharedApplication().openURL(NSURL(string:urlStr)!)

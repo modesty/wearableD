@@ -77,7 +77,7 @@ class PDFViewController: UIViewController, UIWebViewDelegate {
         let headerFields = request.allHTTPHeaderFields
         println()
         println("PDFViewController Request - start")
-        for headerField in headerFields?.keys.array as [String] {
+        for headerField in headerFields?.keys.array as! [String] {
             let headerValue = request.valueForHTTPHeaderField(headerField)
             println("\(headerField) : \(headerValue!)")
         }

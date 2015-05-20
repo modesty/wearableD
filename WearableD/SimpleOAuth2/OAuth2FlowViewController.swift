@@ -28,11 +28,9 @@ class OAuth2FlowViewController: UIViewController, UIWebViewDelegate {
     }
     
     init(successCallback:((code:String)-> Void), failureCallback:((error:NSError) -> Void)) {
-        
-        super.init()
-        
         self.successCallback = successCallback
         self.failureCallback = failureCallback
+        super.init(nibName: nil, bundle: nil)
     }
     
     override func viewDidLoad() {
@@ -61,7 +59,7 @@ class OAuth2FlowViewController: UIViewController, UIWebViewDelegate {
         
         self.view.backgroundColor = UIColor.whiteColor()
         
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Cancel", style: UIBarButtonItemStyle.Bordered, target: self, action: Selector("cancelAction"))
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Cancel", style: UIBarButtonItemStyle.Plain, target: self, action: Selector("cancelAction"))
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -79,8 +77,8 @@ class OAuth2FlowViewController: UIViewController, UIWebViewDelegate {
     }
     
     
-    func webView(webView: UIWebView!, shouldStartLoadWithRequest request: NSURLRequest!, navigationType: UIWebViewNavigationType) -> Bool {
-        let url : NSString = request.URL.absoluteString!
+    func webView(webView: UIWebView, shouldStartLoadWithRequest request: NSURLRequest, navigationType: UIWebViewNavigationType) -> Bool {
+        let url : NSString = request.URL!.absoluteString!
         
         self.isRetrievingAuthCode = url.hasPrefix(OAuth2Credentials.redirectURL)
         
@@ -121,8 +119,8 @@ class OAuth2FlowViewController: UIViewController, UIWebViewDelegate {
         self.spinnerView!.stopAnimating()
     }
     
-    func webView(webView: UIWebView!, didFailLoadWithError error: NSError!) {
-        if (!self.isRetrievingAuthCode!) {
+    func webView(webView: UIWebView!, didFaiLoadWithError error: NSError!) {
+       if (!self.isRetrievingAuthCode!) {
             self.failureCallback!(error: error)
         }
     }
@@ -140,12 +138,12 @@ class OAuth2FlowViewController: UIViewController, UIWebViewDelegate {
             for param in urlString.componentsSeparatedByString("&") {
                 var array = Array <AnyObject>()
                 array = param.componentsSeparatedByString("=")
-                let name:String = array[0] as String
-                let value:String = array[1] as String
+                let name:String = array[0] as! String
+                let value:String = array[1] as! String
                 
                 dict[name] = value
             }
-            if let result = dict[parameterName] {
+            if let result = dict[parameterName as String] {
                 return result
             }
         }

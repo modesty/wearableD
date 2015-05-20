@@ -33,7 +33,7 @@ struct BLEIDs {
             randomString.appendFormat("%C", letters.characterAtIndex(Int(rand)))
         }
         
-        return randomString
+        return randomString as String
     }
     
     static let ctHost = "https://consumertranscript-e2e.api.intuit.com"

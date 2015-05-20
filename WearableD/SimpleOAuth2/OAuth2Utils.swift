@@ -69,11 +69,13 @@ struct OAuth2Utils {
     }
     
     static func retrieveAccessTokenFromKeychain() -> String? {
-        return KeychainService.retrieveStringFromKeychain(OAuth2Utils.oAuth2Keys["accessToken"]!)
+//        return KeychainService.retrieveStringFromKeychain((OAuth2Utils.oAuth2Keys["accessToken"])
+        return nil
     }
     
     static func retrieveRefreshTokenFromKeychain() -> String? {
-        return KeychainService.retrieveStringFromKeychain(OAuth2Utils.oAuth2Keys["refreshToken"]!)
+//        return KeychainService.retrieveStringFromKeychain(OAuth2Utils.oAuth2Keys["refreshToken"])
+        return nil
     }
     
     // Checks if the token that is stored in the keychain is expired

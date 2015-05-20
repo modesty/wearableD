@@ -108,7 +108,7 @@ class BLECentral : NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
         else {
             for service in peripheral.services {
                 self.delegate?.bleCentralStatusUpdate("Service Found: \(service.UUIDString). Start to look for characteristics...")
-                peripheral.discoverCharacteristics(nil, forService : service as CBService)
+                peripheral.discoverCharacteristics(nil, forService : service as! CBService)
                 
             }
             
@@ -127,7 +127,7 @@ class BLECentral : NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
                 //peripheral.readValueForCharacteristic(characteristic as CBCharacteristic)
                 
                 //subscibe to value updates
-                peripheral.setNotifyValue(true, forCharacteristic : characteristic as CBCharacteristic)
+                peripheral.setNotifyValue(true, forCharacteristic : characteristic as! CBCharacteristic)
             }
         }
     }
@@ -145,7 +145,7 @@ class BLECentral : NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
             
             if let value = rawValue {
                 println("data read from characteristic - \(value)")
-                self.delegate?.bleCentralCharactoristicValueUpdate(value)
+                self.delegate?.bleCentralCharactoristicValueUpdate(value as String)
             }
             else {
                 self.delegate?.bleCentralCharactoristicValueUpdate("No Value Found")
@@ -167,7 +167,7 @@ class BLECentral : NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
             if characteristic.value != nil {
                 rawValue = NSString(data: characteristic.value, encoding: NSUTF8StringEncoding)
                 if let value = rawValue {
-                    self.delegate?.bleCentralCharactoristicValueUpdate(value)
+                    self.delegate?.bleCentralCharactoristicValueUpdate(value as String)
                     println("data updated from characteristic - \(value)")
                 }
                 else {

@@ -54,7 +54,7 @@ class LoadingPageView : UIView {
     }
     
     func startAnimation (callback : () -> ()) {
-        self.animateLines(0, callback)
+        self.animateLines(0, callback: callback)
     }
     func animateLines (index: Int, callback: () -> ()) {
         let duration = 0.5
@@ -80,7 +80,7 @@ class LoadingPageView : UIView {
                 else {
                     var i = index
                     i++
-                    self.animateLines(i, callback)
+                    self.animateLines(i, callback: callback)
                 }
         })
     }

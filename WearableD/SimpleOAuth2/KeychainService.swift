@@ -44,13 +44,13 @@ class KeychainService : NSObject
             let opaque = dataTypeRef?.toOpaque()
             var contentsOfKeychain: NSString?
         
-            if let op = opaque? {
+            if let op = opaque {
                 let retrievedData = Unmanaged<NSData>.fromOpaque(op).takeUnretainedValue()
             
                 contentsOfKeychain = NSString(data: retrievedData, encoding: NSUTF8StringEncoding)
             
                 if let finalString = contentsOfKeychain {
-                    println("retrieved from keychain : " + (service as NSString) + "= " + finalString)
+                    println("retrieved from keychain : " + ((service as NSString) as String) + "= " + (finalString as String))
                     return finalString
                 }
             }

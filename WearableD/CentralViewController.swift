@@ -181,8 +181,8 @@ class CentralViewController: UIViewController, BLECentralDelegate {
             self.showHideNavButton(btn, titleTxt: "")
         }
         else {
-            var name = doc!["name"] as String
-            var year = doc!["taxYear"] as String
+            var name = doc!["name"] as! String
+            var year = doc!["taxYear"] as! String
             self.showHideNavButton(btn, titleTxt: "Show \(name) \(year) Return")
         }
     }
@@ -190,7 +190,7 @@ class CentralViewController: UIViewController, BLECentralDelegate {
     
     func onDocsListReady(jsonData: NSDictionary!) {
         self.bleCentralStatusUpdate("Processing Tax Return list data...")
-        if let dataList = jsonData.objectForKey("data") as NSArray? {
+        if let dataList = jsonData.objectForKey("data") as! NSArray? {
             retrieved_list = dataList
             let numOfReturns = retrieved_list.count
             if numOfReturns < 1 {
@@ -198,7 +198,7 @@ class CentralViewController: UIViewController, BLECentralDelegate {
             }
             else {
                 let doc = retrieved_list[0] as? NSDictionary
-                let name = doc!["name"] as String
+                let name = doc!["name"] as! String
                 self.bleCentralStatusUpdate("Got \(numOfReturns) Tax Returns for \(name)")
                 
                 self.loader.stopAnimating() {
@@ -213,7 +213,7 @@ class CentralViewController: UIViewController, BLECentralDelegate {
         }
         else {
             var errMsg = "No tax return found."
-            if let statusObj = jsonData.objectForKey("status") as NSDictionary? {
+            if let statusObj = jsonData.objectForKey("status") as! NSDictionary? {
                 if let message = statusObj["message"] as? String {
                     if let code = statusObj["code"] as? Int {
                         errMsg = "\(message). Error code: \(code)."
@@ -225,13 +225,13 @@ class CentralViewController: UIViewController, BLECentralDelegate {
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        var showBtn = sender as UIButton
-        var pdfVC = segue.destinationViewController as PDFViewController
+        var showBtn = sender as! UIButton
+        var pdfVC = segue.destinationViewController as! PDFViewController
         
-        var docData = self.retrieved_list[showBtn.tag] as NSDictionary
+        var docData = self.retrieved_list[showBtn.tag] as! NSDictionary
         
         pdfVC.access_token = self.access_token
-        pdfVC.document_id = docData["key"] as String
+        pdfVC.document_id = docData["key"] as! String
     }
 
 }

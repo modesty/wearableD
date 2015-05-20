@@ -50,13 +50,13 @@ class HomeViewController: UIViewController {
                 if viewNameStr == "requestDoc" {
                     if (topVC is CentralViewController) == false {
                         self.returnToRoot()
-                        bleVC = mainStoryboard.instantiateViewControllerWithIdentifier("CentralViewController") as CentralViewController
+                        bleVC = mainStoryboard.instantiateViewControllerWithIdentifier("CentralViewController") as! CentralViewController
                     }
                 }
                 else if viewNameStr == "shareDoc" {
                     if (topVC is PeripheralViewController) == false {
                         self.returnToRoot()
-                        bleVC = mainStoryboard.instantiateViewControllerWithIdentifier("PeripheralViewController") as PeripheralViewController
+                        bleVC = mainStoryboard.instantiateViewControllerWithIdentifier("PeripheralViewController") as! PeripheralViewController
                     }
                 }
                 

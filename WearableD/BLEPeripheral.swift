@@ -42,7 +42,7 @@ class BLEPeripheral: NSObject, CBPeripheralManagerDelegate {
         
         set (rawValue) {
             _raw_token = rawValue
-            println("AUTH TOEKEN LENGTH: \(countElements(_raw_token))")
+            println("AUTH TOEKEN LENGTH: \(count(_raw_token))")
             
             var str = rawValue
             //MQZ.2/3/2015 max-chunk-length is 150
@@ -50,11 +50,11 @@ class BLEPeripheral: NSObject, CBPeripheralManagerDelegate {
             var chunks = [String]()
             var startIndex = str.startIndex
             
-            var chunkAmount = Int(countElements(_raw_token) / chunkLength) + 1
+            var chunkAmount = Int(count(_raw_token) / chunkLength) + 1
             while chunkAmount > 0 {
                 var oneLength = chunkLength
                 if chunkAmount == 1 {
-                    oneLength = countElements(str) - Int(countElements(_raw_token) / chunkLength) * chunkLength
+                    oneLength = count(str) - Int(count(_raw_token) / chunkLength) * chunkLength
                 }
                 var endIndex = advance(startIndex, oneLength)
                 
